@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 类是一个抽象概念，是对象的属性和方法的模板
+        class Beverages {
+            constructor(type) {
+                this.type = type;
+                console.log(type);
+                this.boilWater();
+                this.brew();
+                this.pourInCup();
+                this.addCondiments();
+            }
+            boilWater() {
+                console.log('烧水');
+            }
+            // abstract 方法
+            brew() {
+                console.log('用沸水冲泡');
+            }
+            pourInCup() {
+
+            }
+            addCondiments() {
+
+            }
+        }
+        class Coffee extends Beverages {
+            pourInCup() {
+                console.log('把咖啡倒进杯子');
+            }
+            addCondiments() {
+                console.log('加糖和牛奶');
+            }
+        }
+        const cof = new Coffee('卡布奇诺');
+        class Tea extends Beverages {
+            pourInCup() {
+                console.log('把茶倒进杯子');
+            }
+            addCondiments() {
+                console.log('加柠檬');
+            }
+        }
+        const tea = new Tea('龙井');
+    </script>
+</body>
+
+</html>
