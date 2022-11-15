@@ -1,0 +1,8 @@
+.wp{
+    position: relative;
+}
+.box{
+    position: absolute;
+    top:calc(50% - 50px);
+    left:calc(50% - 50px);
+}
