@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+         * @func 计算工资
+         * @author 蔡景龙
+         * @date 2022-11-12
+         * @params {salary number,level string['A','B','C','D','S']}
+         * @return total number
+         */
+        //es6 语法 给默认值
+        function caculateSalary(salary, level='C') {
+            if (typeof salary != 'number'
+                || ['A', 'B', 'C', 'D', 'S'].indexOf(level) == -1
+                || salary <= 0) {
+                // console.warn('参数错误');
+                throw new Error('参数错误');
+                return;
+            }
+            switch (level) {
+                case 'A': return salary * 14; break;
+                case 'B': return salary * 15; break;
+                case 'C': return salary * 16; break;
+                case 'D': return salary * 18; break;
+                case 'S': return salary * 22; break;
+            }
+        }
+    </script>
+</body>
+
+</html>
