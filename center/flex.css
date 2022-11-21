@@ -1,9 +1,0 @@
-.wp {
-    display: flex;
-    /*设置弹性容器，弹性子元素方向默认横向摆放*/
-    /* flex-direction: column;弹性子元素方向纵向摆放*/
-    justify-content: center;
-    /* ,flex-end,flex-start;弹性子元素横向对齐 */
-    align-items: center;
-    /*弹性子元素纵向对齐*/
-}
