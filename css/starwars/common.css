@@ -1,0 +1,158 @@
+body,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    font-size: 16px;
+    background: url(//cssanimation.rocks/demo/starwars/images/bg.jpg);
+}
+
+.starwars-demo {
+    width: 34em;
+    height: 17em;
+    /* 离他最近的position 不为static的元素定位 
+    如果没有？找body
+    */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: green; */
+    /* 3D的世界来了 有纵深，可透视 */
+    perspective: 800px;
+    transform-style: preserve-3d;
+    /* transform 支持3D */
+}
+
+.star,
+.wars,
+.byline {
+    position: absolute;
+}
+
+.star {
+    top: -0.75em;
+    animation: star 5s ease-out infinite;
+}
+
+.wars {
+    bottom: -0.75em;
+    animation: wars 5s ease-out infinite;
+}
+
+.byline {
+    color: #fff;
+    font-family: 'ITC Serif Gothic', Lato;
+    /* 默认是微软雅黑 */
+    font-size: 2.25em;
+    left: -2em;
+    right: -2em;
+    letter-spacing: 0.4em;
+    text-align: center;
+    text-transform: uppercase;
+    top: 30%;
+    animation: move-byline 5s linear infinite;
+}
+
+@keyframes star {
+    0% {
+        opacity: 0;
+        /* 透明度 */
+        transform: scale(1.5) translateY(-0.75em);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    89% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateZ(-1000em);
+    }
+
+}
+
+@keyframes wars {
+    0% {
+        opacity: 0;
+        /* 透明度 */
+        transform: scale(1.5) translateY(0.5em);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateZ(-1000em);
+    }
+
+}
+
+@keyframes move-byline {
+    0% {
+        transform: translateZ(5em);
+    }
+
+    100% {
+        transform: translateZ(0);
+    }
+}
+
+.byline span {
+    animation: spin-letters 5s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin-letters {
+
+    0%,
+    10% {
+        opacity: 0;
+        transform: rotateY(90deg);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70%,
+    80% {
+        transform: rotateY(0);
+    }
+
+    95%,
+    100% {
+        opacity: 0;
+    }
+}
