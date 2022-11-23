@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script src="1.js"></script> -->
+    <!-- <script src="2.js"></script> -->
+    <!-- <script src="3.js"></script> -->
+    <!-- 展示同学信息 -->
+    <!-- 语义化标签  对搜索引擎更友好一些 -->
+    <table>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>名字</th>
+                <th>家乡</th>
+            </tr>
+        </thead>
+        <!-- <tr>
+            <td>1</td>
+            <td>李江龙</td>
+            <td>赣州</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>黄立新</td>
+            <td>赣州</td>
+        </tr> -->
+        <tbody>
+
+        </tbody>
+    </table>
+    <br>
+    <form name="studentForm">
+        <!-- 盲人上网  无障碍 -->
+        <div>
+            <label for="numInput">序号</label>
+            <input type="number" placeholder="请输入序号" id="numInput" name="studentID" required />
+        </div>
+        <div>
+            <label for="numInput">名字</label>
+            <input type="text" placeholder="请输入名字" id="nameInput" name="studentName" required />
+        </div>
+        <div>
+            <label for="numInput">家乡</label>
+            <input type="text" placeholder="请输入家乡" id="hometownInput" name="studentHometown" required />
+        </div>
+        <div>
+            <button type="submit">提交</button>
+        </div>
+    </form>
+    <script>
+        // <!-- json  数组 -->
+        // <!-- 1. 对象字面量 -->
+        // <!-- 2. JSON数据交换的格式 -->
+        const students = [
+            {
+                id: 1,
+                name: "李江龙",
+                hometown: '赣州'
+            },
+            {
+                id: 2,
+                name: "黄立新",
+                hometown: '赣州'
+            },
+        ]
+        // 函数  封装代码的能力  代码组织的思路
+        // 不用写流水账， 超过10行代码，一定要封装函数
+        const oTBody = document.querySelector('tbody');  // DOM编程
+        function renderStudent() {
+            students.forEach(function (student) {
+                // console.log(student);
+                // es6  字符串模板 支持多行
+                oTBody.innerHTML += `
+                                        <tr>
+                                            <td>${student.id}</td>
+                                            <td>${student.name}</td>
+                                            <td>${student.hometown}</td>
+                                        </tr>
+                                    `
+            })
+        }
+
+        renderStudent();
+        // obj.fun()
+        document.forms['studentForm'].addEventListener('submit', function (event) {
+            event.preventDefault();  //阻止默认行为
+            const oStudent = {
+                id: this["studentID"].value,
+                name: this["studentName"].value,
+                hometown: this["studentHometown"].value,
+                // this指向表单studentForm
+            }
+            // console.log(oStudent);
+            students.push(oStudent);
+            oTBody.innerHTML = '';
+            renderStudent();   //复用？ 
+        })
+    </script>
+</body>
+
+</html>
