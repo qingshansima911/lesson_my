@@ -1,0 +1,12 @@
+@import "style/reset.wxss";
+@import "style/button.wxss";
+@import "style/action.wxss";
+@import "style/hero.wxss";
+/* 引入外部样式，模块化 */
+/* 统一设置每个页面 */
+page{
+  background: #f8f8f8;
+}
+.section{
+  height: 100vh;
+}
