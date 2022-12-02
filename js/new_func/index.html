@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 为什么 var 声明会挂在到 window let 不会？
+        // 代码本质？文本字符串交给 js 的编译器 chrome V8引擎
+        // 分词 var name = 字符串数据类型
+        // 编译阶段 语法校验 var 变量提升  let 进入暂时性死区
+        // 运行阶段
+        // 内存中声明
+        //console.log(name); // undefined 变量提升
+        // 不同的对象 作用域不一样
+        // 变量查找 按作用域查找
+        // AO { global: ,name} active object 活动对象
+        // var name = "windowName"; // window global scope全局作用域
+        // let y = 5;
+        // function a() {
+        //     // 作用域链
+        //     // VO { function: ,name, x} var在编译，赋值在运行阶段
+        //     var x = 2;
+        //     var name = "Cherry"; // function scope函数作用域
+        //     console.log(name);
+        //     console.log(x, y);
+        // }
+        // a();// 一段代码 在内存中 进入执行栈
+        // 'use strict'
+        var name = "windowName";
+        // function a() {
+        //     var name = "Cherry";
+        //     // 无法确定 this 值有调用的方式决定
+        //     console.log(this.name);
+        // }
+        //a();// 函数一定会提升 window window.a();
+        var a = {
+            name: "Cherry",
+            fn: function () {
+                console.log(this.name);
+            }
+        }
+        // a.fn();
+        // window.a.fn();
+        var b = 1;
+        var c = b;
+        var f = a.fn; //赋值 函数对象 f 指针 指向函数对象 引用式赋值
+        f(); // window.f
+    </script>
+</body>
+
+</html>
