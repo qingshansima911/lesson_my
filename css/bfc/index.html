@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            /* height: 300px; */
+            background: rgb(197, 225, 107);
+            /* display: flex; */
+
+            /* 开启新的BFC */
+            /* overflow: hidden;  */
+            /* display: inline-block; */
+        }
+
+        .box {
+            margin: 100px;
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Body 是最大的BFC  -->
+    <div class="container">
+        <!-- 没有开启新的BFC -->
+        <div class="box">1</div>
+        <div class="box">2</div>
+    </div>
+</body>
+
+</html>
