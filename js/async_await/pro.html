@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="msg">没有数据</div>
+    <ul id="list">
+
+    </ul>
+    <script>
+        // 有一个异步任务 耗时， 再做某件事情， thenable
+        (function () {
+            const list = document.querySelector("#list");
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            // 先取数据
+            // 再添加到url上
+            if (posts.length == 0) {
+                fetch("http://localhost:3000/posts")
+                    // 二进制流
+                    .then(res => res.json())
+                    // 花时间 类型转换 二进制流转换成数组
+                    .then(res => {
+                        // 等待异步任务
+                        // console.log(1);
+                        // console.log(res);
+                        localStorage.setItem("posts", JSON.stringify(res));
+                        renderPosts(res);
+                    })
+            } else {
+                renderPosts(posts);
+            }
+            function renderPosts(items) {
+                items.forEach(item => {
+                    list.innerHTML += `
+                    <li>${item.title}</li>
+                    `
+                })
+                document.getElementById('msg').style.display = 'none';
+            }
+            console.log(2);
+            // list.innerHTML += `
+            // <li>文章一篇</li>
+            // `;/* 同步 */
+        })()
+    </script>
+</body>
+
+</html>
