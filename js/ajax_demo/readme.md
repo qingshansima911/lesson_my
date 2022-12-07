@@ -7,7 +7,7 @@
         返回json数据
 
     - npm init -y 项目变成一个后端项目
-        npm i json-server
+        npm i json-server  // 以管理员的方式运行
         package.json 
         "scripts": {
         "dev": "json-server --watch student.json"
