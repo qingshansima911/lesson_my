@@ -1,0 +1,15 @@
+{
+    "pages": [
+        "pages/home/home",
+        "components/w-tab-control/w-tab-control",
+        "components/w-swiper/w-swiper"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}
