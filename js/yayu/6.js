@@ -38,15 +38,17 @@ var memorize = function (func, hasher) {
         var cache = memoize.cache;
         // key?
         var address = '' + (hasher ? hasher.apply(this, arguments) : key);
-        // console.log(hasher.apply(this, arguments))
+        // console.log(hasher.apply(this, arguments), '????????????')
         // console.log(address)
         if (!cache[address]) {
             cache[address] = func.apply(this, arguments);
         }
+        // console.log(cache[address], '////////////');
         return cache[address];
     };
     // cache 挂在函数对象上
     memoize.cache = {};
+    console.log(memoize, 'memoize');
     return memoize;
 };
 // var memoizedAdd = memorize(propValue)
@@ -55,12 +57,13 @@ var memorize = function (func, hasher) {
 // console.log(memoizedAdd({ value: 2 })) // 1
 // var memoizedAdd = memorize(add)
 // var memoizedAdd = memorize(add, function () {
-    //     var args = Array.prototype.slice.call(arguments)
-    //     return JSON.stringify(args)
-    // })
+//     var args = Array.prototype.slice.call(arguments)
+//     return JSON.stringify(args)
+// })
 var memoizedAdd = memorize(add, function () {
-        var args = Array.prototype.join.call(arguments)
-        return JSON.stringify(args)
-    })
+    var args = Array.prototype.join.call(arguments)
+    // console.log(JSON.stringify(args));
+    return JSON.stringify(args)
+})
 console.log(memoizedAdd(1, 1, 1))
-console.log(memoizedAdd(1, 2, 2))
+// console.log(memoizedAdd(1, 2, 2))

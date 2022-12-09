@@ -13,5 +13,5 @@
     2. 使用key 
         arguments.length + Array.prototype.join.apply(this,arguments)
         不能处理参数是对象这种情况
-        原因是[object object] join 本事， 会先toString
+        原因是[object object] join 本质， 会先toString
     3. memorize 函数需要优化

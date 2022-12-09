@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: green;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .innerBox {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="innerBox"></div>
+    </div>
+    <script>
+        const oBox = document.querySelector("#box");
+        const innerBox = document.querySelector(".innerBox");
+        // DOM 2级事件
+        // 注册事件 event loop
+        oBox.addEventListener("click", function () {
+            console.log("////////////");
+        }, true)
+        innerBox.addEventListener("click", function () {
+            console.log("aaaaaaaaaaa");
+        }, true)
+        // DOM 0级事件
+        // oBox.onclick = function () {
+        //     console.log("////////////");
+        // }
+        // innerBox.onclick = function () {
+        //     console.log("aaaaaaaaaaaa");
+        // }
+    </script>
+</body>
+
+</html>
