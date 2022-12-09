@@ -1,19 +1,83 @@
-/**index.wxss**/
-.userinfo {
+.page{
+	height: 100vh;
+	background:#fff;
+	display: flex;
+	flex-direction: column;
+}
+
+.page_bd{
+	flex: 1;
+}
+
+.page_hd__navigation{
+  background: #ffd11c;
+  width: 100vw;
+  /* 1.25 */
+  /* height: 133.6rpx; */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
+  /* justify-content: center; */
+  /* align-items: center; */
+  box-sizing: border-box;
+}
+.page_hd__banner{
+	display: flex;
+}
+.icon-zuobiao{
+	margin-left: 20rpx;
+}
+.banner_title{
+	margin-left: 10rpx;
+}
+.change{
+	font-size: 20rpx;
 }
 
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.icon_tableBar{
+	width: 100vw;
+	height: 78rpx;
+	/* background: green; */
 }
-
-.usermotto {
-  margin-top: 200px;
+.icon_tableBar__icons{
+	display: flex;
+	height: 48rpx;
+	/* background: rgb(214, 154, 154); */
+}
+.icon-shouye{
+	font-size: 45rpx;
+	flex:1;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+}
+.icon-smiling-face-outline{
+	font-size: 45rpx;
+	flex:1;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+}
+.icon-dingdan{
+	font-size: 45rpx;
+	flex:1;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+}
+.icon-wode{
+	font-size: 45rpx;
+	flex:1;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+}
+.icon_tableBar__title{
+	display: flex;
+	height: 30rpx;
+	/* background: rgb(125, 138, 100); */
+}
+.tableBar-title{
+	font-size: 20rpx;
+	flex:1;
+	display: flex;
+	justify-content: center;
 }
