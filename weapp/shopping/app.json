@@ -2,7 +2,8 @@
     "pages": [
         "pages/home/home",
         "components/w-tab-control/w-tab-control",
-        "components/w-swiper/w-swiper"
+        "components/w-swiper/w-swiper",
+        "pages/home/childCpns/w-feature/w-feature"
     ],
     "window": {
         "backgroundTextStyle": "light",
