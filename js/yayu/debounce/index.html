@@ -11,9 +11,11 @@
             width: 200px;
             height: 200px;
             background: green;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            /* display: flex; */
+            /* align-items: center; */
+            /* justify-content: center; */
+            overflow-y: scroll;
+            flex-direction: column;
         }
 
         .innerBox {
@@ -25,20 +27,65 @@
 </head>
 
 <body>
+    <input type="text" id="inp">
     <div id="box">
         <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
+        <div class="innerBox"></div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script>
         const oBox = document.querySelector("#box");
         const innerBox = document.querySelector(".innerBox");
+        const inp = document.querySelector("#inp");
+        const hammertime = new Hammer(oBox);
+            hammertime.on('pan', function(ev) {
+                console.log(ev, '//////////');
+            });
         // DOM 2级事件
         // 注册事件 event loop
-        oBox.addEventListener("click", function () {
-            console.log("////////////");
-        }, true)
-        innerBox.addEventListener("click", function () {
-            console.log("aaaaaaaaaaa");
-        }, true)
+        // 默认false 从内到外，true 从外到内
+        // oBox.addEventListener("click", function () {
+        //     console.log("////////////");
+        // }, true)
+        // innerBox.addEventListener("click", function () {
+        //     console.log("////////////");
+        // }, true)
+        // oBox.addEventListener("mouseover", function () {
+        //     console.log("mouseover");
+        // })
+        // oBox.addEventListener("mouseout", function () {
+        //     console.log("mouseout");
+        // })
+        // oBox.addEventListener("mousemove", function () {
+        //     // 触发频繁 服务器 
+        //     console.log("mousemove");
+        // })
+        oBox.addEventListener("scroll", function () {
+            // 触发频繁 服务器 
+            console.log("scroll");
+        })
+        window.addEventListener("resize", function () {
+            // 触发频繁 服务器 
+            console.log("resize");
+        })
+        inp.addEventListener("keydown", function () {
+            // 触发频繁 服务器 
+            console.log("keydown");
+        })
+        // innerBox.addEventListener("click", function () {
+        //     console.log("aaaaaaaaaaa");
+        // }, true)
         // DOM 0级事件
         // oBox.onclick = function () {
         //     console.log("////////////");
