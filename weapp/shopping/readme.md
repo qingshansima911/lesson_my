@@ -90,4 +90,138 @@
   把一个页面任务，分成若干组件开发任务，
    - 共享，多个页面 /components
    - 不共享，只在特定的页面上出现，页面简洁， 就放到page目录下
+
+- 首页列表复杂业务梳理
+  1. 查询参数有两个
+    page 
+    type
+    先测试接口
+    http://152.136.185.210:7878/api/hy66/home/data?page=${page}
+    &type=${type}
+  2. goods 列表 最简单的
+    数据驱动的列表
+  3. 默认的type pop page=1
+  4. goods:{
+            [POP]:{
+                page:1,
+                list:[]
+            },
+            [NEW]:{
+                page:1,
+                list:[]
+            },
+            [SELL]:{
+                page:1,
+                list:[]
+            }
+        }
+    开始时都请求一下， 切换的tab时， 马上出来
+    getProductData(type)
+    
+- w-goods w-goods-item 组合
+  1. 页面是由组件构成的， 而不是标签
+  2. 组件就负责渲染， 一个业务， properties triggerEvent
+  3. 容器组件
+    w-goods 容器组件 集合
+    w-goods-item 功能
+
+- 小程序组件语法
+  1. component ({})
+  2. 通用组件 components 
+    组成页面的组件， 不怎么复用的， 就放在相应的page 目录下
+    页面简单， 可读性提升， 便于维护
+  3. 数据有 properties(派发) + data(私有)
+  4. 方法是放在 methods
+    在带this.triggerEvent(页面自定义事件， 传递的参数)
+  5. 页面上 <demo data={} bind:event="">
+    bind:event="" 自定义事件 添加在页面等待回调的函数
+
+- 详情页开发套路
+  关注点在组件和交互
+  1. onLoad 解构请求参数 id
+  2. 将请求的方法封装
+  3. 页面和请求分离
+  4. service/
+    添加了一个detail 方法
+    每个page 都会在service 下有个对应的文件
+  5. 页面的组件化
+    看设计稿， 划分组件
+    工作任务会以组件为单位
+  6. 分析数据， 数据驱动的界面或组件开发
+    切页面 wxml + wxss 应该发生在组件里， 而不是page 下
+  7. 组件功能及表现， 如果不清楚， 去找后端， 设计师， 产品
+  8. 对页面的重要数据进行建模， models/
+    严格把关数据的过程
+
+- service 目录架构思路
+  1. 管理所有的网络请求
+    baseURL 统一的request 方法
+  2. 每一个页面一个单独的.js文件， 提供请求方法
+    提升代码的可读性和管理
+  3. 高效发出请求
+    不用每个请求都重复wx.request()
+  
+- 组件的思维
+  1. 页面由组件构成
+  2. components （共享）组件和组成单个页面的组件(可读性)
+  3. 跨页面， 跨项目， 开源道npm 市场
+    vant ? 商业项目、大型项目可以采用
+    使用第三方组件， 加快开发速度
+
+- 接口的认识  当我们自己写项目时
+  1. 已有后端提供的接口
+  2. 加入项目刚开始， 没有接口可用怎么办？
+      前端在自己开发是, 不要等接口,先用fastmock, json 格式, 提供假接口
+      满足页面展示功能就可以了
+  3. 等到后端接口上线了, 将请求地址切换到线上地址, 启用真接口
+  4. 在前后端分离之前, 接口文档写出来, 约定好
+    URL /home/multidata
+    返回的格式
+  
+- 首页的接口, 为何要分两个接口？
+  1. 商品表（评论表）基础接口
+    后端执行是快的， 就一两条sql
+  2. 相关推荐
+    大数据， 推荐算法， 不是查表， 是要计算的
+    耗时， 会影响页面现实的速度
+  3. onLoad 一一列出
+    this._getDetailData();
+    this._getRecommendsData();
+
+- 父子组件通信
+  1. page 是父亲
+    向子组件提供了properties
+    并且还绑定了一个自定义事件 bind:event="handler"
+  2. 子组件
+    可以通过this.triggerEvent("event", ...params)向父组件通信
+
+- 加入购物车的商品， 如何到购物车页面也可以显示出来呢？
+  app.js globalData
+
+- 购物车页面开发规则
+  1. 数据来自 app.globalData
+  2. 生命周期的概念
+    - app.js onLaunch
+    - home.js onLoad onShow onUnload...
+    - cart.js
+      onLoad 只会执行一次
+      onShow 会执行多次 更新购物车数据
+      tabbar 里的onUnload 不会卸载
+
+- 数组的es6 方法
+  1. for(let i = 0; i < arr.length; i ++){
+    计数循环， 对cpu 友好， 但是对人不ok， 可读性不好
+    除非下标很重要
+  }
+  2. for es6 升级版
+   for (let item of cartList) {
+
+     }
+  3. 数组好多功能方法
+    forEach 让每个元素都执行一个回调函数 
+    find 仍然会像forEach 一样， 回调函数 return true, 返回当前项
+    reduce 累加计算 pre 是前几次累加结果
+
+
+
   

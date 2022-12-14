@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "w-goods-item":"/components/w-goods-item/w-goods-item"
+    }
+
+}

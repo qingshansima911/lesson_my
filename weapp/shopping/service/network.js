@@ -9,7 +9,7 @@ import {
 	})
 	// 许愿 成功、失败
 	return new Promise((resolve, reject) => {
-		console.log(baseURL + options.url)
+		// console.log(baseURL + options.url)
 	 	wx.request({
 			url: baseURL + options.url,
 			timeout: timeout,

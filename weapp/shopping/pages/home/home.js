@@ -2,8 +2,17 @@
 // 模块化
 import {
     getMultiData,
-    getProducts
+    getProduct
   } from '../../service/home.js'
+// es6 import 模块化
+// es6 {} 解构
+import{
+    POP,
+    SELL,
+    NEW,
+    BACK_TOP_POSITION
+} from "../../common/const.js"
+
 Page({
 
     /**
@@ -14,24 +23,75 @@ Page({
         showTabControl:false,
         titles:["流行", "新款", "精选"],
         topPosition:0,
-        page:1,
-        recommends:[]
-
+        recommends:[],
+        currentType: POP,
+        showBackTop:false,
+        // 格式的目的是什么？
+        goods:{
+            [POP]:{
+                page:1,
+                list:[]
+            },
+            [NEW]:{
+                page:1,
+                list:[]
+            },
+            [SELL]:{
+                page:1,
+                list:[]
+            }
+        }
     },
-    tabClick(e){
-        console.log(e);
-    },
+    tabClick(e) {
+        // 1.根据当前的点击赋值最新的currentType
+        // console.log(e);
+        let currentType = ''
+        switch(e.detail.index) {
+          case 0:
+            currentType = POP
+            break
+          case 1:
+            currentType = NEW
+            break
+          case 2:
+            currentType = SELL
+            break
+        }
+        this.setData({
+            currentType: currentType
+          })
+            console.log(this.selectComponent('.tab-control'));
+            this.selectComponent('.tab-control').setCurrentIndex(e.detail.index)
+            this.selectComponent('.tab-control-temp').setCurrentIndex(e.detail.index)
+      },
     loadMore(){
-        console.log("到底了")
+        // console.log("到底了")
+        this._getProductionData(this.data.currentType);
+    },
+    onBackTop(){
+        this.setData({
+            topPosition:0
+        })
     },
     scrollPosition(e){
         // console.log(e);
         const position = e.detail.scrollTop;
-        if(position>300){
+        // if(position>300){
+        //     this.setData({
+        //         showTabControl:true
+        //     })
+        // }
+        this.setData({
+            showBackTop: position > BACK_TOP_POSITION,
+        })
+        wx.createSelectorQuery().select('.tab-control').boundingClientRect((rect) => {
+            // console.log(rect.top)}).exec()
+            const show = rect.top > 0
             this.setData({
-                showTabControl:true
+              showTabControl: !show
             })
-        }
+          })
+          .exec()
         
     },
     /**
@@ -43,7 +103,10 @@ Page({
     },
     _getData(){
         this._getMultiData();
-        this._getGoods();
+        // 流行的商品数据
+        this._getProductionData(POP);
+        this._getProductionData(SELL);
+        this._getProductionData(NEW);
     },
     _getMultiData(){
         // 耗时的http 请求任务
@@ -68,11 +131,22 @@ Page({
             });
         })
     },
-    _getGoods(){
-        getProducts()
-        .then(res=>{
-            // console.log(this.data)
-        })
+    _getProductionData(type){
+        const page = this.data.goods[type].page
+        getProduct(type, page)
+            .then(res=>{
+                // console.log(res);
+                // 1.取出数据
+                const list = res.data.list;
+                // 2.将数据临时获取
+                const goods = this.data.goods;
+                goods[type].list.push(...list)
+                goods[type].page += 1;
+                // 3.最新的goods设置到goods中
+                this.setData({
+                    goods: goods
+                })
+            })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

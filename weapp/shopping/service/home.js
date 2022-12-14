@@ -7,7 +7,7 @@ export const getMultiData = ()=>{
 		  url: '/home/multidata'
 		})
 }
-export function getProducts(type, page) {
+export function getProduct(type, page) {
 	return request({
 	  url: '/home/data',
 	  data: {

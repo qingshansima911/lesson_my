@@ -32,9 +32,8 @@
       bind:tabclick="tabClick"
     />
     <!-- 商品列表 -->
-    <!-- <w-goods /> -->
+    <w-goods goodslist="{{goods[currentType].list}}"></w-goods>
     <!-- 返回到顶部 -->
-    <!-- <w-back-top></w-back-top> -->
-    <view style="height:500vh;background-color:green;"></view>
+    <w-back-top wx:if="{{showBackTop}}" bindtap="onBackTop"></w-back-top>
   </scroll-view>
 </view>
