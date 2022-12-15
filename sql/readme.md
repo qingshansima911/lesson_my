@@ -35,7 +35,6 @@
         PRIMARY KEY(`id`),
         UNIQUE KEY `name` (`name`)
     )ENGINE = InnoDB
-
+    
     web http 默认服务 80
-
     select * from user where id = 1; O(1)
