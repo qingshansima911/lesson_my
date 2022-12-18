@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="root"></ul>
+    <script>
+        // 前端
+        // 拉取数据？API
+        // https://www.fastmock.site/mock/fc09142a9029fcb292822d4ee872f52b/beers/banners 接口地址
+        // 后端
+        // 异步
+        const list = document.getElementById("root");
+        const promise = fetch("https://www.fastmock.site/mock/fc09142a9029fcb292822d4ee872f52b/beers/banners")
+        // console.log(promise);
+        // pending promise 起始状态
+        // fulfiled 成功解决
+        // rejected 失败
+        // 控制执行流程
+        promise
+            .then(res => {
+                // 二进制流到达应用， json 化也是需要花时间的， promise 实例
+                // console.log(res.json());
+                return res.json()
+            })
+            // promise 实例
+            .then(data => {
+                console.log(data);
+                const lis = data.map(item => `
+                    <li>
+                        <div>
+                             ${item.id}
+                             ${item.title}
+                             <img src="${item.img}">
+                         </div>
+                    </li>
+                `);
+                console.log(lis);
+                list.innerHTML = lis.join('');
+                // console.log(data);
+                // data.forEach(element => {
+                //     list.innerHTML +=`
+                //     <li>
+                //         <div>
+                //             ${element.id}
+                //             ${element.title}
+                //             <img src="${element.img}">
+                //         </div>
+                //     </li>
+                //     `
+                // });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    </script>
+</body>
+
+</html>
