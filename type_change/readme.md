@@ -1,3 +1,4 @@
+https://juejin.cn/post/6844903983429976078#heading-7
 - js 类型知识点
     1. 7个基础数据类型 + 1个对象
     2. typeof null object [object array]
