@@ -1,15 +1,46 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black",
-    "navigationStyle": "custom"
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/home/home",
+        "pages/logs/logs",
+        "pages/earn/earn",
+        "pages/order/order",
+        "pages/profile/profile"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom"
+    },
+    "tabBar": {
+        "selectedColor": "#000",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "首页",
+                "iconPath": "/assets/images/tabbar/home.png",
+                "selectedIconPath": "/assets/images/tabbar/home_active.png"
+            },
+            {
+                "pagePath": "pages/earn/earn",
+                "text": "赚米粒",
+                "iconPath": "/assets/images/tabbar/smiling-face-outline.png",
+                "selectedIconPath": "/assets/images/tabbar/smiling-face-outline_active.png"
+            },
+            {
+                "pagePath": "pages/order/order",
+                "text": "订单",
+                "iconPath": "/assets/images/tabbar/order.png",
+                "selectedIconPath": "/assets/images/tabbar/order_active.png"
+            },
+            {
+                "pagePath": "pages/profile/profile",
+                "text": "我的",
+                "iconPath": "/assets/images/tabbar/profile.png",
+                "selectedIconPath": "/assets/images/tabbar/profile_active.png"
+            }
+        ]
+    },
+        "sitemapLocation": "sitemap.json"
 }

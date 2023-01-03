@@ -1,0 +1,20 @@
+<view class="page">
+	<view class="page_hd">
+		<view class="page_hd__navigation" style="height: {{navHeight}}px;padding-top: {{navTop}}px;">
+			<view class="page_hd__banner" style="height: {{navHeight-navTop-gap}}px;line-height:{{navHeight-navTop-gap}}px">
+				<!-- <view class="iconfont icon-zuobiao"></view> -->
+				<image src="../../assets/images/banner/location.png"/>
+				<view class="banner_title">阳光网咖(广兰大道店)</view>
+				<view class="change">></view>
+			</view>
+		</view>
+	</view>
+	<view class="page_bd">
+		<scroll-view
+			scroll-y 
+			style="height: 100vh;"
+		>
+			
+		</scroll-view>
+	</view>
+</view>

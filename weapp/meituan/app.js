@@ -8,7 +8,7 @@ App({
         // console.log(menuButtonObject);
         let statusBarHeight = res.statusBarHeight;
         let gap = menuButtonObject.top - statusBarHeight;
-        console.log(gap);
+        // console.log(gap);
         let navHeight =statusBarHeight + menuButtonObject.height + gap*2
         // console.log(navHeight);
 		// console.log(this);

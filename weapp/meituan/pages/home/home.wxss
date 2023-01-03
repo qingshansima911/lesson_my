@@ -1,0 +1,29 @@
+.page{
+	height: 100vh;
+	background:#fff;
+	/* display: flex; */
+	/* flex-direction: column; */
+}
+
+.page_hd__navigation{
+  background: #ffd11c;
+  /* 1.25 */
+  /* justify-content: center; */
+  box-sizing: border-box;
+}
+.page_hd__banner{
+	display: flex;
+	align-items: center;
+}
+.page_hd__banner image{
+	width: 30rpx;
+	height: 30rpx;
+	margin-left: 20rpx;
+}
+.banner_title{
+	margin-left: 5rpx;
+}
+.change{
+	font-size: 20rpx;
+}
+
