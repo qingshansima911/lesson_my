@@ -13,7 +13,7 @@ const { indexOf } = require("lodash");
 // 回调函数就会运行
 // res 响应用户的请求， 结束
 const server = http.createServer(function (req, res) {
-    console.log(req.url, '//////');
+    // console.log(req.url, '//////');
     // req.url  == "/banners"
     if (req.url == '/banners') {
         const data = {
@@ -40,7 +40,7 @@ const server = http.createServer(function (req, res) {
             "title": "百度胡总面试之旅",
             "desc": "五个月，冲击毕业前大厂就业。"
         }
-        res.setHead('Content-Type','application/json;charset=utf-8');
+        res.setHead('Content-Type', 'application/json;charset=utf-8');
         res.end(JSON.stringify(data));
     }
 })// web 服务

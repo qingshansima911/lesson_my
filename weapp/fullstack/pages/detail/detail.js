@@ -19,8 +19,8 @@ Page({
   },
   loadData(id){
     wx.request({
-      url:`http://localhost:3000/detail?id=${id}`,
-      // url: 'https://www.fastmock.site/mock/6a4e5ea7967d2fae6b79941cc78e7dfb/mall/detail',
+      // url:`http://localhost:3000/detail?id=${id}`,
+      url: 'https://www.fastmock.site/mock/6a4e5ea7967d2fae6b79941cc78e7dfb/mall/detail',
       success:(res)=>{
         // console.log(res);
         this.setData({
