@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式</title>
+</head>
+
+<body>
+    <script>
+        // 1. vue数据格式是对象， key value来阻止 
+        // 2. 每个key值 template占位，数据驱动    
+        // 3. 当数据发生改变后，template会响应，自动更新
+        const obj = {
+            // counter: 42
+            a:1
+        };// 数据可以被监听 API
+        // es5 API 定义一个静态属性 vue杜绝DOM编程
+        Object.defineProperty(obj, 'counter', {
+            value: 42,
+            writable: false //只读
+            
+        })
+        for(let key in obj){
+            console.log(key,obj[key]);
+        }
+    </script>
+</body>
+
+</html>

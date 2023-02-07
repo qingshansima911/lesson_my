@@ -13,4 +13,7 @@
         id="myMap"
         wx.createMapContext('myMap')  
     6. 移动地图回到定位点
-        map.moveToLocation()   
+        map.moveToLocation()  
+- 开发哪个页面,app.json 将页面提前  
+- 接口请求 fastmock  
+- flex 弹性布局

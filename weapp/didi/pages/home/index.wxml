@@ -1,0 +1,20 @@
+<!-- 微票 -->
+<!-- BEM -->
+<view 
+    class="flex wp_cell"
+    wx:for="{{movies}}"
+    wx:key="id"
+    >
+    <view class="wp_cell__hd">
+        <image src="{{item.pic}}"/>
+    </view>
+    <view class="wp_cell__bd "> 
+        <view class="wp_cell_title">{{item.title}}</view>
+        <view class="wp_cell__description">{{item.subTitle}}</view>
+        <view class="wp_cell__description">{{item.author}}</view>
+    </view>
+    <view class="wp_cell__ft">
+        <view class="wp_cell__score">{{item.score}}</view>
+        <view class="wp_cell__action">{{item.action}}</view>
+    </view>
+</view>

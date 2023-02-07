@@ -6,7 +6,7 @@
     1. 移动端rem w h是多变的 而pc端没有这个问题
     2. 移动端 retina 3倍retina
     40x40  80x80 120x120
-    3. background-size背景图片的大小 cover图片等比例缩放，比例不一样就剪裁
+    3. background-size背景图片的大小 cover图片等比例缩放，比例不一样就剪裁 contain等比例缩放
 - 库文件引入的位置
     1. css放到head里
         css应该尽早的参与网页的渲染

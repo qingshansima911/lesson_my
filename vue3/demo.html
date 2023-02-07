@@ -40,7 +40,7 @@
                     <button v-on:click="byeBtnClick">顾客离开</button>
                     <div>
                         <div v-if="isShowMeal">{{setMeal}}</div>
-                        <button @click="showOrHideBtnClick">显示或影藏套餐</button>
+                        <button @click="showOrHideBtnClick">显示或隐藏套餐</button>
                     </div>
                 </div>
             `,
@@ -54,7 +54,7 @@
                     // console.log('++++');
                     this.content = '欢迎下次光临！'
                 },
-                showOrHideBtnClick(){
+                showOrHideBtnClick() {
                     this.isShowMeal = !this.isShowMeal
                 }
             },
@@ -66,8 +66,8 @@
                 return {
                     counter: 1,
                     content: '欢迎您的光临',
-                    isShowMeal:false,
-                    setMeal:'真空套餐 帝王套餐 夏日套餐'
+                    isShowMeal: false,
+                    setMeal: '真空套餐 帝王套餐 夏日套餐'
                 }
             },
             mounted() {

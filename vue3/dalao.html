@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大佬列表</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        // vue2 与 vue3 的区别
+        // Web app 单例
+        const app = Vue.createApp({
+            template: `
+                <div>
+                    <!--
+                        v- 指令 directive
+                            v-if
+                            v-on:= @
+                            v-model
+                            : ""里面是js区域 v-bind:
+                            占位符 
+                            attribute 动态绑定
+                    -->
+                    <input v-bind:value="inputValue" @input="doInput">
+                    <input v-model="inputValue">
+                    <div>{{inputValue}}</div>
+                    <div v-if="!list.length">目前没有数据，加载中</div>
+                    <button @click="handleAddItem">增加大佬</button>
+                    <ul v-if="list.length">
+                        <li v-for="(item, index) of list">
+                            {{index}} {{item}}
+                        </li>
+                    </ul>
+                    <my-title />
+                    <my-dalao 
+                        v-for="(item, index) of list"
+                        v-bind:item="item"
+                        :index="index"
+                    />
+                </div>
+            `,
+            data() {
+                return { // 一修改， 页面自动更新
+                    list: [],    //  开始为空
+                    inputValue: '任总'  //  表单    
+                }
+            },
+            mounted() {
+                // setTimeout(() => {
+                //     this.inputValue = "胡总";
+                // }, 1000);
+                // 模板 + js 结合 挂载
+                // ajax 争抢
+                setTimeout(() => {
+                    this.list = [
+                        '任俊华',
+                        '廖峻涛'
+                    ]
+                }, 1000);
+            },
+            methods: {   //  v-on:click 绑定的事件
+                doInput(e) {
+                    // console.log(e);
+                    this.inputValue = e.target.value;
+                },
+                handleAddItem() {
+                    // 数据驱动
+                    this.list.push(this.inputValue);
+                    this.inputValue = '';
+                }
+            }
+        })
+        // console.log(app);   
+        // 组件化思想 wxml wxss js json Page() Component() properties
+        // 自定义的组件名代表某个功能
+        app.component('my-title',{
+            template:'<h1 style="text-align:center">旅梦大佬集合</h1>'
+        })
+        app.component('my-dalao',{
+            props:['item', 'index'],
+            template:`
+                <ul>
+                   <li>
+                        {{index}} {{item}}
+                    </li> 
+                </ul>
+            `
+        })
+        // vue 是一个现代前端MVVM设计模式的开发框架 proxy代理
+        // view视图层 model模型层 vm 把数据和模板自动关联起来
+        const vm = app.mount("#app");  //  第一个最外层组件
+        console.log(vm);
+    </script>
+</body>
+
+</html>

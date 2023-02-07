@@ -40,5 +40,17 @@
     1. data {} 如何被监听， 重新编译模板？  proxy es6
     2. Vue 世界为什么要杜绝DOM 编程 #app?
         DOM 编程慢...
+
+- 占位符与数据绑定的区别
+    普通的html 里面输出的 占位符 {{}}  
+    标签的属性 或组件的props 里 数据绑定 
+    - 单向数据绑定  
+        v-bind:value :value 绑定值   
+        v-on:input @input 绑定事件  
+    - 双向数据绑定  
+        v-model   
+    
+
+
     
         

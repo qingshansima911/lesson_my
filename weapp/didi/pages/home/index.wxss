@@ -1,0 +1,42 @@
+.wp_cell{
+    border-bottom: 1px solid rgb(117, 114, 114);
+    margin: 30rpx;
+    padding: 30rpx;
+}
+.wp_cell__hd,
+.wp_cell__bd,
+.wp_cell__ft{
+    height: 200rpx;
+    margin: 10rpx;
+}
+.wp_cell__hd{
+    /* background-color: red; */
+    width: 200rpx;
+}
+.wp_cell__hd image{
+    width: 160rpx;
+    height: 200rpx;
+}
+.wp_cell__bd{
+    /* background-color: green; */
+    flex: 1;
+}
+.wp_cell_title{
+    font-size: 35rpx;
+}
+.wp_cell__description{
+    font-size: 24rpx;
+}
+.wp_cell__ft{
+    /* background-color: pink; */
+    width: 100rpx;
+}
+.wp_cell__score{
+    color: red;
+    margin-bottom: 60rpx;
+}
+.wp_cell__action{
+    color: green;
+    border: 1px solid green;
+    text-align: center;
+}
