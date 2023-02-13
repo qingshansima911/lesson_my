@@ -51,12 +51,39 @@
         v-model  
 
 - Object原型链上的方法
-    Object.defineProperty() 定义一个属性  writable只读 enumerable可枚举  
+    Object.defineProperty() 定义一个属性    
+        writable只读 enumerable可枚举  
     Object.freeze() 冰冻一个对象    
     Object.keys Object.getOwnPropertyNames  拿到对象上所有的key 不包括Symbol()     
     Object.getOwnPropertySymbols    拿到对象上所有的key 包括Symbol()        
     
+- 生命周期 MVVM  创建create 挂载mount 更新update 卸载unmount
+    Model View  
+    - create 在内存中创建  
+        创建前会先监听事件和生命周期钩子函数 beforeCreate  
+        数据的绑定和响应式 get set defineProperty created   
+    - mount 从内存中去到真是的DOM上     
+        template 编译成dom string beforeMount   
+        dom string -> app.mount('.app') mounted 
+    - update 组件不是静态的     
+        事件    
+        数据请求    
+        this.$data.counter this.counter beforeUpdate new dom string
+        new dom string -> DOM显示 updated
+    - unmount       
+        命令 卸载 beforeUnmount
+        unmounted 已经卸载 DOM removeChild	
+- vue 数据模型 除了data props		
+    data 私有属性  
+    props 传参  
+    computed 计算属性  
 
+- 父子组件间的生命周期 
+  局部和整体的概念来处理  
+  v-show  隐藏
+  v-if   	卸载
+
+    
 
     
         

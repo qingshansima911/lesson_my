@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>前端MVVM设计模式</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <!-- 
+        M Model data() return{}
+        V View template
+        VM ViewModel 
+     -->
+  <div class="app"></div>
+  <script>
+    const app = Vue.createApp({
+      // 生命周期 创建create 挂载mount 更新update 卸载unmount
+      // 定义了模板view
+      template: `
+                <div>
+                    <h1>{{msg}},点赞{{counter}}</h1>
+                </div>
+                <button @click="doStart">点赞+1</button>
+                <my-title :title="title" v-if="showTitle" />
+                <button @click="toggleTitle">切换标题组件</button>
+            `,
+      methods: {
+        doStart() {
+          this.counter++;
+        },
+        toggleTitle() {
+          this.showTitle = !this.showTitle;
+        }
+      },
+      // 这里定义了数据model
+      data() {
+        return {
+          title: '赖经涛',
+          msg: '余朝军同学的快手SP Offer下来了',
+          counter: 1,
+          showTitle: true
+        }
+      },
+      // VM 自动关联，由vue来做
+
+      // 初始化事件和生命周期注册
+      beforeCreate() {
+        console.log('beforeCreate 创建完成前');
+      },
+      // 组件实例被创建 {{}} 响应式
+      created() {
+        console.log('created 在内存里创建完成');
+      },
+      // 模板的编译compile template -> dom string
+      beforeMount() {
+        console.log('beforMount 挂载前');
+      },
+      // 生命周期钩子函数，自动执行 innerHTML += appendChild
+      mounted() {
+        console.log('mounted 组件挂载了');
+        // setTimeout(() => {
+        //   this.title = '新标题';
+        // }, 2000);
+      },
+      // 更新前
+      beforeUpdate() {
+        console.log('beforeUpdate 更新前');
+        console.log(document.querySelector('.app').innerHTML);
+      },
+      // 更新
+      updated() {
+        console.log('updated 更新后');
+        console.log(document.querySelector('.app').innerHTML);
+      },
+      // 卸载前
+      beforeUnmount() {
+        console.log('beforeUnmount 卸载前');
+        console.log(document.querySelector('.app').innerHTML);
+      },
+      // 卸载后
+      unmounted() {
+        console.log('Unmounted 卸载后');
+        console.log(document.querySelector('.app').innerHTML);
+      }
+    })
+    app.component('my-title', {
+      props: ['title'],
+      template: `
+                <h1>{{title}}</h1>
+            `,
+      created() {
+        console.log('my-title 组件创建了');
+      },
+      mounted() {
+        console.log('my-title 组件挂载了');
+      },
+      beforeUpdate() {
+        console.log('my-title 组件更新前');
+      },
+      updated() {
+        console.log('my-title 组件更新后');
+      },
+      unmounted() {
+        console.log('my-title 卸载了');
+      }
+    })
+    const vm = app.mount('.app');
+  </script>
+</body>
+
+</html>

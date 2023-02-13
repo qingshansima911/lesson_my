@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todos</title>
+  <script src="https://unpkg.com/vue@next"></script>
+  <style>
+    .done {
+      color: aqua;
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="title" @keydown.enter="addTodo" />
+    <ul>
+      <li v-for="(item,index) in todos" :key="index">
+        <input type="checkbox" v-model="item.done">
+        <span :class="{done:item.done}">{{item.title}}</span>
+      </li>
+    </ul>
+    <div>
+      全选 <input type="checkbox" v-model="allDone">
+      {{active}}/{{all}}
+    </div>
+    <button v-if="active < all" @click="clear">清除</button>
+  </div>
+  <script>
+    const app = Vue.createApp({
+      // 数据驱动
+      data() {
+        return {
+          title: '任总',
+          todos: [
+            { title: '买车', done: true },
+            { title: '买房', done: false },
+            { title: '娶媳妇', done: false }
+          ]
+        }
+      },
+      methods: {
+        // addTodo() {
+        //   this.todos.push(this.title);
+        //   this.title = '';
+        // }
+        clear() {
+          this.todos = this.todos.filter(v => !v.done);
+        }
+      },
+      // 计算属性
+      computed: {
+        all() {
+          return this.todos.length
+        },
+        active() {
+          return this.todos.filter(todo => !todo.done).length
+        },
+        allDone: {
+          get: function () {
+            return this.active == 0;
+          },
+          set: function (val) {
+            console.log(val, '//////');
+            this.todos.forEach(todo => todo.done = val);
+          }
+        }
+      }
+    })
+    const vm = app.mount('#app');
+  </script>
+</body>
+
+</html>
