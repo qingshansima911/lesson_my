@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 手写vue
+        // let obj = new Object({
+        //     data: {
+        //         test: 'I am test.',
+        //         a: 1
+        //     }
+        // })
+        // console.log(obj.data.a);
+
+        class Vue {
+            constructor(options) {
+                this._data = options.data; // 引用式赋值
+                // 观察者
+                observer(this._data); // 对他监听
+            }
+        }
+        let o = new Vue({
+            data: {
+                // defineProperty 对象
+                test: 'I am test.',
+                a: 1
+            }
+        })
+        function observer(obj) {
+            if (!obj || (typeof obj !== 'object')) { // null也是对象
+                return;
+            }
+            Object.keys(obj).forEach((key) => {
+                // console.log(key);
+                // 定义响应式
+                defineReactive(obj, key, obj[key]);
+            })
+        }
+        function defineReactive(obj, key, value) {
+            Object.defineProperty(obj, key, {
+                enumerable: true, // 可枚举
+                writeable: true, // 可写
+                // 响应对属性的读操作
+                get: function reactiveGetter() {
+                    console.log(`读取了${key}属性`);
+                    return value
+                },
+                set: function reactiveSetter(newValue) {
+                    if (newValue == value) {
+                        return; // 值没变
+                    }
+                    value == newValue;
+                    cb(newValue); // cb 代表修改可响应对象属性后想做的任何事情
+                }
+            })
+        }
+        function cb(val) {
+            console.log('视图更新了', val);
+        }
+        console.log(o._data);
+        console.log(o._data.a);
+        o._data.a = 2;
+        o._data.test = 'hello'
+    </script>
+</body>
+
+</html>

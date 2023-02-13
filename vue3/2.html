@@ -15,17 +15,31 @@
         // 3. 当数据发生改变后，template会响应，自动更新
         const obj = {
             // counter: 42
-            a:1
+            a: 1
         };// 数据可以被监听 API
-        // es5 API 定义一个静态属性 vue杜绝DOM编程
+        // es5 API 定义(一个)静态属性 vue杜绝DOM编程
         Object.defineProperty(obj, 'counter', {
             value: 42,
-            writable: false //只读
-            
+            writable: true, // 只读  默认是只读
+            enumerable: true // 可枚举 默认不枚举
         })
-        for(let key in obj){
-            console.log(key,obj[key]);
+        for (let key in obj) {
+            console.log(key, obj[key]);
         }
+
+        // 防止对象被修改?  冰冻 
+        // Object.freeze(obj);
+        // obj.a = 2;
+        // console.log(obj.a);
+
+        // 拿到obj所有的key组成数组 不包括Symbol()
+        // console.log(Object.keys(obj));
+
+        //  给对象添加一个不覆盖的key Symbol key绝对不覆盖
+        obj[Symbol()] = '123';
+        //  拿到obj所有的key，包括Symbol()
+        console.log(Object.getOwnPropertyNames(obj));
+        console.log(Object.getOwnPropertySymbols(obj));
     </script>
 </body>
 

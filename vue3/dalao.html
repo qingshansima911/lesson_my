@@ -39,7 +39,7 @@
                     <my-title />
                     <my-dalao 
                         v-for="(item, index) of list"
-                        v-bind:item="item"
+                        :item="item"
                         :index="index"
                     />
                 </div>
@@ -78,12 +78,12 @@
         // console.log(app);   
         // 组件化思想 wxml wxss js json Page() Component() properties
         // 自定义的组件名代表某个功能
-        app.component('my-title',{
-            template:'<h1 style="text-align:center">旅梦大佬集合</h1>'
+        app.component('my-title', {
+            template: '<h1 style="text-align:center">旅梦大佬集合</h1>'
         })
-        app.component('my-dalao',{
-            props:['item', 'index'],
-            template:`
+        app.component('my-dalao', {
+            props: ['item', 'index'],
+            template: `
                 <ul>
                    <li>
                         {{index}} {{item}}

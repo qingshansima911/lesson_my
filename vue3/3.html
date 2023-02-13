@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 读取,修改对象属性的底层原理 get() set()
+        let o = {
+            // a:39
+        }; //  堆内存
+        let aValue = 39;
+        Object.defineProperty(o, 'a', {
+            get() {
+                console.log('你读取了a属性');
+                return aValue;  //  本质
+            },
+            set(newValue) {
+                console.log('你设置了a属性');
+                aValue = newValue;  //  本质
+            }
+        })
+        console.log(o.a);
+        o.a = 40;
+        console.log(o.a);
+    </script>
+</body>
+
+</html>

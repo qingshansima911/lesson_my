@@ -48,7 +48,13 @@
         v-bind:value :value 绑定值   
         v-on:input @input 绑定事件  
     - 双向数据绑定  
-        v-model   
+        v-model  
+
+- Object原型链上的方法
+    Object.defineProperty() 定义一个属性  writable只读 enumerable可枚举  
+    Object.freeze() 冰冻一个对象    
+    Object.keys Object.getOwnPropertyNames  拿到对象上所有的key 不包括Symbol()     
+    Object.getOwnPropertySymbols    拿到对象上所有的key 包括Symbol()        
     
 
 
