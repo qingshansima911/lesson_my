@@ -2,8 +2,8 @@
 // 配置的格式 JSON
 // module 模块 自定义
 // exports 向外暴露
-// require 模块化机制 = module.exports + require
+// require 模块化机制 = module.exports + require node内容
 module.exports = {
-	subDomain:"tz",
+	subDomain:"tz",//域名
 	merchantId:951
 }

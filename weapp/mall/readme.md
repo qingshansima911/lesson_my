@@ -11,4 +11,5 @@
 
 4.	apifm-wxapi 数据接口的抽象
 	npm i apifm-wxapi
-https://api.it120.cc/tz/shop/goods/category/all
+	Network
+	https://api.it120.cc/tz/shop/goods/category/all

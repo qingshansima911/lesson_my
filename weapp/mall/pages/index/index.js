@@ -21,7 +21,7 @@ Page({
     })
     WXAPI.goodsCategory()
     .then(res=>{
-      console.log(res);
+      // console.log(res);
       wx.hideLoading();
       // 没有发生错误
       if(res.code==0){
@@ -34,20 +34,13 @@ Page({
   },
   
   bindconfirm(e){
-    console.log(e,e.detail);
+    // console.log(e,e.detail);
     let search = e.detail;
     this.setData({
       search
     })
     wx.navigateTo({
       url: `/pages/goods/list?name=${search}`,
-    })
-  },
-  onCategoryClick(event) {
-    const idx = event.target.dataset.idx
-    console.log(idx, '/////')
-    this.setData({
-      activeCategory: idx
     })
   },
   searchscan(){
@@ -61,6 +54,13 @@ Page({
           url: `/pages/goods/list?name=${res.result}`,
         })
       }
+    })
+  },
+  onCategoryClick(event) {
+    const idx = event.target.dataset.idx
+    // console.log(idx, '/////')
+    this.setData({
+      activeCategory: idx
     })
   }
 })

@@ -5,9 +5,10 @@
   use-right-icon-slot
   bind:search="bindconfirm"
 >
-  <van-icon slot="right-icon" 
-  name="scan"
-  bind:click="searchscan"
+  <van-icon 
+    slot="right-icon" 
+    name="scan"
+    bind:click="searchscan"
   >
   </van-icon>
 </van-search>
@@ -15,8 +16,7 @@
   <scroll-view 
   class="category-container"
   scroll-y="true"
-  scroll-with-animation="true"
-  >
+  scroll-with-animation="true">
     <van-sidebar
       custom-class="sidebar-l"
       active-key="{{activeCategory}}"

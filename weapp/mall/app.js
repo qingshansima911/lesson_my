@@ -8,6 +8,7 @@ App({
   onLaunch() {
     // 刚启动时
     // 初始化 WXAPI
+    // 文档
     WXAPI.init(subDomain);
     WXAPI.setMerchantId(merchantId);
     // 测试请求
@@ -16,7 +17,7 @@ App({
       // then 等http 请求完成后
       .then(data=>{
         // 拿到数据并打印
-        console.log(data);
+        // console.log(data);
       })
   },
   globalData: {
