@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-// axios.defaults.baseURL = 'https://www.fastmock.site/mock/995214af813bc47208cf2fcb558907e6/mall'
-axios.defaults.baseURL = '//backend-api-01.newbee.ltd/api/v1'
+axios.defaults.baseURL = 'https://www.fastmock.site/mock/995214af813bc47208cf2fcb558907e6/mall'
+// axios.defaults.baseURL = '//backend-api-01.newbee.ltd/api/v1'
 // 请求头 post 带上  Content-type
 axios.defaults.headers['token'] = localStorage.getItem('token') || ''
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-// use  拦截 
+// use  拦截 interceptors
 // 结果后， 最外层data 自动脱落
 // 请求拦截
 // axios.interceptors.request.use()

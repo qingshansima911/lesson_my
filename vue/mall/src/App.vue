@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router' // hooks
 import { useUserStore } from '@/store/user.js'
 
 const { isLogin } = useUserStore()
-console.log(isLogin, '//////////')
+// console.log(isLogin, '//////////')
 const router= useRouter()
 // 路由跳转前 做件事 
 // 路由守卫 生命周期

@@ -60,12 +60,15 @@ const state = reactive({
 onMounted(async () => {
     // console.log(route);
     const { id } = route.params 
+    // console.log(id);
     showLoadingToast({
         message: '加载中...',
         forbidClick: true
     })
-    const {data} = await getDetail(id) // 异步
+    const { data } = await getDetail(id) // 异步
+    // console.log(data);
     state.detail = data
+    state.loading = false
     closeToast()
 })
 

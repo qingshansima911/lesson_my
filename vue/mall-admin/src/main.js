@@ -9,7 +9,12 @@ import {
   ElMenu,
   ElSubMenu,
   ElMenuItemGroup,
-  ElMenuItem
+  ElMenuItem,
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElButton,
+  ElCheckbox
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 // - css reset ...
@@ -24,4 +29,9 @@ app
   .use(ElSubMenu)
   .use(ElMenuItemGroup)
   .use(ElMenuItem)
+  .use(ElForm)
+  .use(ElInput)
+  .use(ElFormItem)
+  .use(ElButton)
+  .use(ElCheckbox)
   .mount('#app') // 挂载

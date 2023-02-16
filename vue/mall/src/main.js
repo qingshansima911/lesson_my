@@ -47,26 +47,15 @@ app
 // vue 过滤器
 app.config.globalProperties.$filters = {
     prefix(url) {
+        // console.log(url, '/////')
         if (url && url.startsWith('http')) {
             return url
         } else {
-        url = `http://backend-api-01.newbee.ltd${url}`
+            url = `http://backend-api-01.newbee.ltd${url}`
             return url
         }
     }
 }
-// app.config.globalProperties.$filters = {
-//         prefix(url) {
-//             // console.log(url, '/////') 
-//             if (url && url.startsWith('http')) {
-//                 return url
-//             } else {
-//                 url = `http://backend-api-01.newbee.ltd${url}`
-//                 return url;
-//             }
-//         }
-//     } 
-
 
 app
     .mount('#app')

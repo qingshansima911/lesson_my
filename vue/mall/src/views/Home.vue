@@ -140,22 +140,21 @@ const state = reactive({
 const gotoDetail = (id) => {
     // /detail/:id
     // console.log(id, 'gotoDetail');
-    console.log(router, '///////');
+    // console.log(router, '///////');
     router.push({
         path: `/detail/${id}`
     })
 }
 // console.log(document.querySelector('.category-list'), 'outerOnMounted');
 onMounted(async () => { // 使用了异步同步化的高级技巧
-    console.log('onMounted')
+    // console.log('onMounted')
     showLoadingToast({
         message: '加载中...',
         forbidClick: true
     })
     // 后台接口数据
     const { data } = await getHomeData() //  await  promise  api serverice
-    console.log(data, '////')
-    // console.log(data)
+    // console.log(data, '////')
     state.swiperList = data.carousels
     state.newGoodses = data.newGoodses
     // console.log(document.querySelector('.goods-box'), 'onMounted');

@@ -18,6 +18,7 @@ const props = defineProps({
 </script>
 
 <style lang="stylus" scoped>
+@import '../common/style/mixin' 
 .goods-item
     width 50%
     border-bottom 1px solid #e9e9e9

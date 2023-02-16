@@ -5,10 +5,10 @@ import { resolve } from 'path'
 // console.log('vite 配置文件');
 // https://vitejs.dev/config/
 //node 超级变量__dirname  项目根目录的物理路径
-console.log(__dirname,resolve(__dirname,'src'));
+// console.log(__dirname,resolve(__dirname,'src'));
 export default defineConfig({
   plugins: [vue()],
-  //路径字符串 resolve？ 即系有效的路径 文件系统是否有这个文件
+  //路径字符串 resolve？ 解析有效的路径 文件系统是否有这个文件
   // vite 介入路径功能 新的能量
   resolve: {
     // 短路径 别名 快捷方式  

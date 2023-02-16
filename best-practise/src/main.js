@@ -3,7 +3,7 @@ import App from './App.vue'
 import Element3 from 'element3' 
 import 'element3/lib/theme-chalk/index.css'
 import router from './router/index'
-// import './assets/css/reset.css' // 样式重置
+import './assets/css/reset.css' // 样式重置
 // import './test.js'  // 引入 还会执行
 
 const app = createApp(App)

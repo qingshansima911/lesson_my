@@ -22,17 +22,17 @@
 </template>
 
 <script setup>
-// 把store 里的count 拿到这里来
-import { onMounted } from 'vue'
-import { useCartStore } from '@/store/cart.js'
+    // 把store 里的count 拿到这里来
+    import { onMounted } from 'vue'
+    import { useCartStore } from '@/store/cart.js'
 
-const cart = useCartStore();
-console.log(cart.count);
-const { updateCount } = cart;
+    const cart = useCartStore();
+    console.log(cart.count);
+    const { updateCount } = cart;
 
-onMounted(() => {
-    updateCount()
-})
+    onMounted(() => {
+        updateCount()
+    })
 
 </script>
 

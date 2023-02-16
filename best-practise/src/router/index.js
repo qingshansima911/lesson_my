@@ -1,7 +1,6 @@
 import Home from '../pages/Home.vue' // 页面级别组件 
 // 当页面路由很多时， 升级以下配置方案
-// 首页加载时， 没有必要去引入并执行所有的页面的
-// 当前会， 性能慢
+// 首页加载时， 没有必要去引入并执行所有的页面的，不然性能慢
 // 路由的懒加载 
 // import About from '../pages/About.vue'
 // import Other from '../pages/Other.vue'
