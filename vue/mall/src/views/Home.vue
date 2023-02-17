@@ -78,7 +78,6 @@ import GoodsItem from '~/GoodsItem.vue'
 import _ from 'lodash'
 
 const router = useRouter() // 把全局的路由对象给我们
-// import SubHeader from '../components/SubHeader.vue'
 // es8  异步的高级能力 async await 
 // 挂载后再发送api 请求， 提升性能， 不会去争抢挂载显示
 // data  响应式的数据  

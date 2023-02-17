@@ -68,3 +68,12 @@
         el-input  v-model="state.formData.username"  
     - ref="loginForm"
       el-form
+
+- vue 登录    
+    1. 选择何种登录方案
+    2. 共享用户信息 怎么办？
+        - pinia 托管一下 数据中央管理  
+            全家桶老三 pinia 银行 共享数据  
+        - localStorage 
+        
+    
