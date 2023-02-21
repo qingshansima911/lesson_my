@@ -9,12 +9,12 @@
 </template>
 
 <script setup>
-const props = defineProps({
-    goods: {
-        type: Object,
-        value: {}
-    }
-})
+    const props = defineProps({
+        goods: {
+            type: Object,
+            value: {}
+        }
+    })
 </script>
 
 <style lang="stylus" scoped>

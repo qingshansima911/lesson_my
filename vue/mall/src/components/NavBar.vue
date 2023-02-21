@@ -10,7 +10,10 @@
                 <div>分类</div>
             </router-link>
             <router-link class="nav-list-item" to="cart">
-                <i><van-icon  name="shopping-cart-o" :badge="!cart.count ? '' : cart.count" /></i>
+                <i>
+                <van-icon  
+                    name="shopping-cart-o" :badge="!cart.count ? '' : cart.count" />
+                </i>
                 <div>购物车</div>
             </router-link>
             <router-link class="nav-list-item" to="user">
@@ -27,7 +30,7 @@
     import { useCartStore } from '@/store/cart.js'
 
     const cart = useCartStore();
-    console.log(cart.count);
+    // console.log(cart.count);
     const { updateCount } = cart;
 
     onMounted(() => {

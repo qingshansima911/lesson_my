@@ -1,5 +1,5 @@
 # vue3 写商城
-npm i stylus lib-flexible vue-router@next
+npm i stylus lib-flexible vue-router@next pinia js-md5 lodash axios element-plus
 - 简历需要
 
 - vue3 语法
@@ -167,11 +167,11 @@ npm i stylus lib-flexible vue-router@next
             vue  vue-router vuex ....  useRoute  方便我们的使用， 函数的方式  
             composition api 结合的很好  
   - 路由切换的动画
-        vue transition  
-        silde-left slide-right  
-        首页    -》 detail  
-        transition  由右向左 translate  
-        detail -> 首页  由左向右边退出  
+        vue transition   
+        silde-left slide-right   
+        首页    -》 detail   
+        transition  由右向左 translate    
+        detail -> 首页  由左向右边推出 
         1. 路由切换加transition
             <transition>  
             </transition>  

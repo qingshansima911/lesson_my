@@ -1,0 +1,20 @@
+{
+  "name": "token-demo",
+  "version": "1.0.0",
+  "description": "- 后端签发令牌环\r     1. web服务启动起来\r         npm i koa  \r         npm i koa-router  \r         - https\r         - web 即资源 restful 后端路由\r     2. /login POST \r     3. /api token有没有随着header发送过来 \r         token能不能和用户相关 是否过期",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "jsonwebtoken": "^9.0.0",
+    "koa": "^2.14.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^12.0.0",
+    "koa-views": "^8.0.0"
+  }
+}

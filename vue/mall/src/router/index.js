@@ -71,7 +71,7 @@ const router = createRouter({
                 index: 2
             },
             component: () => import('@/views/ProductList.vue')
-        },
+        }
     ]
 })
 

@@ -8,13 +8,13 @@ const { isLogin } = useUserStore()
 const router= useRouter()
 // 路由跳转前 做件事 
 // 路由守卫 生命周期
-router.beforeEach((to, from, next) => {
-  // console.log(from, to, '//// /');
-  if (to.meta.isLogin) { // 需要登录权限才能访问
-    next('/login')
-  } else {
-    next()
-  }
+router.beforeEach((to, from) => {
+    // console.log(from, to, '//// /');
+    // if (to.meta.isLogin) { // 需要登录权限才能访问
+    //     next('/login')
+    // } else {
+    //     next()
+    // }
   if (to.meta.index > from.meta.index) {
     // 从主页面 去到子页面
     state.transitionName = 'slide-left'
@@ -32,7 +32,7 @@ const state = reactive({
 })
 
 onMounted(() => {
-  
+    
 })
 </script>
 
@@ -72,18 +72,18 @@ onMounted(() => {
 }
 .slide-right-enter-from {
   opacity:0;
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
 }
-.slide-right-leave-active {
+.slide-right-leave-to {
   opacity: 0;
-  transform: translate3d(100%, 0, 0);
+  transform: translate3d(50%, 0, 0);
 };
 .slide-left-enter-from {
   opacity: 0;
-  transform: translate3d(100%, 0, 0);
+  transform: translate3d(50%, 0, 0);
 }
 .slide-left-leave-active{
   opacity: 0;
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         Add
-</div>
+    </div>
 </template>
 <script setup>
 
