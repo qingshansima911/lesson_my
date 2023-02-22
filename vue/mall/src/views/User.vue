@@ -16,12 +16,12 @@
     const router = useRouter()
     const { updateLogin } = user;
     onMounted(() => {
-        if (!user.isLogin) {
-            router.push({
-                path: '/login'
-            })
-        }
-        updateLogin()
+        // if (!user.isLogin) {
+        //     router.push({
+        //         path: '/login'
+        //     })
+        // }
+        // updateLogin()
     })
 </script>
 

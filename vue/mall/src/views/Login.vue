@@ -114,7 +114,7 @@
             })
             // console.log(data);
             localStorage.setItem('token', data.data )// 服务器会返回令牌环
-            // window.location.href = '/'
+            window.location.href = '/'
 
         }else{
             const data = await register({

@@ -28,6 +28,14 @@ const router = createRouter({
                 login: true
             },
             component: () => import('@/views/Login.vue')
+        },
+        {
+            path: '/swiper',
+            name: 'logswiperin',
+            meta: {
+                login: true
+            },
+            component: () => import('@/views/Swiper.vue')
         }
     ]
 })

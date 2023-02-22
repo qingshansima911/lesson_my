@@ -2,33 +2,46 @@
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router' // hooks 
 import { useUserStore } from '@/store/user.js'
+import { getLocal }from './common/js/utils'
 
 const { isLogin } = useUserStore()
 // console.log(isLogin, '//////////')
 const router= useRouter()
 // 路由跳转前 做件事 
 // 路由守卫 生命周期
-router.beforeEach((to, from) => {
+router.beforeEach((to, from, next) => {
     // console.log(from, to, '//// /');
     // if (to.meta.isLogin) { // 需要登录权限才能访问
     //     next('/login')
     // } else {
     //     next()
     // }
-  if (to.meta.index > from.meta.index) {
-    // 从主页面 去到子页面
-    state.transitionName = 'slide-left'
-  } else if(to.meta.index < from.meta.index) {
-    // 子页面回到主页面
-    state.transitionName = 'slide-right'
-  } else {
-    // 平级
-    state.transitionName = ''   
-  }
+    state.currentPath = to.path
+    // if (to.path)
+    // 需要鉴权的页面 
+    // console.log(getLocal('token')+'---------');
+    if (to.meta.isLogin && !getLocal('token')) {
+    next({
+        path: '/login'
+    })
+    } else {
+        next()
+    }
+    if (to.meta.index > from.meta.index) {
+        // 从主页面 去到子页面
+        state.transitionName = 'slide-left'
+    } else if(to.meta.index < from.meta.index) {
+        // 子页面回到主页面
+        state.transitionName = 'slide-right'
+    } else {
+        // 平级
+        state.transitionName = ''   
+    }
 })
 
 const state = reactive({
-  transitionName: 'slide-left'
+    transitionName: 'slide-left',
+    currentPath: '/',
 })
 
 onMounted(() => {

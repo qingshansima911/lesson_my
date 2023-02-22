@@ -16,12 +16,12 @@
     const router = useRouter()
     const { updateLogin } = cart2;
     onMounted(() => {
-        if (!cart2.isLogin) {
-            router.push({
-                path: '/login'
-            })
-        }
-        updateLogin()
+        // if (!cart2.isLogin) {
+        //     router.push({
+        //         path: '/login'
+        //     })
+        // }
+        // updateLogin()
     })
 </script>
 

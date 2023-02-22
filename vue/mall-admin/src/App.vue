@@ -1,14 +1,16 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive,onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getPageTitle, getLocal } from '@/utils'
+import { getPageTitle, getLocal,setLocal } from '@/utils'
+import { getUserProfile } from '@/service/user.js'
+import { useUserStore } from '@/store/user.js'
+
 
 const state = reactive({
     defaultOpen: ['1', '2'],
     showMenu: true,
     currentPath: '/'
 })
-
 const router = useRouter()
 // 使用vue-router的hooks 函数，直接拿到路由对象
 
@@ -29,7 +31,7 @@ router.beforeEach((to, from, next) => {
         next()
     } else {
         // 需要鉴权的页面 
-        console.log(getLocal('token')+'---------');
+        // console.log(getLocal('token')+'---------');
         if (to.meta.login && !getLocal('token')) {
         next({
             path: '/login'
@@ -38,6 +40,22 @@ router.beforeEach((to, from, next) => {
             next()
         }
     }
+})
+const userStore = useUserStore(); // 连上了
+
+onMounted(async ()=>{
+    // const userInfo = getLocal('profile') || '';
+    // // console.log(userInfo, '/////');
+    // if(!userInfo){
+    //     const { data } = await getUserProfile()
+    //     // console.log(data,'////');
+    //     setLocal('profile',data)
+    // }
+    const { data } = await getUserProfile();
+    // console.log(data);
+    userStore.setProfile(data)
+
+ 
 })
 </script>
 

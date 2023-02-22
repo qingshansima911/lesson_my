@@ -72,11 +72,11 @@
                 // console.log(data);
                 // 服务器端签发的令牌环
                 setLocal('token',data);
-                router.push({
-                    path:'/'
-                })
+                // router.push({
+                //     path:'/'
+                // })
             }else{
-
+                
             }
         })
     }
