@@ -21,7 +21,7 @@ import { computed, onMounted } from "vue";
 // import  shop from '../api/shop.js';
 
 const store = useStore();
-// console.log(store.state.products.all)
+console.log(store.state.products.all)
 const products = computed(() => store.state.products.all)
 
 onMounted(() => {
