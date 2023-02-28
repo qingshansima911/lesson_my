@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 如何实现订阅发布者关系而努力 -->
+    <script>
+        // 楼盘 发布者
+        // 买房 订阅者
+        const saleOffice = {
+            name:'万科海上传奇',
+            clientList:{} // 慢慢加入订阅者
+        } //售楼部
+        saleOffice.listen = function(key,fn){
+            if(!this.clientList[key]){ // 没有这个分组
+                this.clientList[key] = [] // 初始化 
+            }
+            this.clientList[key].push(fn) // 订阅的分组功能
+        }
+        
+        // 关注楼盘 listen 监听 涛哥 价格 面积
+        saleOffice.listen('squareMeter89',function(price, squareMeter){
+            // console.log(this.name);
+            console.log('价格=' + price);
+            console.log('squareMeter=' + squareMeter);
+        })
+        // 江龙
+        saleOffice.listen('squareMeter89',function(price, squareMeter){
+            // console.log(this.name);
+            console.log('价格=' + price);
+            console.log('squareMeter=' + squareMeter);
+        })
+        // 龙班长
+        saleOffice.listen('squareMeter120',function(price, squareMeter){
+            console.log('价格=' + price);
+            console.log('squareMeter=' + squareMeter);
+        })
+        // console.log(saleOffice.clientList);
+        saleOffice.trigger = function(){
+            const key = Array.prototype.shift.call(arguments); //key,arguments 数据
+            const fns = this.clientList[key]; // 通知的分组
+            if(!fns || fns.length ===0){
+                return false
+            }
+            for(let i=0;i<fns.length;i++){
+                let fn = fns[i]
+                fn.apply(this,arguments);
+            }
+        }
+        saleOffice.trigger('squareMeter120',12000,120);
+        saleOffice.trigger('squareMeter89',10000,89);
+    </script>
+</body>
+</html>
