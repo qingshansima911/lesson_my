@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- html5 画布 -->
+    <canvas id="canvas"></canvas>
+    <script src="./index.js"></script>
+    <script>
+        // 找到画布 
+        const canvas = document.getElementById('canvas')
+        canvas.style.width = containerWidth + 'px' // 480(30) 
+        canvas.style.height = containerHeight + 'px' // 300(30)
+        canvas.width = containerWidth*2;
+        canvas.height = containerHeight*2;
+
+        const context = canvas.getContext('2d') // 绘制的句柄
+        context.scale(2,2) // 抵消将画布宽高设置为样式宽高两倍的影响
+        
+        context.translate(margin,margin); // 将笔从 0 0 移到左上角
+        for(const index of indices){
+            const color = colors[index]
+            const x = xs[index]
+            const barHeight = barHeights[index]
+            const value = values[index]
+            
+            context.fillStyle = color
+            context.fillRect(x,y - barHeight,barWidth,barHeight)
+
+            context.textAlign = 'center'
+            context.textBaseline = 'middle'
+            context.fillStyle = 'white'
+            context.font = '25px sans-serif'
+            context.fillText(value, x + barWidth/2, y - barHeight/2)
+        }
+    </script>
+</body>
+</html>

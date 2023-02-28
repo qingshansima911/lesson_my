@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 画布html5 -->
+    <canvas id="canvas"></canvas>
+    <script src="./index.js"></script>
+    <script>
+        // 找到画布元素
+        const canvas = document.getElementById('canvas')
+        // 在html里的盒子的大小
+        canvas.style.width = 400 + 'px'
+        canvas.style.height = 200 + 'px'
+        // 绘制区域的大小
+        canvas.width = 400;
+        canvas.height= 200;
+
+        // 图形上下文
+        const context = canvas.getContext('2d') // 平面绘制
+        console.log(context);
+        // 绘制API 
+        context.fillStyle = 'red' // 填充色 
+        context.strokeStyle = 'yellow' // 画笔色
+        context.lineWidth = 10; // 边框10
+        context.strokeRect(0,0,100,100) // rectangle 长方形 默认起笔位置为(0,0)
+        context.fillRect(5,5,95,95)
+
+        // context.fillStyle = 'black'
+        // context.font = '25px sans-serif'
+        // context.fillText('hello',150,100)
+
+        // context.fillStyle = 'red'
+        // context.fillRect(0,0,50,50)
+
+        // context.fillStyle = 'blue'
+        // context.translate(50,50) // 改变起笔位置为(50,50)
+        // context.rotate(-Math.PI/6) // 旋转
+        // context.scale(2,3) // 放大缩小宽、高
+        // context.fillRect(0,0,50,50)
+    </script>
+</body>
+</html>
