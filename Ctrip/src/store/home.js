@@ -29,7 +29,7 @@ export const useHomeStore = defineStore('home', {
         },
         async getArticleImg() {
             const res = await getArticleImg()
-            // console.log(res);
+            console.log(res);
             this.articleImg = res.result
         },
     }

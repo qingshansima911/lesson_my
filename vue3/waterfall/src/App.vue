@@ -17,6 +17,7 @@ const getMinHeight = () => {
 
 onMounted(async () => {
     const data = await getGoods();
+    // console.log(data);
     state.allGoods = data
     let leftTemGoods = [], rightTemGoods = [];
     for (let i = 0; i < data.length; i++){

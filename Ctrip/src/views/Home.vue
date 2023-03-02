@@ -16,11 +16,19 @@
             </div>
             <swiper :swiperList="swiperList"/> 
             <van-skeleton title :row="3" :loading="state.loading">
-                <div class="post-box">
-                    <post 
+                <div class="post-wrapper">
+                    <div class="post-col">
+                        <post 
                         v-for="(item,index) in articleList"
                         :key="index"
                         :post="item"/>
+                    </div>
+                    <div class="post-col">
+                        <post 
+                        v-for="(item,index) in articleImg"
+                        :key="index"
+                        :post="item"/>
+                    </div>
                 </div>
             </van-skeleton>
         </div>
@@ -29,10 +37,10 @@
 </template>
 
 <script setup>
-import NavBar from '~/NavBar.vue';
-import Swiper from '~/Swiper.vue';
+import NavBar from '~/NavBar.vue'
+import Swiper from '~/Swiper.vue'
 import Post from '~/Post.vue'
-import { reactive, onMounted,computed } from 'vue';
+import { reactive, onMounted, computed } from 'vue'
 import { showLoadingToast, closeToast } from 'vant'
 import { getSwiperList , getCategoryList, getArticleList, getArticleImg } from '@/service/home';
 import { useHomeStore } from '@/store/home.js'
@@ -43,18 +51,19 @@ const categoryList = computed(()=>homeStore.categoryList)
 const articleList = computed(() => homeStore.articleList)
 const articleImg = computed(() => homeStore.articleImg)
 
-
 const state = reactive({
     loading: true,
 })
+
 onMounted(async () => {
-    await homeStore.getSwiperList() 
-    await homeStore.getCategoryList() 
-    await homeStore.getArticleList() 
-    await homeStore.getArticleImg() 
     showLoadingToast({
         message:'加载中'
     })
+    await homeStore.getSwiperList() 
+    await homeStore.getCategoryList() 
+    await homeStore.getArticleList() 
+    await homeStore.getArticleImg()
+
     state.loading = false
     closeToast()
 })
@@ -102,8 +111,11 @@ onMounted(async () => {
                 img
                     wh(1rem, 1rem)
                     margin .146667rem 0 
-        .post-box
+        .post-wrapper
             fj()
-            flex-wrap wrap
-        
+            overflow-y: scroll;
+            .post-col
+                width 48%
+                height 100%
+                padding .3rem 0 
 </style>

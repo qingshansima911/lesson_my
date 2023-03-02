@@ -27,9 +27,11 @@ const props = defineProps(['post'])
 <style lang="stylus" scoped>
 @import '../common/style/mixin.styl'
 .post
-    width 50%
+    width 100%
+    padding .2rem 0
     img
         width 100%
+        height 100%
     .post-des
         fj()
 </style>
