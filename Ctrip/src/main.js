@@ -9,6 +9,8 @@ import {
     Skeleton
 } from 'vant';
 import 'vant/lib/index.css'
+import './mock/mock'
+import { createPinia } from 'pinia';
 // import {
 //     ElInput
 // } from 'element-plus'
@@ -22,4 +24,5 @@ app
     .use(Swipe)
     .use(SwipeItem)
     .use(Skeleton)
+    .use(createPinia())
     .mount('#app')

@@ -9,16 +9,16 @@
             <div class="category-list">
                 <div 
                     :key="index"
-                    v-for="(item,index) in state.categoryList">
+                    v-for="(item,index) in categoryList">
                     <img :src="item.imgUrl">
                     <span>{{item.name}}</span>
                 </div>
             </div>
-            <swiper :list="state.swiperList"/> 
+            <swiper :swiperList="swiperList"/> 
             <van-skeleton title :row="3" :loading="state.loading">
                 <div class="post-box">
                     <post 
-                        v-for="(item,index) in state.articleList"
+                        v-for="(item,index) in articleList"
                         :key="index"
                         :post="item"/>
                 </div>
@@ -32,26 +32,29 @@
 import NavBar from '~/NavBar.vue';
 import Swiper from '~/Swiper.vue';
 import Post from '~/Post.vue'
-import { reactive, onMounted, } from 'vue';
+import { reactive, onMounted,computed } from 'vue';
 import { showLoadingToast, closeToast } from 'vant'
-import { getSwiperList } from '@/service/home';
+import { getSwiperList , getCategoryList, getArticleList, getArticleImg } from '@/service/home';
+import { useHomeStore } from '@/store/home.js'
+
+const homeStore = useHomeStore();
+const swiperList = computed(()=>homeStore.swiperList)
+const categoryList = computed(()=>homeStore.categoryList)
+const articleList = computed(() => homeStore.articleList)
+const articleImg = computed(() => homeStore.articleImg)
+
 
 const state = reactive({
     loading: true,
-    swiperList: [],
-    categoryList: [],
-    articleList:[]
 })
 onMounted(async () => {
+    await homeStore.getSwiperList() 
+    await homeStore.getCategoryList() 
+    await homeStore.getArticleList() 
+    await homeStore.getArticleImg() 
     showLoadingToast({
         message:'加载中'
     })
-    const { data }  = await getSwiperList();
-    // console.log(data);
-    state.swiperList = data.swiper
-    state.categoryList = data.category
-    state.articleList = data.article
-
     state.loading = false
     closeToast()
 })

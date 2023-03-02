@@ -1,0 +1,22 @@
+$primary = #1baeae
+$base_font = .13333rem
+
+wh($width,$height)
+    width: $width
+    height: $height
+fj($type=space-between)
+    display: flex
+    justify-content: $type
+border-1px($border-color=$primary)
+    // 一像素 变细
+    position relative
+    &::before
+        content: ''
+        position absolute
+        bottom: 0
+        left: 0
+        right 0
+        height: 10px
+        background-color $border-color
+        transform: scaleY(50%)
+        transform-origin: 50% 100% // 基点

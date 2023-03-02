@@ -1,0 +1,23 @@
+export default [
+    {
+        img:'https://dimg04.c-ctrip.com/images/0zg3y12000aofnrhhCADD.jpg'
+    },
+    {
+        img:'https://dimg04.c-ctrip.com/images/0zg4k12000aq5e83l8928.jpg'
+    },
+    {
+        img:'https://dimg04.c-ctrip.com/images/0zg0112000ao4vlys44B8.jpg'
+    },
+    {
+        img:'https://dimg04.c-ctrip.com/images/0zg0a12000aq0cx0h4AC9.png'
+    },
+    {
+        img:'https://dimg04.c-ctrip.com/images/0zg6312000ao4c41kE7AD.png'
+    },
+    {
+        img:'https://dimg04.c-ctrip.com/images/0zg6h12000ap9g0l26A81.png'
+    },
+    {
+        img:'https://dimg04.c-ctrip.com/images/0zg3m12000aq70ik8B744.jpg'
+    },
+]

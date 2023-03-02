@@ -31,8 +31,8 @@
             context.fillStyle = color
             context.fillRect(x,y - barHeight,barWidth,barHeight)
 
-            context.textAlign = 'center'
-            context.textBaseline = 'middle'
+            context.textAlign = 'center' // 文字水平对齐
+            context.textBaseline = 'middle' // 文字垂直对齐
             context.fillStyle = 'white'
             context.font = '25px sans-serif'
             context.fillText(value, x + barWidth/2, y - barHeight/2)
