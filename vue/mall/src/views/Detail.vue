@@ -67,7 +67,7 @@ onMounted(async () => {
         forbidClick: true
     })
     const { data } = await getDetail(id) // 异步
-    // console.log(data);
+    console.log(data);
     state.detail = data
     state.loading = false
     closeToast()

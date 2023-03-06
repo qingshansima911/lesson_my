@@ -37,6 +37,8 @@
     bottom 0
     width 100%
     z-index 9999
+    background-color #fff
+    padding 5px
     .nav-list
         fj()
         .nav-list-item

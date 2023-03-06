@@ -33,6 +33,12 @@ const router = createRouter({
             name: 'my',
             component: () =>import ('@/views/My.vue')
         },
+        {
+            // 动态路由   url  params   ?id= queryString
+            path: '/detail/:id',
+            name: 'detail',
+            component: () => import('@/views/Detail.vue')
+        },
         
     ]
 })

@@ -1,4 +1,10 @@
-import { getSwiperList, getCategoryList, getArticleList, getArticleImg} from '@/service/home.js';
+import {
+    getSwiperList,
+    getCategoryList,
+    getArticleList,
+    getArticleImg,
+} from '@/service/home.js';
+import { getDetail } from '../service/detail';
 import { defineStore } from 'pinia';
 
 
@@ -8,7 +14,8 @@ export const useHomeStore = defineStore('home', {
             swiperList: [],
             categoryList: [],
             articleList: [],
-            articleImg:[],
+            articleImg: [],
+            detail:[]
         }
     },
     actions: {
@@ -29,8 +36,13 @@ export const useHomeStore = defineStore('home', {
         },
         async getArticleImg() {
             const res = await getArticleImg()
-            console.log(res);
+            // console.log(res);
             this.articleImg = res.result
+        },
+        async getDetail(id) {
+            const res = await getDetail(id)
+            // console.log(res);
+            this.detail = res.result
         },
     }
 })

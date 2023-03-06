@@ -19,15 +19,17 @@
                 <div class="post-wrapper">
                     <div class="post-col">
                         <post 
-                        v-for="(item,index) in articleList"
-                        :key="index"
-                        :post="item"/>
+                            v-for="item in articleList"
+                            :key="ar_id"
+                            @click="gotoDetail(item.ar_id)"
+                            :post="item"/>
                     </div>
                     <div class="post-col">
                         <post 
-                        v-for="(item,index) in articleImg"
-                        :key="index"
-                        :post="item"/>
+                            v-for="item in articleImg"
+                            :key="ar_id"
+                            @click="gotoDetail(item.ar_id)"
+                            :post="item"/>
                     </div>
                 </div>
             </van-skeleton>
@@ -42,8 +44,9 @@ import Swiper from '~/Swiper.vue'
 import Post from '~/Post.vue'
 import { reactive, onMounted, computed } from 'vue'
 import { showLoadingToast, closeToast } from 'vant'
-import { getSwiperList , getCategoryList, getArticleList, getArticleImg } from '@/service/home';
+// import { getSwiperList , getCategoryList, getArticleList, getArticleImg } from '@/service/home';
 import { useHomeStore } from '@/store/home.js'
+import { useRouter } from 'vue-router'
 
 const homeStore = useHomeStore();
 const swiperList = computed(()=>homeStore.swiperList)
@@ -54,6 +57,15 @@ const articleImg = computed(() => homeStore.articleImg)
 const state = reactive({
     loading: true,
 })
+const router = useRouter()
+const gotoDetail = (id) => {
+    // /detail/:id
+    // console.log(id, 'gotoDetail');
+    // console.log(router, '///////');
+    router.push({
+        path: `/detail/${id}`
+    })
+}
 
 onMounted(async () => {
     showLoadingToast({
