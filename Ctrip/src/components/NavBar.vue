@@ -33,12 +33,12 @@
 @import '../common/style/mixin.styl'
 .navbar
     position fixed
-    left 0
     bottom 0
     width 100%
     z-index 9999
     background-color #fff
     padding 5px
+    box-shadow 0px -1px 5px 1px #F0F0F0
     .nav-list
         fj()
         .nav-list-item

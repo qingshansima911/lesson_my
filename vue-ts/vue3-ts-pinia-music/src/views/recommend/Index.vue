@@ -1,5 +1,6 @@
 <template>
     <div class="recommend">
+        s
         <Banners v-if="banners.length" :banners="banners"></Banners>
     </div>
 </template>

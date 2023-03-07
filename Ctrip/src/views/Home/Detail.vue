@@ -5,17 +5,19 @@
             :key="item.ar_id"
             :detail="item"/>
         <div class="detali-wrapper">
-            <swiper 
-                :swiperList="item.secondImg"
-                v-for="item in detail"
-                :key="item.ar_id"/>
+            <div class="detail-swiper">
+                <swiper 
+                    :swiperList="item.secondImg"
+                    v-for="item in detail"
+                    :key="item.ar_id"/>
+            </div>
             <div 
                 class="introduce"
                 v-for="item in detail"
                 :key="item.ar_id">
                 {{ item.text }}
             </div>
-            <comment/>
+            <Comment/>
         </div>
     </div>
 </template>
@@ -49,7 +51,9 @@ onMounted(async () => {
 <style lang="stylus" scoped>
 .detali-wrapper
     width 100% 
-    height 13.333333rem /* 500/37.5 */
     .introduce
         padding .266667rem  .26667rem
+    .detail-swiper
+        width 100%
+        height 13.333333rem /* 500/37.5 */
 </style>

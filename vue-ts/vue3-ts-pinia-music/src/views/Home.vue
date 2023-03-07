@@ -8,7 +8,6 @@
         </aside>
         <main class="main" :class="{cover:isCover}">
             <div class="main-page" id="mainPage" ref="mainRef">
-
                 <router-view></router-view>
             </div>
         </main>

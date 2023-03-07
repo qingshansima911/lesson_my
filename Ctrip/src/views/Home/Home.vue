@@ -5,7 +5,6 @@
             <span class="page_header__search">搜索</span>
         </div>
         <div class="page_body">
-            <!-- <image src="../assets/image/1.jpg"></image> -->
             <div class="category-list">
                 <div 
                     :key="index"
@@ -14,7 +13,9 @@
                     <span>{{item.name}}</span>
                 </div>
             </div>
-            <swiper :swiperList="swiperList"/> 
+            <div class="home-swiper">
+                <swiper :swiperList="swiperList"/> 
+            </div>
             <van-skeleton title :row="3" :loading="state.loading">
                 <div class="post-wrapper">
                     <div class="post-col">
@@ -83,7 +84,7 @@ onMounted(async () => {
 </script>
 
 <style lang="stylus" scoped>
-@import '../common/style/mixin.styl'
+@import '../../common/style/mixin.styl'
 .page
     padding 0rem .3333rem 1.5rem .3333rem
     // padding-bottom 2rem 
@@ -110,6 +111,8 @@ onMounted(async () => {
             align-items center
     .page_body 
         padding-top 35px
+        .home-swiper
+            height 3rem /* 300/37.5 */
         .category-list
             fj()
             flex-wrap wrap
