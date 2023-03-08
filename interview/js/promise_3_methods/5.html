@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+</head>
+
+<body>
+    <script>
+        const _ = require('lodash')
+
+        async function batchRequests(options) {
+            let query = { offset: 0, limit: options.limit };
+
+            do {
+                batch = await model.findAll(query);
+                query.offset += options.limit;
+
+                if (batch.length) {
+                    const promise = doLongRequestForBatch(batch).then(() => {
+                        // Once complete, pop this promise from our array
+                        // so that we know we can add another batch in its place
+                        _.remove(promises, p => p === promise);
+                    });
+                    promises.push(promise);
+
+                    // Once we hit our concurrency limit, wait for at least one promise to
+                    // resolve before continuing to batch off requests
+                    if (promises.length >= options.concurrentBatches) {
+                        await Promise.race(promises);
+                    }
+                }
+            } while (batch.length);
+
+            // Wait for remaining batches to finish
+            return Promise.all(promises);
+        }
+        // 并发数
+        batchRequests({ limit: 100, concurrentBatches: 5 });
+    </script>
+</body>
+
+</html>
