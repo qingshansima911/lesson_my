@@ -53,7 +53,16 @@ const router = createRouter({
             name: 'detail',
             component: () => import('@/views/Home/Detail.vue')
         },
-        
+        {
+            path:'/login',
+            name: 'login',
+            component: () =>import ('@/views/Login/Login.vue')
+        },
+        {
+            path:'/register',
+            name: 'register',
+            component: () =>import ('@/views/Register/Register.vue')
+        },
     ]
 })
 export default router

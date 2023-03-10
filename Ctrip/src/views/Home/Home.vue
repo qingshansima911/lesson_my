@@ -1,8 +1,10 @@
 <template>
     <div class="page">
         <div class="page_header">
-            <span class="page_header__text">请输入</span>
-            <span class="page_header__search">搜索</span>
+            <div class="page_header__input">
+                <span class="page_header__text">请输入</span>
+                <span class="page_header__search">搜索</span>
+            </div>
         </div>
         <div class="page_body">
             <div class="category-list">
@@ -86,31 +88,33 @@ onMounted(async () => {
 <style lang="stylus" scoped>
 @import '../../common/style/mixin.styl'
 .page
-    padding 0rem .3333rem 1.5rem .3333rem
+    // padding 0rem .3333rem 1.5rem .3333rem
     // padding-bottom 2rem 
-    .page_header 
+    .page_header
         background-color #fff
         position fixed
         z-index 9999
-        wh(94%,35px)
-        border-radius 50px
-        // margin-top 10px
-        border 1px solid red
-        fj()
-        justify-content center
-        align-items center
-        .page_header__text
-            flex 1
-        .page_header__search
-            wh(15%,35px)
-            border-radius 50px 
-            color white
-            background-color red
+        wh(100%,1.333333rem /* 50/37.5 */)
+        padding 0 .3rem
+        .page_header__input
+            wh(90%,.96rem /* 36/37.5 */)
+            border-radius 1.333333rem /* 50/37.5 */
+            border 1px solid red
             fj()
             justify-content center
             align-items center
+            .page_header__text
+                flex 1
+            .page_header__search
+                wh(15%,35px)
+                border-radius 50px 
+                color white
+                background-color red
+                fj()
+                justify-content center
+                align-items center
     .page_body 
-        padding-top 35px
+        padding .9rem .3rem .3rem .3rem
         .home-swiper
             height 3rem /* 300/37.5 */
         .category-list

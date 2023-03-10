@@ -4,6 +4,8 @@
 // root.textContent = '你喵贵姓?'
 import { createApp } from "vue";
 import App from './App.vue'
+import './assets/a.jpg' // 一切静态资源都可以打包
+
 const app = createApp(App)
 app
     .mount('#root')

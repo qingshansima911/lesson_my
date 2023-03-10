@@ -34,11 +34,12 @@
 .navbar
     position fixed
     bottom 0
+    left 0
     width 100%
     z-index 9999
     background-color #fff
-    padding 5px
-    box-shadow 0px -1px 5px 1px #F0F0F0
+    padding .266667rem /* 10/37.5 */ 0 0 0
+    box-shadow 0px -1px 1px 1px #F2F2F2
     .nav-list
         fj()
         .nav-list-item

@@ -6,7 +6,10 @@ import router from '@/router/router.js'
 import {
     Swipe,
     SwipeItem,
-    Skeleton
+    Skeleton,
+    Form,
+    Field,
+    Button
 } from 'vant';
 import 'vant/lib/index.css'
 import './mock/mock'
@@ -25,4 +28,7 @@ app
     .use(SwipeItem)
     .use(Skeleton)
     .use(createPinia())
+    .use(Form)
+    .use(Field)
+    .use(Button)
     .mount('#app')

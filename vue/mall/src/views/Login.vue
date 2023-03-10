@@ -3,14 +3,14 @@
     <s-header :name="state.type==='login'?'登录':'注册'"></s-header>
     <div class="login-body login" v-if="state.type==='login'">
       <!-- 登录表单 -->
-      <van-form @submit="onSubmit">
-        <van-field
-            name="username"
-            v-model="state.username"
-            label="用户名"
-            placeholder="请输入用户名"  
-            :rules="[{required: true, message: '请填写用户名'}]"
-            >
+        <van-form @submit="onSubmit">
+            <van-field
+                name="username"
+                v-model="state.username"
+                label="用户名"
+                placeholder="请输入用户名"  
+                :rules="[{required: true, message: '请填写用户名'}]"
+                >
             </van-field> 
             <van-field
                 name="password"
@@ -18,53 +18,52 @@
                 type="password"
                 label="密码"
                 placeholder="请输入密码"
-                :rules="[{required: true, message: '请填写密码'}]"
-            >
+                :rules="[{required: true, message: '请填写密码'}]">
             </van-field> 
             <div style="margin:16px;">
                 <div class="link-login" @click="toggle('register')">立即注册</div>
                 <van-button round block color="#1baeae" native-type="submit">登录</van-button>
             </div>
-      </van-form>
+        </van-form>
     </div>
     <div class="login-body registry" v-else>
       <!-- 注册的表单 -->
-      <van-form @submit="onSubmit">
-        <van-field
-          name="username1"
-          v-model="state.username1"
-          label="用户名"
-          placeholder="请输入用户名"  
-          :rules="[{required: true, message: '请填写用户名'}]"
-        >
-        </van-field>
-        <van-field
-          name="password1"
-          v-model="state.password1"
-          type="password"
-          label="密码"
-          placeholder="请输入密码"
-          :rules="[{required: true, message: '请填写密码'}]"
-        >
-        </van-field>     
-        <van-field 
-            center
-            clearable
-            label="验证码"
-            placeholder="输入验证码"
-            v-model="state.verify"
-        >
-            <template #button>
-                <vue-img-verify ref="verifyRef" />
-            </template>
-        </van-field>    
-        <div style="margin:16px;">
-          <div class="link-login" @click="toggle('login')">已有登录账号</div>
-          <van-button round block color="#1baeae" native-type="submit">注册</van-button>
-        </div>
-      </van-form>
+        <van-form @submit="onSubmit">
+            <van-field
+                name="username1"
+                v-model="state.username1"
+                label="用户名"
+                placeholder="请输入用户名"  
+                :rules="[{required: true, message: '请填写用户名'}]"
+            >
+            </van-field>
+            <van-field
+                name="password1"
+                v-model="state.password1"
+                type="password"
+                label="密码"
+                placeholder="请输入密码"
+                :rules="[{required: true, message: '请填写密码'}]"
+            >
+            </van-field>     
+            <van-field 
+                center
+                clearable
+                label="验证码"
+                placeholder="输入验证码"
+                v-model="state.verify"
+            >
+                <template #button>
+                    <vue-img-verify ref="verifyRef" />
+                </template>
+            </van-field>    
+            <div style="margin:16px;">
+                <div class="link-login" @click="toggle('login')">已有登录账号</div>
+                <van-button round block color="#1baeae" native-type="submit">注册</van-button>
+            </div>
+        </van-form>
     </div>
-  </div>
+</div>
 </template>
 
 <script setup>

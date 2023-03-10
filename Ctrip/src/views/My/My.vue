@@ -1,17 +1,6 @@
 <template>
     <div class="page">
-        <div class="page_header">
-            <div class="page_header__item">
-                <i class="iconfont icon-scan"></i>
-            </div>
-            <div class="page_header__item">
-                <i class="iconfont icon-qiandao"></i>
-                <i class="iconfont icon-10"></i>
-                <i class="iconfont icon-settings"></i>
-                <i class="iconfont icon-gengduo"></i>
-            </div>
-        </div>
-
+        <ScanHeader/>
         <div class="page_center">
             <div class="page_center__profile">
                 <div class="profile-top">
@@ -52,7 +41,8 @@
 </template>
 
 <script setup>
-import NavBar from '../../components/NavBar.vue';
+import NavBar from '~/NavBar.vue';
+import ScanHeader from '~/ScanHeader.vue';
 
 </script>
 
@@ -62,15 +52,6 @@ import NavBar from '../../components/NavBar.vue';
     background-image: linear-gradient(to left bottom,skyblue,white);
     padding-bottom 1rem
     wh(100%,100%)
-    .page_header
-        fj()
-        padding .3rem
-        // background-color green
-        .page_header__item
-            fj()
-            width 50%
-            .iconfont
-                font-size .533333rem /* 20/37.5 */
     .page_center
         .page_center__profile
             margin .28rem
