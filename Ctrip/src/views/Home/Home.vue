@@ -37,6 +37,7 @@
                 </div>
             </van-skeleton>
         </div>
+        <BackTop/>
         <nav-bar></nav-bar>
     </div>
 </template>
@@ -44,6 +45,7 @@
 <script setup>
 import NavBar from '~/NavBar.vue'
 import Swiper from '~/Swiper.vue'
+import BackTop from '~/BackTop.vue'
 import Post from '~/Post.vue'
 import { reactive, onMounted, computed } from 'vue'
 import { showLoadingToast, closeToast } from 'vant'

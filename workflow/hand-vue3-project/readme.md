@@ -65,7 +65,7 @@
     在dist/js中根据文件内容进行计算，得到一个唯一值，留下打包历史记录  
     为了防止浏览器的缓存，用CleanWebpackPlugin清空以前的历史记录  
 
-- --mode=
+- "build": "webpack --mode=development/production"
     development 开发阶段  
     production 上线阶段  代码压缩？ http 传输文件越小越好  
 

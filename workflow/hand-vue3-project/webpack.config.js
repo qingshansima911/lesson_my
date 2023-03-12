@@ -38,15 +38,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'stylus-loader'
-                ]
-            },
-            {
-                test: /\.stylus$/,
+                test: /\.(css|stylus|styl)$/,
                 use: [
                     'style-loader',
                     'css-loader',

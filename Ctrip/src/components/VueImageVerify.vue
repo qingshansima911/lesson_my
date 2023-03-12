@@ -1,6 +1,11 @@
 <template>
     <div class="img-verify">
-        <canvas ref="verify" :width="state.width" :height="state.height" @click="handleDraw"></canvas>
+        <canvas 
+            ref="verify" 
+            :width="state.width" 
+            :height="state.height" 
+            @click="handleDraw">
+        </canvas>
     </div>
 </template>
 

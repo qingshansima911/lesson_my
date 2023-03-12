@@ -1,5 +1,5 @@
 {
-  "name": "vuex-deo",
+  "name": "cainiao",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "better-scroll": "^2.5.0",
+    "lodash": "^4.17.21",
+    "stylus": "^0.59.0",
     "vue": "^3.2.45"
   },
   "devDependencies": {

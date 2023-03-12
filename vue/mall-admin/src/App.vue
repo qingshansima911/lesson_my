@@ -7,7 +7,7 @@ import { useUserStore } from '@/store/user.js'
 
 
 const state = reactive({
-    defaultOpen: ['1', '2'],
+    defaultOpen: ['1', '2', '3'],
     showMenu: true,
     currentPath: '/'
 })
@@ -75,7 +75,8 @@ onMounted(async ()=>{
                 <div class="line"></div>
                 <el-menu 
                     background-color="#222832" text-color="#fff" 
-                    :router="true" :default-openeds="state.defaultOpen"
+                    :router="true" 
+                    :default-openeds="state.defaultOpen"
                     :default-active="state.currentPath">
                     <el-sub-menu index="1">
                         <template #title>
@@ -93,6 +94,17 @@ onMounted(async ()=>{
                         <el-menu-item-group>
                             <el-menu-item index="/swiper">轮播图配置</el-menu-item>
                             <el-menu-item index="/hot">热销商品配置</el-menu-item>
+                        </el-menu-item-group>
+                    </el-sub-menu>
+                    <el-sub-menu index="3">
+                        <template #title>
+                            <span>模块管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="/category">
+                                <el-icon><Menu/></el-icon>
+                                分类管理
+                            </el-menu-item>
                         </el-menu-item-group>
                     </el-sub-menu>
                 </el-menu>

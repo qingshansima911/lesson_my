@@ -10,16 +10,20 @@
             </div>
             <el-form 
                 label-position="top" 
-                :rules="state.rules" :model="state.formData" 
-                ref="loginForm" class="login-form">
+                :rules="state.rules" 
+                :model="state.formData" 
+                ref="loginForm" 
+                class="login-form">
                 <el-form-item label="账号" prop="username">
                     <el-input 
-                        type="text" v-model="state.formData.username" 
+                        type="text" 
+                        v-model="state.formData.username" 
                         autocomplete="off" />
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
                     <el-input 
-                        type="password" v-model="state.formData.password" 
+                        type="password" 
+                        v-model="state.formData.password" 
                         autocomplete="off" />
                 </el-form-item>
                 <el-form-item>
