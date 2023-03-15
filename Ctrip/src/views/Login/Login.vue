@@ -24,7 +24,7 @@ import router from '@/router/router'
 
 const gotoLogin = () => {
     router.push({
-        path: '/Register'
+        path: '/register'
     })
 }
 

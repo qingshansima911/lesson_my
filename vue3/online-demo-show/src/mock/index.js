@@ -1,5 +1,5 @@
 import Mock from 'mockjs'
-Mock.mock(/\login/, 'post', (options) => {
+Mock.mock(/\/login/, 'post', (options) => {
     // console.log(options);
     // 账号密码的验证
     const body = options.body

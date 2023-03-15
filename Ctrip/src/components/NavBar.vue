@@ -17,7 +17,7 @@
                 <i class="iconfont icon-SX_015"></i>
                 <div>行程</div>
             </router-link>
-            <router-link to="my" class="nav-list-item">
+            <router-link to="login" class="nav-list-item">
                 <i class="iconfont icon-zuanshi"></i>
                 <div>我的</div>
             </router-link>
