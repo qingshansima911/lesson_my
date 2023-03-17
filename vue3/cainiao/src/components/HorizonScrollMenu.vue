@@ -25,13 +25,14 @@ const content = ref(null)
 const innerLeft = ref('0px')
 let wrapperWidth = 0
 let contentWidth = 0
+let bs = null
 // 实现动态数据滚动
 BScroll.use(ObserveDOM)
 
 onMounted(() => {
     wrapperWidth = scroll.value.offsetWidth
     contentWidth = content.value.offsetWidth
-    // console.log(wrapperWidth,contentWidth);
+    console.log(wrapperWidth,contentWidth);
     let bs = new BScroll(scroll.value, {
         scrollX: true,
         observeDOM: true,

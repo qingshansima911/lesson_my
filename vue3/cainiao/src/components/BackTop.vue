@@ -30,6 +30,7 @@ const handleSroll = () => {
 }
 const throttleHandleScroll = _.throttle(handleSroll,100)
 const debounceHandleScroll = _.debounce(handleSroll, 100)
+
 const toTop = () => {
     // window.scrollTo(0, 0)
     const sTop = document.documentElement.scrollTop || document.body.scrollTop

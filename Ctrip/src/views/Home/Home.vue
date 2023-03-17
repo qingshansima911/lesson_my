@@ -7,14 +7,7 @@
             </div>
         </div>
         <div class="page_body">
-            <div class="category-list">
-                <div 
-                    :key="index"
-                    v-for="(item,index) in categoryList">
-                    <img :src="item.imgUrl">
-                    <span>{{item.name}}</span>
-                </div>
-            </div>
+            <HorizonScroll/>
             <div class="home-swiper">
                 <swiper :swiperList="swiperList"/> 
             </div>
@@ -37,7 +30,7 @@
                 </div>
             </van-skeleton>
         </div>
-        <BackTop/>
+        <BackToTop/>
         <nav-bar></nav-bar>
     </div>
 </template>
@@ -45,7 +38,8 @@
 <script setup>
 import NavBar from '~/NavBar.vue'
 import Swiper from '~/Swiper.vue'
-import BackTop from '~/BackTop.vue'
+import BackToTop from '~/BackToTop.vue'
+import HorizonScroll from '~/HorizonScroll.vue'
 import Post from '~/Post.vue'
 import { reactive, onMounted, computed } from 'vue'
 import { showLoadingToast, closeToast } from 'vant'
@@ -116,22 +110,9 @@ onMounted(async () => {
                 justify-content center
                 align-items center
     .page_body 
-        padding .9rem .3rem .3rem .3rem
+        padding .9rem .2rem .3rem .2rem
         .home-swiper
             height 3rem /* 300/37.5 */
-        .category-list
-            fj()
-            flex-wrap wrap
-            padding .34667rem 0
-            div
-                fj()
-                flex-direction column
-                width 20%
-                align-items center
-                // padding .333rem
-                img
-                    wh(1rem, 1rem)
-                    margin .146667rem 0 
         .post-wrapper
             fj()
             overflow-y: scroll;

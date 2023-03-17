@@ -1,15 +1,17 @@
 <template>
     <div class="page">
         <div class="page_header">账号密码{{ state.type }}</div>
-        <div class="page_body" v-if="state.type === '登录'">
+        <div class="page_body" v-if="state.type === 'login'">
             <div class="page_body__form">
                 <van-form @submit="onSubmit">
                     <van-field 
+                        @input="isInput"
                         v-model="state.username" 
                         :rules="[{ required: true, message: '请填写用户名' }]"
                         placeholder="境内手机/用户名/邮箱/卡号">
                     </van-field>
                     <van-field 
+                        @input="isInput"
                         v-model="state.password" 
                         type="password"
                         :rules="[{ required: true, message: '请填写密码' }]" 
@@ -18,42 +20,47 @@
                 </van-form>
             </div>
             <div class="page_body__button">
-                <div class="toggle" @click="toggle('注册')">立即注册</div>
+                <div class="toggle" @click="toggle('register')">立即注册</div>
                 <van-button 
                     @click="login"
-                    round block color="#FF7D01" 
+                    :class="{active: state.color}"
+                    class="button"
                     native-type="submit">登录</van-button>
             </div>
         </div>
 
-        <div class="page_body" v-if="state.type === '注册'">
+        <div class="page_body" v-if="state.type === 'register'">
             <div class="page_body__form">
                 <van-form @submit="onSubmit">
                     <van-field 
-                        v-model="state.username" 
+                        @input="Input"
+                        v-model="state.username2" 
                         :rules="[{ required: true, message: '请填写用户名' }]"
                         placeholder="境内手机/用户名/邮箱/卡号">
                     </van-field>
                     <van-field 
-                        v-model="state.password" 
+                        @input="Input"
+                        v-model="state.password2" 
                         type="password"
                         :rules="[{ required: true, message: '请填写密码' }]" 
                         placeholder="登录密码">
                     </van-field>
                     <van-field 
+                        @input="Input"
                         center clearable placeholder="输入验证码" 
                         v-model="state.verify">
                             <template #button>
-                                <vue-img-verify ref="verifyRef" />
+                                <vue-img-verify ref="verifyRef"/>
                             </template>
                     </van-field>
                 </van-form>
             </div>
             <div class="page_body__button">
-                <div class="toggle" @click="toggle('登录')">已有登录账号</div>
+                <div class="toggle" @click="toggle('login')">已有登录账号</div>
                 <van-button 
+                    :class="{active: state.color}"
                     @click="register"
-                    round block color="#FF7D01" 
+                    class="button"
                     native-type="submit">注册</van-button>
             </div>
         </div>
@@ -71,15 +78,37 @@ import { showFailToast } from 'vant'
 const router = useRouter()
 const verifyRef = ref(null)
 const state = reactive({
-    type: '登录',
+    type: 'login',
     username: '',
     password: '',
-    verify: ''
+    username2: '',
+    password2: '',
+    verify: '',
+    color: false
 })
 const toggle = (type) => {
     state.type = type
+    state.color = false
+    state.username = ''
+    state.username2 = ''
+    state.password = ''
+    state.password2 = ''
+    state.verify = ''
 }
-
+const isInput = () => {
+    if (state.username !== '' && state.password !== '') {
+        state.color = true
+    } else {
+        state.color = false
+    }
+}
+const Input = () => {
+    if (state.username2 !== '' && state.password2 !== '' && state.verify !== '') {
+        state.color = true
+    } else {
+        state.color = false
+    }
+}
 const login = async () => {
     const user = {
         username: state.username,
@@ -104,8 +133,10 @@ const register = () => {
         showFailToast('验证码错误')
         return
     } else {
-        localStorage.setItem('username', state.username)
-        localStorage.setItem('password', state.password)
+        if (state.username2 !== '' && state.password2 !== '') {
+            localStorage.setItem('username', state.username2)
+            localStorage.setItem('password', state.password2)
+        }
     }
 }
 </script>
@@ -127,6 +158,14 @@ const register = () => {
                 color white 
                 padding .3rem 0
                 font-size .4rem
+            .button
+                background-color gray
+                color black
+                width 100%
+                border-radius 6px
+                &.active
+                    color white 
+                    background-color #FF7D01
         // .van-field
         //     background green
         //     color red

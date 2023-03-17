@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import HorizenScrollMenu from './components/HorizenScrollMenu.vue'
+import HorizonScrollMenu from './components/HorizonScrollMenu.vue'
 import BackTop from './components/BackTop.vue'
 
 const showHeight = ref(0)
@@ -10,7 +10,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <Horizen-Scroll-Menu />
+    <Horizon-Scroll-Menu />
     <BackTop :showHeight="showHeight">
         回到顶部
     </BackTop>
