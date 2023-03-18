@@ -27,7 +27,7 @@
 <style lang="stylus" scoped>
 @import '../common/style/mixin.styl'
 .comment    
-    fj(space-around)
+    display flex
     wh(100%,1rem )
     align-items center
     position fixed
@@ -38,9 +38,10 @@
         fj()
         flex-direction column
         align-items center
+        margin 0 .45rem
     .comment-input
         border 1px solid #DDD
-        padding .15rem .4rem .15rem .1rem
+        padding .15rem 2rem .15rem .4rem
         border-radius 50px
         background-color #F4F8FB
         color #999A99

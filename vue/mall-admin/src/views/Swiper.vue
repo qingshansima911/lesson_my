@@ -28,8 +28,7 @@
                 :data="state.tableData"
                 tooltip-effect="dark"
                 style="width:100%"
-                ref="multipleTable"
-            >
+                ref="multipleTable">
                 <el-table-column
                     type="selection"
                     width="55"
@@ -67,8 +66,7 @@
                 <el-table-column
                     fixed="right"
                     label="操作"
-                    width="200"
-                >
+                    width="200">
                     <template #deafult="scope">
                         <a style="margin-right:10px;"
                         @click.prevent="handleEdit(scope.row.carouselId)">修改</a>
@@ -82,16 +80,14 @@
                 :total="state.total"
                 :page-size="state.pageSize"
                 :current-page="state.currentPage"
-                @current-change="changePage"
-            >
+                @current-change="changePage">
             </el-pagination>
        </el-card>
 
        <el-dialog
             v-model="state.showDialog"
             title="添加轮播图"
-            width="400px"
-        >
+            width="400px">
             <el-form 
                 :model="state.swiperForm" 
                 :rules="state.rules"

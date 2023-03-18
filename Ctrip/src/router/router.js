@@ -21,7 +21,15 @@ const router = createRouter({
         {
             path:'/message',
             name: 'message',
+            meta: {
+                isLogin: 2
+            },
             component: () =>import ('@/views/Message/Message.vue')
+        },
+        {
+            path:'/loginMessage',
+            name: 'loginMessage',
+            component: () =>import ('@/views/Message/loginMessage.vue')
         },
         {
             path:'/journey',
@@ -29,9 +37,9 @@ const router = createRouter({
             component: () =>import ('@/views/Journey/Journey.vue')
         },
         {
-            path:'/my',
-            name: 'my',
-            component: () => import('@/views/My/My.vue'),
+            path: '/loginMy',
+            name: 'loginMy',
+            component: () => import('@/views/My/loginMy.vue'),
             redirect: '/myctrip',
             children: [
                 {
@@ -54,14 +62,17 @@ const router = createRouter({
             component: () => import('@/views/Home/Detail.vue')
         },
         {
+            path:'/my',
+            name: 'my',
+            meta: {
+                isLogin: 1
+            },
+            component: () =>import ('@/views/My/My.vue')
+        },
+        {
             path:'/login',
             name: 'login',
             component: () =>import ('@/views/Login/Login.vue')
-        },
-        {
-            path:'/register',
-            name: 'register',
-            component: () =>import ('@/views/Register/Register.vue')
         },
     ]
 })

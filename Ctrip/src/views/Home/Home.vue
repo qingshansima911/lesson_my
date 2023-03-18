@@ -49,7 +49,6 @@ import { useRouter } from 'vue-router'
 
 const homeStore = useHomeStore();
 const swiperList = computed(()=>homeStore.swiperList)
-const categoryList = computed(()=>homeStore.categoryList)
 const articleList = computed(() => homeStore.articleList)
 const articleImg = computed(() => homeStore.articleImg)
 

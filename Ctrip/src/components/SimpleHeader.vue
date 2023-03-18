@@ -2,7 +2,7 @@
     <header class="simple-header">
         <div class="left">
             <span v-if="!noback" class="iconfont icon-fanhui" @click="goBack"></span>
-            <span class="iconfont icon-wode"></span>
+            <img src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg" alt="">
             <span class="simple-header-name"> {{ detail.author }}</span>
         </div>
         <div class="right">
@@ -37,21 +37,36 @@ const goBack = () => {
 
 .simple-header
     position fixed
+    z-index 999
+    background-color #fff
     top 0
     left 0
-    z-index 10000
     fj()
     wh(100%, 1.17333rem)
-    padding 0 .26667rem
+    // padding 0 .26667rem
     color #252525
     align-items center
+    .left
+        fj()
+        align-items center
+        img
+            wh(.8rem,.8rem)
+            margin 0 .2rem 0 .4rem
+        .icon-fanhui
+            font-size .6rem
     span 
         margin 0 .266667rem /* 10/37.5 */
         font-size .2833rem
-    .subscribe
-        border 1px solid #DDD
-        border-radius .533333rem /* 20/37.5 */
-        padding .16rem /* 6/37.5 */
+    .right
+        fj()
+        align-items center
+        .subscribe
+            border 1px solid #DDD
+            border-radius .533333rem /* 20/37.5 */
+            padding .1rem .4rem 
+            font-size .3rem
+        .icon-more
+            font-size .7rem
 .block
     height 1.1733rem
 </style>

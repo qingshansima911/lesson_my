@@ -4,7 +4,10 @@ import {
     getArticleList,
     getArticleImg,
 } from '@/service/home.js';
-import { getDetail } from '../service/detail';
+import {
+    getDetail,
+    getComments,
+} from '../service/detail';
 import { defineStore } from 'pinia';
 
 
@@ -15,7 +18,8 @@ export const useHomeStore = defineStore('home', {
             categoryList: [],
             articleList: [],
             articleImg: [],
-            detail:[]
+            detail: [],
+            comments:[],
         }
     },
     actions: {
@@ -43,6 +47,11 @@ export const useHomeStore = defineStore('home', {
             const res = await getDetail(id)
             // console.log(res);
             this.detail = res.result
+        },
+        async getComments() {
+            const res = await getComments()
+            // console.log(res);
+            this.comments = res.result
         },
     }
 })

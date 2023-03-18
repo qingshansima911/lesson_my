@@ -62,15 +62,14 @@ onMounted(async () => {
     // border 1px solid red
     overflow hidden
     position relative
-    width 360px
     margin .2rem -0.2rem 
     .category_content
         // border 1px solid red
-        width 720px
+        width 200vw
         display inline-block
         .category_inline
             display inline-block
-            width 360px
+            width 50%
             .category_item
                 fj()
                 flex-wrap wrap
@@ -78,7 +77,7 @@ onMounted(async () => {
                 div
                     fj()
                     flex-direction column
-                    width 65px
+                    width 20%
                     align-items center
                     img
                         wh(1rem, 1rem)

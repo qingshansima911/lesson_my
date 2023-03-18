@@ -34,11 +34,11 @@
         </div>
         <div class="container_message">
             <div class="container_message__item">
-                <img src="https://i.328888.xyz/2023/03/18/Lousd.jpeg">
+                <img src="https://s.yezgea02.com/1604041127880/%E9%A2%86%E5%88%B8%402x.png">
             </div>
             <div class="container_message__item">
-                <div class="title">登录后查看消息</div>
-                <span class="text">登录/注册</span>
+                <div class="title">消息号动态</div>
+                <div class="text">特价专区：婺女周度假区故园里酒店</div>
             </div>
         </div>
     </div>
@@ -79,17 +79,19 @@ import NavBar from '../../components/NavBar.vue';
             img
                 wh(1rem,1rem)
     .container_message
-        margin 2rem
+        display flex
+        background-color #fff
+        margin  .3rem 0
+        align-items center
         .container_message__item
-            text-align center
+            fd()
+            padding .3rem
             img
-                wh(3rem,3rem)
+                wh(1rem,1rem)
             .title
-                margin .4rem 0
+                font-size .433333rem /* 20/37.5 */
+                color #2B5A9B
+                padding .1rem 0
             .text
-                color #66B5F7
-                font-size .4rem /* 20/37.5 */
-                border 1px solid #B6D3FA
-                padding .2rem 
-                border-radius .16rem
+                color #B7B7B7
 </style>

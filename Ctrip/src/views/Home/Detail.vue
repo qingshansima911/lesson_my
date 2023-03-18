@@ -17,7 +17,8 @@
                 :key="item.ar_id">
                 {{ item.text }}
             </div>
-            <Comment/>
+            <Comments :comments="comments"/>
+            <DetailNavBar/>
         </div>
     </div>
 </template>
@@ -30,11 +31,13 @@ import { useHomeStore } from '@/store/home.js'
 import { getDetail } from '@/service/detail'
 import SimpleHeader from '~/SimpleHeader.vue';
 import Swiper from '~/Swiper.vue'
-import Comment from '~/Comment.vue'
+import DetailNavBar from '~/DetailNavBar.vue'
+import Comments from '~/Comments.vue'
 
 const route = useRoute(); // 当前的路由
 const homeStore = useHomeStore();
 const detail = computed(() => homeStore.detail)
+const comments = computed(() => homeStore.comments)
 // console.log(detail.value);
 
 onMounted(async () => {
@@ -44,6 +47,7 @@ onMounted(async () => {
         message: '加载中'
     })
     await homeStore.getDetail(id)
+    await homeStore.getComments()
     closeToast()
 })
 </script>
@@ -51,6 +55,7 @@ onMounted(async () => {
 <style lang="stylus" scoped>
 .detali-wrapper
     width 100% 
+    padding-bottom 1.5rem
     .introduce
         padding .266667rem  .26667rem
     .detail-swiper
