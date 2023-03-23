@@ -62,7 +62,7 @@ onMounted(async () => {
     // border 1px solid red
     overflow hidden
     position relative
-    margin .2rem -0.2rem 
+    margin 1.6rem 0 .6rem 0
     .category_content
         // border 1px solid red
         width 200vw

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://127.0.0.1:3000"></script>
+</head>
+
+<body>
+    <form action="/comment" method="GET" role="form" class="comment-form">
+        <legend>开始评论</legend>
+        <div class="form-group">
+            <label for="name">你的大名：</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="请输入你的大名" required maxlength="10"
+                minlength="2">
+        </div>
+        <div class="form-group">
+            <label for="content">评论内容：</label>
+            <textarea name="content" id="content" class="form-control" rows="6" required minlength="5"
+                maxlength="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+
+    <!-- <div class="title">
+        <p>node.js评论社区</p>
+    </div>
+    <div class="comment">
+        <p>请发表评论</p>
+        <button class="btn btn-primary" id="btn">发表</button>
+    </div>
+    <ul class="list-group comment-list">
+        {{each comments}}
+        <li class="list-group-item">{{$value.content}}<span class="time">{{$value.time}}</span> <span
+                class="name">{{$value.name}}</span></li>
+        {{/each}}
+    </ul> -->
+</body>
+
+</html>

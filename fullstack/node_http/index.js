@@ -40,7 +40,7 @@ const server = http.createServer(function (req, res) {
             "title": "百度胡总面试之旅",
             "desc": "五个月，冲击毕业前大厂就业。"
         }
-        res.setHead('Content-Type', 'application/json;charset=utf-8');
+        res.setHeader('Content-Type', 'application/json;charset=utf-8');
         res.end(JSON.stringify(data));
     }
 })// web 服务

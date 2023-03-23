@@ -38,7 +38,7 @@
             </div>
             <div class="container_message__item">
                 <div class="title">登录后查看消息</div>
-                <span class="text">登录/注册</span>
+                <span class="text" @click="gotoLogin">登录/注册</span>
             </div>
         </div>
     </div>
@@ -46,6 +46,13 @@
 
 <script setup>
 import NavBar from '../../components/NavBar.vue';
+import router from '@/router/router'
+const gotoLogin = () => {
+    router.push({
+        path: '/login'
+    })
+}
+
 </script>
 
 <style lang="stylus" scoped>

@@ -176,4 +176,9 @@ const register = () => {
         // .van-field
         //     background green
         //     color red
+        .page_body__form
+            .van-form>>>.van-cell
+                background none
+            .van-form>>>.van-field__control
+                font-size .4rem
 </style>

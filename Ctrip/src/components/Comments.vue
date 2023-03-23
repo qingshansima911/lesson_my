@@ -2,25 +2,28 @@
     <div class="comments">
         <div class="comments_text">共88条评论</div>
         <div class="comments_profile">
-            <img src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg" alt="">
+            <el-avatar :size="40" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg"/>
             <div class="comments_profile__input">喜欢就给个评论支持一下</div>
         </div>
         <div 
             :key="index"
             v-for="item,index in props.comments"
             class="comment">
-            <img :src="item.headImg" alt="">
-            <div class="comment_text">
-                <div class="comment_text__name">{{ item.name }}</div>
-                <div class="comment_text__comment">{{ item.comment }}</div>
-
-            </div>
+                <el-avatar :size="40" :src="item.headImg"></el-avatar>
+                <div class="comment_text">
+                    <div class="comment_text__name">{{ item.name }}</div>
+                    <div class="comment_text__comment">{{ item.comment }}</div>
+                </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { reactive } from 'vue';
 const props = defineProps(['comments'])
+const state = reactive({
+    Img: 'https://i.328888.xyz/2023/03/18/LsjPF.jpeg'
+})
 </script>
 
 <style lang="stylus" scoped>
@@ -34,9 +37,6 @@ const props = defineProps(['comments'])
     .comments_profile
         display flex
         margin .2rem 0
-        img
-            wh(.8rem,.8rem)
-            margin-right .3rem
         .comments_profile__input
             fc()
             background-color #F4F4F4
@@ -48,10 +48,9 @@ const props = defineProps(['comments'])
         border-bottom 1px solid #DDD
         padding-bottom .2rem
         fj()
-        img
-            wh(1rem,1rem)
-            margin-right  .2rem
         .comment_text
+            width 90%
+            margin-left .1rem
             .comment_text__name
                 color gray
                 margin-bottom .2rem

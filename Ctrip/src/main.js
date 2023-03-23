@@ -9,15 +9,18 @@ import {
     Skeleton,
     Form,
     Field,
-    Button
+    Button,
+    Tab,
+    Tabs
 } from 'vant';
 import 'vant/lib/index.css'
+import {
+    ElAvatar,
+    ElBadge
+} from 'element-plus'
+import 'element-plus/dist/index.css'
 import './mock/mock'
 import { createPinia } from 'pinia';
-// import {
-//     ElInput
-// } from 'element-plus'
-// import 'element-plus/dist/index.css'
 
 const app = createApp(App)
 app
@@ -31,4 +34,8 @@ app
     .use(Form)
     .use(Field)
     .use(Button)
+    .use(Tab)
+    .use(Tabs)
+    .use(ElAvatar)
+    .use(ElBadge)
     .mount('#app')

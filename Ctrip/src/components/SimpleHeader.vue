@@ -2,7 +2,7 @@
     <header class="simple-header">
         <div class="left">
             <span v-if="!noback" class="iconfont icon-fanhui" @click="goBack"></span>
-            <img src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg" alt="">
+            <el-avatar :size="30" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg"/>
             <span class="simple-header-name"> {{ detail.author }}</span>
         </div>
         <div class="right">

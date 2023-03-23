@@ -8,7 +8,6 @@
             <i class="iconfont icon-huidaodingbu"></i>
         </div>
     </div>
-    <div class="box"></div>
 </template>
 
 <script setup>
@@ -70,6 +69,4 @@ const scrollTop = (el, from , to , duration ) => {
             color #FFFEF9 
             font-weight bold
             text-align center
-.box
-    height 400vh
 </style>
