@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // promise是异步变同步的抽象
+        class Promise {
+            constructor(executor) {
+                // 初始化state为等待状态
+                this.state = 'pending'
+                // 成功的值
+                this.value = undefined
+                // 失败的原因
+                this.reason = undefined
+                this.onResolvedCallbacks = []
+                this.onRejectedCallbacks = []
+                // 成功 
+                let resolve = (value) => {
+                    // 如果不是
+                    if (this.state === 'pending') {
+                        this.state = 'fullfilled'
+                        this.value = value
+                        this.onResolvedCallbacks.forEach(fn => fn())
+                    }
+                }
+                let reject = (reason) => {
+                    if (this.state === 'pending') {
+                        this.state = 'rejected'
+                        this.reason = reason
+                        this.onRejectedCallbacks.forEach(fn => fn())
+                    }
+                }
+                // 立即执行
+                try {
+                    executor(resolve, reject)
+                } catch (err) {
+                    reject(err)
+                }
+            }
+            then(onFulfilled, onRejected) {
+                if (this.state === 'fulfilled') {
+                    onFulfilled(this.value)
+                }
+                if (this.state === 'rejected') {
+                    onRejected(this.reason)
+                }
+                // 异步的 第一个then是pending
+                if (this.state === 'pending') {
+                    // 缓存起来
+                    this.onResolvedCallbacks.push(() => {
+                        onFulfilled(this.value)
+                    })
+                    this.onRejectedCallbacks.push(() => {
+                        onRejected(this.reason)
+                    })
+                }
+            }
+        }
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 1000);
+        })
+        p.then((data) => {
+            console.log(data);
+        }, () => {
+
+        })
+    </script>
+</body>
+
+</html>
