@@ -5,9 +5,20 @@ import { useStore } from 'vuex' // hooks函数式编程
 // 1. pinia hooks更好 defineStore  2. vuex对ts支持不如pinia
 import { GlobalDataProps } from './types';
 import GlobalHeader from './components/GlobalHeader.vue'
+import { getColumn } from './api/column'
 
 const store = useStore<GlobalDataProps>()
-const currentUser = computed(()=>store.state.user)
+const currentUser = computed(() => store.state.user)
+
+// fetch('/api/columns?currentPage=1&pageSize=3')
+//     .then(data => data.json())
+//     .then(data => {
+//         console.log(data);
+//     })
+getColumn().then(data => {
+    console.log(data);
+    
+})
 </script>
 
 <template>

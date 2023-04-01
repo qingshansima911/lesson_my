@@ -13,7 +13,13 @@ export interface UserProps {
     description?: string;
     avatar?: ImageProps;
 }
+export interface GlobalErrorProps{
+    status: boolean;
+    message: string;
+}
 export interface GlobalDataProps {
     token: string;
-    user: UserProps
+    user: UserProps;
+    loading: boolean;
+    error: GlobalErrorProps;
 }

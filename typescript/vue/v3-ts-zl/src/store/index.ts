@@ -1,12 +1,25 @@
 import { createStore } from "vuex";
-import { GlobalDataProps } from '../types'
+import { GlobalDataProps,GlobalErrorProps } from '../types'
 const store = createStore<GlobalDataProps>({
     state: {
         user: {
             isLogin: true,
             nickname: '蔡帅'
         },
-        token:''
+        token: '',
+        loading: false,
+        error: {
+            status: false,
+            message: ''
+        }
+    },
+    mutations: {
+        setLoading(state, status) {
+            state.loading = status
+        },
+        setError(state, e: GlobalErrorProps) {
+            state.error = e
+        }
     }
 })
 export default store
