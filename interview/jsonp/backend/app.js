@@ -32,6 +32,7 @@ app.get('/say', function (req, res) {
     // 修改响应头 解决乱码问题
     res.setHeader('Content-Type', 'text/json;charset=utf-8',)
     // res.end('hello')
+    
     // res.send(JSON.stringify(jsonData))
     // JSONP格式
     res.send('callback(' + JSON.stringify(jsonData) + ')')

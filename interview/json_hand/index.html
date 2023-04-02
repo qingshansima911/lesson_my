@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // fetch('http://localhost:3000/other')
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+        // function callback(data){
+        //     console.log(data);
+        // }
+        let jsonp = function (url, params = {}, callback) {
+            let oScript = document.createElement('script')
+            let cb_name = 'jsonpCallback'
+            let paramsStr = url.indexOf('?') === -1 ? '?' : '&'
+            for (let key in params) {
+                paramsStr += `${key}=${params[key]}&`
+            }
+            paramsStr += 'callback=' + cb_name
+            oScript.src = url + paramsStr
+            document.body.appendChild(oScript)
+
+            window[cb_name] = function (data) {
+                callback(data)
+                document.body.removeChild(oScript) // 打扫战场
+            }
+        }
+        jsonp('http://localhost:3000/say', { page: 1, cate: 'recommend' },
+            function (data) {
+                console.log(data);
+            })
+    </script>
+    <!-- <script src="http://localhost:3000/say"></script> -->
+</body>
+
+</html>
