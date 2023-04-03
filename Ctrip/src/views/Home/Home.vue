@@ -105,7 +105,7 @@ onMounted(async () => {
             border-radius 1.3rem /* 50/37.5 */
             background-color #fff
             fac()
-            font-size .4rem
+            font-size .35rem
             .page_header__text
                 flex 1
                 margin 0 .2rem
