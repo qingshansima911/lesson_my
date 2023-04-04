@@ -13,12 +13,12 @@ const currentPage = computed(() => store.state.columns.currentPage)
 onMounted(() => {
     store.dispatch('fetchColumns', { pageSize: 3 })
 })
-// const { isLastPage, loadMorePage } = useLoadMore(
-//     'fetchColumns', total,
-//     {
-//         pageSize: 3,
-//         currentPage: currentPage.value ? currentPage.value + 1 : 2
-//     })
+const { isLastPage, loadMorePage } = useLoadMore(
+    'fetchColumns', total,
+    {
+        pageSize: 3,
+        currentPage: currentPage.value ? currentPage.value + 1 : 2
+    })
 
 </script>
 
@@ -28,7 +28,7 @@ onMounted(() => {
             {{ item.title }}
         </li>
     </ul>
-    <!-- <button v-if="!isLastPage" @click="loadMorePage">加载更多</button> -->
+    <button v-if="!isLastPage" @click="loadMorePage">加载更多</button>
 </template>
 
 <style scoped></style>

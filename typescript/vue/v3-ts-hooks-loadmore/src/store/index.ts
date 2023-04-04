@@ -32,13 +32,13 @@ const store = createStore<GlobalDataProps>({
     mutations: {
         fetchColumns(state, rawData) {
             // state.columns = {}
-            console.log(rawData, 'mutations');
+            // console.log(rawData, 'mutations');
             const { data } = state.columns
             const { list, count, currentPage } = rawData.data.data.data
             // console.log(list, count,currentPage);
             state.columns = {
                 total: count,
-                currentPage: currentPage + 1,
+                currentPage: currentPage,
                 data: {
                     ...data,
                     ...arrToObj(list)
