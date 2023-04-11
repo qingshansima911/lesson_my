@@ -2,11 +2,12 @@ import { createStore, Commit } from 'vuex'
 import { GlobalDataProps } from '../types'
 import { AxiosRequestConfig, axios } from '../api/config'
 import { arrToObj, objToArr } from '../utils'
+import { StorageHandler, storageType} from '../utils'
+const storageHandler = new StorageHandler()
 
 // 通用封装函数
 const asyncAndCommit = async (url: string, mutationName: string, commit: Commit,
-    config: AxiosRequestConfig = { method: 'get' }, extraData?: any
-) => {
+    config: AxiosRequestConfig = { method: 'get' }, extraData?: any) => {
     const data = await axios(url, config)
     if (extraData) {
         commit(mutationName, { data, extraData })
@@ -22,6 +23,10 @@ const store = createStore<GlobalDataProps>({
             data: {},
             currentPage: 0,
             total: 0
+        },
+        token: storageHandler.getItem(storageType, 'token') || '',
+        user: {
+            isLogin: false
         }
     },
     getters: {
