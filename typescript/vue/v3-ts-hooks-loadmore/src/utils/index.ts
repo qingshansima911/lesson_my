@@ -1,3 +1,5 @@
+import { ColumnProps, UserProps } from '../types'
+
 export const arrToObj = <T extends { _id?: string }>(arr: Array<T>) => {
     return arr.reduce((prev, current) => {
         if (current._id) {
@@ -50,3 +52,14 @@ export class StorageHandler {
     }
 }
 export const storageType = StorageType.Local
+
+export function addColumnAvatar(data: ColumnProps | UserProps, width: number, heigth: number) {
+    // if (data.avatar) {
+        
+    // } else {
+    //     const parseCol = data as ColumnProps
+    //     data.avatar = {
+
+    //     }
+    // }
+}

@@ -4,6 +4,7 @@ import { useStore } from 'vuex'
 import { GlobalDataProps } from '../types';
 import { onMounted, computed } from 'vue';
 import useLoadMore from '../hooks/useLoadMore';
+import ColumnList from '../components/ColumnList.vue'
 
 const store = useStore<GlobalDataProps>()
 const list = computed(() => store.getters.getColumns)
@@ -23,12 +24,13 @@ const { isLastPage, loadMorePage } = useLoadMore(
 </script>
 
 <template>
-    <ul>
-        <li v-for="item in list" :key="item._id">
-            {{ item.title }}
-        </li>
-    </ul>
-    <button v-if="!isLastPage" @click="loadMorePage">加载更多</button>
+    <div class="home-page container-md">
+        <h4 class="font-weight-bold text-center">发现精彩</h4>
+        <ColumnList :list="list"></ColumnList>
+        <button 
+            class="btn btn-outline-primary load-more" 
+            v-if="!isLastPage" @click="loadMorePage">加载更多</button>
+    </div>
 </template>
 
 <style scoped></style>

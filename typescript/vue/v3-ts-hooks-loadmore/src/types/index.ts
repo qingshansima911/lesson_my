@@ -6,6 +6,26 @@ export interface GlobalDataProps {
     },
     token: string;
     user: UserProps;
+    posts: {
+        data: ListProps<PostProps>,
+        loadedColumns: ListProps<LoadedPostProps>
+    }
+}
+export interface LoadedPostProps {
+    columnId?: string;
+    currentPage?: number;
+    total?: number;
+}
+export interface PostProps {
+    _id?: string;
+    title: string;
+    excerpt?: string;
+    content?: string;
+    image?: ImageProps | string;
+    column: string;
+    author?: string | UserProps;
+    createdAt?: string;
+    isHTML?: boolean;
 }
 // <类型传参> ColumnProps
 interface ListProps<p> {
