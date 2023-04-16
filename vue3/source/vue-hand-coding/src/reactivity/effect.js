@@ -22,10 +22,43 @@ export function effect(fn, options = {}) {
     return effectFn
 }
 
-export function tarck() {
-
+export function track(target, type, key) {
+    // console.log(`触发track -> target:${target} type:${type} key:${key}`);
+    // obj.nums.a.b proxy深度代理 懒代理
+    // targetMap -> target -> map -> key -> [effect]
+    let depsMap = targetMap.get(target) //第一层查找 对象key undefined
+    if (!depsMap) {
+        // 初始化 depsMap的逻辑
+        // desMap = new Map()
+        // 新增一个
+        // depsMap = new Map() // HashMap对象 set get?
+        // targetMap.set(target, depsMap)
+        targetMap.set(target, (depsMap = new Map()))
+    }
+    let deps = depsMap.get(key)  //第二层有没有
+    if (!deps) {
+        deps = new Set() //数组来存
+    }
+    if (!deps.has(activeEffect) && activeEffect) {
+        deps.add(activeEffect)
+    }
+    depsMap.set(key, deps)
 }
 
-export function trigger() {
-
+export function trigger(target, type, key) {
+    // targetMap -> target -> key -> set
+    const depsMap = targetMap.get(target)
+    if (!depsMap) {
+        return
+    }
+    const deps = depsMap.get(key)
+    if (!deps) {
+        return
+    }
+    deps.forEach((effectFn) => {
+        effectFn()
+        // if (effectFn.scheduler) {
+            
+        // }
+    })
 }

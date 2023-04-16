@@ -5,4 +5,9 @@
     大厂 test  阶段  test  工程师
     工程师自己要会写一下测试用例， jest 测试框架
     测试驱动开发 TDD    
-    ![图片](src/assets/1.png)
+    ![图片](src/assets/1.png)  
+
+- effect 运行了
+    get handler 返回了 反射 Reflect.get(target, key)  
+- 再修改的时候，能不能自动响应？
+    targetMap setter
