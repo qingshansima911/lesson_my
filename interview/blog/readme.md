@@ -5,4 +5,5 @@
 - vue-press
     md 
 - github page
+- git clone https://github.com/HcySunYang/vue-design.git
 
