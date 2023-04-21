@@ -1,5 +1,6 @@
 // import { h } from 'snabbdom'
 import { Fragment, Portal, h } from './h'
+import render from './render'
 // const elementVNode = h('div', null, h('span'))
 // console.log(elementVNode)
 
@@ -23,25 +24,39 @@ import { Fragment, Portal, h } from './h'
 // const statefulComponentVNode = h(MyStatefulComponent, null, h('div'))
 // console.log(statefulComponentVNode);
 
-import render from './render'
-const elementVNode = h(
-    'div',
+
+// const elementVNode = h(
+//     'div',
+//     {
+//         style: {
+//             height: '100px',
+//             width: '100px',
+//             background: 'red'
+//         }
+//     },
+//     h('div',
+//         {
+//             style: {
+//                 height: '50px',
+//                 width: '50px',
+//                 background: 'green'
+//             }
+//         }
+//     )
+// )
+// // console.log(elementVNode);
+// render(elementVNode, document.getElementById('app'))
+
+// const dynamicClass = ['class-b', 'class-c']
+// const elementVNode = h('div', { class: ['class-a', ...dynamicClass] })
+// render(elementVNode, document.getElementById('app'))
+
+const elementVNode = h('input',
     {
-        style: {
-            height: '100px',
-            width: '100px',
-            background: 'red'
-        }
-    },
-    h('div',
-        {
-            style: {
-                height: '50px',
-                width: '50px',
-                background: 'green'
-            }
-        }
-    )
+        class: 'cls-a',
+        type: 'checkbox',
+        checked: true,
+        custom: '1'
+    }
 )
-// console.log(elementVNode);
 render(elementVNode, document.getElementById('app'))
