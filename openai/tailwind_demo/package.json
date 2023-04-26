@@ -1,0 +1,15 @@
+{
+  "name": "tailwind_demo",
+  "version": "1.0.0",
+  "description": "- bootstrap twitter 老牌css框架 .container .row .col  \r - 通用的类名业务(布局) 样式组件 响应式  \r     tailwind 更加强大",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}
