@@ -1,3 +1,6 @@
+# 环境变量文件
+.env
+
 # Logs
 logs
 *.log
