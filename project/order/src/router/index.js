@@ -8,7 +8,20 @@ const routes = [
     {
         path: '/home',
         name: 'home',
-        component: () => import('../views/home/home.vue')
+        component: () => import('../views/home/home.vue'),
+        redirect:'/tuijian',
+        children: [
+            {
+                path: '/changdian',
+                name: 'changdian',
+                component: () => import('../views/home/changdian.vue'),
+            },
+            {
+                path: '/tuijian',
+                name: 'tuijian',
+                component: () => import('../views/home/tuijian.vue'),
+            },
+        ]
     },
     {
         path: '/supermarket',

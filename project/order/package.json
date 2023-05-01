@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lib-flexible": "^0.3.2",
     "stylus": "^0.59.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
