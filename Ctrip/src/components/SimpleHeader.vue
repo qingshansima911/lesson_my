@@ -19,8 +19,8 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const props = defineProps({
     detail: {
-        type: Array,
-        value: []
+        type: Object,
+        value: {}
     },
     noback: {
         type: Boolean,

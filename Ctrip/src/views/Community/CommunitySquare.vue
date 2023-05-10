@@ -1,6 +1,6 @@
 <template>
     <div class="CommunitySquare">
-        <van-tabs v-model:active="active">
+        <van-tabs>
             <van-tab title="发现">
                 <CommunitySquareFound/>
             </van-tab>

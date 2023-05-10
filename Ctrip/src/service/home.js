@@ -5,9 +5,9 @@ export function getSwiperList(){
 export function getCategoryList(){
     return axios.get('/categoryList')
 }
-export function getArticleList(){
-    return axios.get('/articleList')
+export function getArticleLeft(){
+    return axios.get('/articleLeft')
 }
-export function getArticleImg(){
-    return axios.get('/articleImg')
+export function getArticleRight(){
+    return axios.get('/articleRight')
 }

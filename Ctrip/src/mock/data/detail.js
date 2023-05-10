@@ -13,10 +13,10 @@ export default [
         `,
         secondImg: [
             {
-                img:'https://i.328888.xyz/2023/03/02/660JX.jpeg',
+                img: 'https://i.328888.xyz/2023/03/02/660JX.jpeg',
             },
             {
-                img:'https://i.328888.xyz/2023/03/02/66kBP.jpeg',
+                img: 'https://i.328888.xyz/2023/03/02/66kBP.jpeg',
             },
         ]
     },

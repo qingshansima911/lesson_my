@@ -1,57 +1,64 @@
 import {
     getSwiperList,
     getCategoryList,
-    getArticleList,
-    getArticleImg,
+    getArticleLeft,
+    getArticleRight,
 } from '@/service/home.js';
 import {
     getDetail,
     getComments,
+    getDetailPicture,
 } from '../service/detail';
 import { defineStore } from 'pinia';
 
 
 export const useHomeStore = defineStore('home', {
-    state:() => {
+    state: () => {
         return {
             swiperList: [],
             categoryList: [],
-            articleList: [],
-            articleImg: [],
+            articleLeft: [],
+            articleRight: [],
             detail: [],
-            comments:[],
+            comments: [],
+            detailPicture: []
         }
     },
     actions: {
         async getSwiperList() {
             const res = await getSwiperList()
             // console.log(res);
-            this.swiperList = res.result
+            this.swiperList = res
         },
         async getCategoryList() {
             const res = await getCategoryList()
             // console.log(res);
-            this.categoryList = res.result
+            this.categoryList = res
         },
-        async getArticleList() {
-            const res = await getArticleList()
+        async getArticleLeft() {
+            const res = await getArticleLeft()
             // console.log(res);
-            this.articleList = res.result
+            this.articleLeft = res
         },
-        async getArticleImg() {
-            const res = await getArticleImg()
+        async getArticleRight() {
+            const res = await getArticleRight()
             // console.log(res);
-            this.articleImg = res.result
+            this.articleRight = res
         },
         async getDetail(id) {
             const res = await getDetail(id)
             // console.log(res);
-            this.detail = res.result
+            this.detail = res
+        },
+        async getDetailPicture() {
+            const res = await getDetailPicture()
+            // console.log(res);
+            this.detailPicture = res
         },
         async getComments() {
             const res = await getComments()
             // console.log(res);
-            this.comments = res.result
+            this.comments = res
         },
     }
 })

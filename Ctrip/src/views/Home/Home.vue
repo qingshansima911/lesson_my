@@ -19,15 +19,15 @@
                 <div class="post-wrapper">
                     <div class="post-col">
                         <post 
-                            v-for="item in articleList"
-                            :key="ar_id"
+                            v-for="item in articleLeft"
+                            :key="item.ar_id"
                             @click="gotoDetail(item.ar_id)"
                             :post="item"/>
                     </div>
                     <div class="post-col">
                         <post 
-                            v-for="item in articleImg"
-                            :key="ar_id"
+                            v-for="item in articleRight"
+                            :key="item.ar_id"
                             @click="gotoDetail(item.ar_id)"
                             :post="item"/>
                     </div>
@@ -47,14 +47,14 @@ import HorizonScroll from '~/HorizonScroll.vue'
 import Post from '~/Post.vue'
 import { reactive, onMounted, computed } from 'vue'
 import { showLoadingToast, closeToast } from 'vant'
-// import { getSwiperList , getCategoryList, getArticleList, getArticleImg } from '@/service/home';
+// import { getSwiperList , getCategoryList, getArticleLeft, getArticleRight } from '@/service/home';
 import { useHomeStore } from '@/store/home.js'
 import { useRouter } from 'vue-router'
 
 const homeStore = useHomeStore();
 const swiperList = computed(()=>homeStore.swiperList)
-const articleList = computed(() => homeStore.articleList)
-const articleImg = computed(() => homeStore.articleImg)
+const articleLeft = computed(() => homeStore.articleLeft)
+const articleRight = computed(() => homeStore.articleRight)
 
 const state = reactive({
     loading: true,
@@ -68,15 +68,14 @@ const gotoDetail = (id) => {
         path: `/detail/${id}`
     })
 }
-
 onMounted(async () => {
     showLoadingToast({
         message:'加载中'
     })
     await homeStore.getSwiperList() 
     await homeStore.getCategoryList() 
-    await homeStore.getArticleList() 
-    await homeStore.getArticleImg()
+    await homeStore.getArticleLeft() 
+    await homeStore.getArticleRight()
 
     state.loading = false
     closeToast()

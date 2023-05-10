@@ -2,7 +2,7 @@
     <div class="CommunitySquareFound">
         <div 
             :key="index"
-            v-for="item,index in communitypostList"
+            v-for="item,index in communitypostText"
             class="CommunitySquareFoundPost">
                 <div class="communityPostHeader">
                     <el-avatar 
@@ -15,18 +15,15 @@
                     <Subscrible/>
                 </div>
                 <div 
-                    :key="index"
-                    v-for="i,index in item.text"
                     class="communityPostText">
-                    <div class="communityPostTextTitle">{{ i.text_title }}</div>
-                    <div class="communityPostTextContent">{{ i.text_content }}</div>
+                    <div class="communityPostTextTitle">{{ item.text_title }}</div>
+                    <div class="communityPostTextContent">{{ item.text_content }}</div>
                 </div>
                 <div class="communityPostImgs">
                     <div 
-                        :key="index"
-                        v-for="i,index in item.img"
+                        v-for="i in communityPostImg"
                         class="communityPostImg">
-                            <img :src="i.Img" alt="">
+                            <img :src="i.img" v-if="item.id == i.postText_id">
                     </div>
                 </div>
                 <div class="communityComments">
@@ -36,10 +33,10 @@
                         </el-avatar>
                         <input type="text" placeholder="发表评论">
                     </div>
-                    <el-badge :value="1224542" :max="10000">
+                    <el-badge :value="1224" :max="10000">
                         <i class="iconfont icon-praise"></i>
                     </el-badge>
-                    <el-badge :value="63224242" :max="10000">
+                    <el-badge :value="632" :max="10000">
                         <i class="iconfont icon-comments"></i>
                     </el-badge>
                 </div>
@@ -52,11 +49,12 @@ import Subscrible from '~/Subscrible.vue'
 import { computed, onMounted } from 'vue'
 import { useCommunityStore } from '@/store/community.js'
 const communityStore = useCommunityStore()
-const communitypostList = computed(() => communityStore.communityPostList)
+const communitypostText = computed(() => communityStore.communityPostText)
+const communityPostImg = computed(() => communityStore.communityPostImg)
 
 onMounted(async() => {
-    await communityStore.getCommunityPostList()
-
+    await communityStore.getCommunityPostText()
+    await communityStore.getCommunityPostImg()
 })
 </script>
 
@@ -89,10 +87,11 @@ onMounted(async() => {
             .communityPostTextContent
                 color gray
         .communityPostImgs
-            fj()
+            display: flex
             margin .3rem
             .communityPostImg
                 img 
+                    margin .12rem
                     wh(100px,100px)
         .communityComments
             fac()

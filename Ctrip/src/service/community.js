@@ -1,4 +1,7 @@
 import axios from './config.js'
-export const getCommunityPostList = () => {
-    return axios.get('/communityPostList')
+export const getCommunityPostText = () => {
+    return axios.get('/communityPostText')
+}
+export const getCommunityPostImg = () => {
+    return axios.get('/communityPostImg')
 }

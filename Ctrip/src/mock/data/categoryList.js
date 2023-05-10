@@ -7,12 +7,12 @@ export default [
     {
         name: '机票',
         imgUrl: 'https://s.yezgea02.com/1604041127880/%E6%9C%8D%E9%A5%B0%402x.png',
-        categoryId: 100003
+        categoryId: 100002
     },
     {
         name: '火车票',
         imgUrl: 'https://s.yezgea02.com/1604041127880/%E5%85%A8%E7%90%83%E8%B4%AD%402x.png',
-        categoryId: 100002
+        categoryId: 100003
     },
     {
         name: '旅游',
