@@ -6,6 +6,6 @@ export function getDetail(id) {
 export function getDetailPicture() {
     return axios.get('/detailPicture') // promise
 }
-export function getComments() {
-    return axios.get('/comments')
+export function getComments(id) {
+    return axios.get('/comments', { params: { detail_id: id } })
 }

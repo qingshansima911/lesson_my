@@ -39,7 +39,7 @@ onMounted(async () => {
     })
     await homeStore.getDetail(id)
     await homeStore.getDetailPicture()
-    await homeStore.getComments()
+    await homeStore.getComments(id)
     closeToast()
 })
 </script>

@@ -1,58 +1,62 @@
 <template>
     <div class="CommunitySquareFound">
-        <div 
-            :key="index"
-            v-for="item,index in communitypostText"
-            class="CommunitySquareFoundPost">
-                <div class="communityPostHeader">
-                    <el-avatar 
-                        :size="40" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg">
+        <div :key="index" v-for="item, index in communitypostText" class="CommunitySquareFoundPost">
+            <div class="communityPostHeader">
+                <el-avatar :size="40" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg">
+                </el-avatar>
+                <div class="communityPoster">
+                    <div class="communityPosterName">{{ item.name }}</div>
+                    <div class="communityPostTime">{{ item.time }}</div>
+                </div>
+                <Subscrible />
+            </div>
+            <div class="communityPostText">
+                <div class="communityPostTextTitle">{{ item.text_title }}</div>
+                <div class="communityPostTextContent">{{ item.text_content }}</div>
+            </div>
+            <div class="communityPostImgs">
+                <div v-for="i in communityPostImg" class="communityPostImg">
+                    <img :src="i.img" v-if="item.id == i.postText_id">
+                </div>
+            </div>
+            <div class="communityComments">
+                <div class="commnunityPostInput">
+                    <el-avatar :size="30" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg">
                     </el-avatar>
-                    <div class="communityPoster">
-                        <div class="communityPosterName">{{ item.name }}</div>
-                        <div class="communityPostTime">{{ item.time }}</div>
-                    </div>
-                    <Subscrible/>
+                    <input type="text" placeholder="发表评论">
                 </div>
-                <div 
-                    class="communityPostText">
-                    <div class="communityPostTextTitle">{{ item.text_title }}</div>
-                    <div class="communityPostTextContent">{{ item.text_content }}</div>
-                </div>
-                <div class="communityPostImgs">
-                    <div 
-                        v-for="i in communityPostImg"
-                        class="communityPostImg">
-                            <img :src="i.img" v-if="item.id == i.postText_id">
-                    </div>
-                </div>
-                <div class="communityComments">
-                    <div class="commnunityPostInput">
-                        <el-avatar 
-                            :size="30" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg">
-                        </el-avatar>
-                        <input type="text" placeholder="发表评论">
-                    </div>
-                    <el-badge :value="1224" :max="10000">
-                        <i class="iconfont icon-praise"></i>
-                    </el-badge>
-                    <el-badge :value="632" :max="10000">
-                        <i class="iconfont icon-comments"></i>
-                    </el-badge>
-                </div>
+                <el-badge :value="state.praise" :max="10000">
+                    <i class="iconfont icon-praise" @click="addPraise" :class="{ active: state.type }"></i>
+                </el-badge>
+                <el-badge :value="632" :max="10000">
+                    <i class="iconfont icon-comments"></i>
+                </el-badge>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
 import Subscrible from '~/Subscrible.vue'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { useCommunityStore } from '@/store/community.js'
 const communityStore = useCommunityStore()
 const communitypostText = computed(() => communityStore.communityPostText)
 const communityPostImg = computed(() => communityStore.communityPostImg)
 
-onMounted(async() => {
+const state = reactive({
+    type: false,
+    praise: 200
+})
+const addPraise = () => {
+    state.type = !state.type
+    if (state.type == false) {
+        state.praise = 200
+    } else {
+        state.praise = 201
+    }
+}
+onMounted(async () => {
     await communityStore.getCommunityPostText()
     await communityStore.getCommunityPostImg()
 })
@@ -98,6 +102,8 @@ onMounted(async() => {
             margin .3rem 
             .iconfont
                 font-size .7rem
+                &.active
+                    color red
             .commnunityPostInput
                 display flex
                 background-color #F2F2F2

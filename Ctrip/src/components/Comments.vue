@@ -19,6 +19,7 @@
 </template>
 
 <script setup>
+
 import { reactive } from 'vue';
 const props = defineProps(['comments'])
 const state = reactive({

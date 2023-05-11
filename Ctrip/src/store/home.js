@@ -55,8 +55,8 @@ export const useHomeStore = defineStore('home', {
             // console.log(res);
             this.detailPicture = res
         },
-        async getComments() {
-            const res = await getComments()
+        async getComments(id) {
+            const res = await getComments(id)
             // console.log(res);
             this.comments = res
         },
