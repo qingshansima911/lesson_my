@@ -1,14 +1,19 @@
 <template>
     <div class="article-detail">
-        <simple-header v-for="item in detail" :key="item.ar_id" :detail="item" />
+        <simple-header v-for="item in detail" :key="item.ar_id" :detail="item" 
+        :articleLeft="articleLeft" :articleRight="articleRight"/>
         <div class="detali-wrapper">
             <div class="detail-swiper">
                 <swiper :swiperList="detailPicture"/>
             </div>
+            <div class="title" v-for="item in detail" :key="item.ar_id">
+                {{ item.title }}
+            </div>
             <div class="introduce" v-for="item in detail" :key="item.ar_id">
                 {{ item.text }}
             </div>
-            <Comments :comments="comments" />
+            <Comments :comments="comments" :articleLeft="articleLeft" 
+            :articleRight="articleRight"/>
             <DetailNavBar/>
         </div>
     </div>
@@ -29,6 +34,8 @@ const homeStore = useHomeStore();
 const detail = computed(() => homeStore.detail)
 const detailPicture = computed(() => homeStore.detailPicture)
 const comments = computed(() => homeStore.comments)
+const articleLeft = computed(() => homeStore.articleLeft)
+const articleRight = computed(() => homeStore.articleRight)
 // console.log(detail.value);
 
 onMounted(async () => {
@@ -38,8 +45,10 @@ onMounted(async () => {
         message: '加载中'
     })
     await homeStore.getDetail(id)
-    await homeStore.getDetailPicture()
+    await homeStore.getDetailPicture(id)
     await homeStore.getComments(id)
+    await homeStore.getArticleLeft() 
+    await homeStore.getArticleRight()
     closeToast()
 })
 </script>
@@ -48,8 +57,12 @@ onMounted(async () => {
 .detali-wrapper
     width 100% 
     padding-bottom 1.5rem
+    .title
+        font-size .4rem
+        font-weight 700
+        padding .266667rem  .26667rem 0  .266667rem
     .introduce
-        padding .266667rem  .26667rem
+        padding .266667rem  .26667rem 
     .detail-swiper
         width 100%
         height 13.333333rem /* 500/37.5 */

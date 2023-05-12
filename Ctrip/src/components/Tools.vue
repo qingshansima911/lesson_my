@@ -59,7 +59,7 @@
             padding-bottom .3rem
             .mytool
                 font-weight 700
-                font-size .36rem /* 15/37.5 */
+                font-size .4rem /* 15/37.5 */
         .container_tools__bottom
             fj()
             .container_tools__item
@@ -67,7 +67,6 @@
                 align-items center
                 .text
                     color #666
-                    font-size .36rem /* 15/37.5 */
                     padding .1rem 0
                 .iconfont
                     font-size 26px

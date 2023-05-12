@@ -104,7 +104,7 @@ onMounted(async () => {
             border-radius 1.3rem /* 50/37.5 */
             background-color #fff
             fac()
-            font-size .35rem
+            font-size .38rem
             .page_header__text
                 flex 1
                 margin 0 .2rem
@@ -123,7 +123,7 @@ onMounted(async () => {
             wh(20%,100% /* 36/37.5 */)
             color #fff
             .iconfont
-                font-size .6rem
+                font-size .5rem
     .page_body 
         .home-swiper
             height 3rem /* 300/37.5 */

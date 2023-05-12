@@ -68,7 +68,7 @@ import Tools from '~/Tools.vue'
             align-items center
             .num
                 font-weight 700
-                font-size .36rem /* 15/37.5 */
+                font-size .46rem /* 15/37.5 */
     .container_square
         padding .3rem 
         background-color #fff
@@ -79,7 +79,7 @@ import Tools from '~/Tools.vue'
             padding-bottom .3rem
             .square
                 font-weight 700
-                font-size .36rem /* 15/37.5 */
+                font-size .4rem /* 15/37.5 */
         .container_square__bottom
             fj()
             .container_square__item
@@ -87,7 +87,6 @@ import Tools from '~/Tools.vue'
                 align-items center
                 .text
                     color #666
-                    font-size .36rem /* 15/37.5 */
                     padding .1rem 0
                 .iconfont
                     font-size 26px

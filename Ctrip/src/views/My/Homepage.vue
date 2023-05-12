@@ -24,7 +24,7 @@
 <style lang="stylus" scoped>
 @import '../../common/style/mixin.styl'
 .container
-    padding 0 .3rem /* 10/37.5 */
+    padding 0.3rem /* 10/37.5 */
     .container_header
         fj()
         padding 0.3rem .3rem

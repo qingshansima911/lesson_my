@@ -9,7 +9,7 @@
         <div class="introduce">{{ post.introduce }}</div>
         <div class="post-des">
             <div class="author-des">
-                <el-avatar :size="20" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg"></el-avatar>
+                <el-avatar :size="20" :src="post.author_img"></el-avatar>
                 <span class="author"> {{ post.author }}</span>
             </div>
             <div class="look-des">

@@ -1,9 +1,12 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;/* 盒模型的计算方式 IE盒模型 移动端 */
-  margin: 0;
-  padding: 0;
-  position: relative;
-  font-weight: normal;
+    box-sizing: border-box;
+    /* 盒模型的计算方式 IE盒模型 移动端 */
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-weight: normal;
+    letter-spacing: .04rem;
+    font-size: .38rem
 }

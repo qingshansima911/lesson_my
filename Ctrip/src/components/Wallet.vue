@@ -53,9 +53,9 @@
                 align-items center
                 .num 
                     font-weight 700
-                    font-size .36rem /* 15/37.5 */
-                    padding .1rem 0
+                    font-size .46rem /* 15/37.5 */
+                    // padding .05rem 0
                 .text
                     font-weight 700
-                    padding .1rem 0
+                    padding .05rem 0
 </style>

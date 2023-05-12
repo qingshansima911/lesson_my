@@ -2,7 +2,12 @@
     <div class="comments">
         <div class="comments_text">共88条评论</div>
         <div class="comments_profile">
-            <el-avatar :size="40" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg"/>
+            <div v-for="item in articleLeft">
+                <el-avatar :size="40" :src="item.author_img" v-if="item.ar_id == id"/>
+            </div>
+            <div v-for="item in articleRight">
+                <el-avatar :size="40" :src="item.author_img" v-if="item.ar_id == id"/>
+            </div>
             <div class="comments_profile__input">喜欢就给个评论支持一下</div>
         </div>
         <div 
@@ -20,11 +25,24 @@
 
 <script setup>
 
-import { reactive } from 'vue';
-const props = defineProps(['comments'])
-const state = reactive({
-    Img: 'https://i.328888.xyz/2023/03/18/LsjPF.jpeg'
+import { useRoute } from 'vue-router'
+
+const props = defineProps({
+    articleLeft: {
+        type: Object,
+        value: {}
+    },
+    articleRight: {
+        type: Object,
+        value: {}
+    },
+    comments: {
+        type: Object,
+        value: {}
+    },
 })
+const route = useRoute(); // 当前的路由
+const { id } = route.params
 </script>
 
 <style lang="stylus" scoped>

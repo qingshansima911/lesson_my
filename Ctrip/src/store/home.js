@@ -50,8 +50,8 @@ export const useHomeStore = defineStore('home', {
             // console.log(res);
             this.detail = res
         },
-        async getDetailPicture() {
-            const res = await getDetailPicture()
+        async getDetailPicture(id) {
+            const res = await getDetailPicture(id)
             // console.log(res);
             this.detailPicture = res
         },

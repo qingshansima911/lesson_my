@@ -3,28 +3,28 @@
         <ScanHeader/>
         <div class="page_center">
             <div class="page_center__profile">
-                <div class="profile-top">
-                    <div class="profile-left">
+                <div class="profile_top">
+                    <div class="profile_left">
                         <i class="iconfont icon-wode"></i>
                     </div>
-                    <div class="profile-center">
+                    <div class="profile_center">
                         <div class="text">尊敬的携程用户</div>
                         <div class="community">社区lv.1</div>
                     </div>
-                    <div class="profile-right">
+                    <div class="profile_right">
                         <i class="iconfont icon-zuanshi"></i>
                         <div class="vip">普通会员</div>
                     </div>
                 </div>
-                <div class="profile-bottom">
+                <div class="profile_bottom">
                     <input 
                         class="input"
                         type="text" placeholder="简单自我介绍,让你更受欢迎">
                     <ul>
-                        <li>粉丝 0</li>
-                        <li>关注 0</li>
-                        <li>获赞 0</li>
-                        <li>赞过 0</li>
+                        <li>粉丝 20</li>
+                        <li>关注 5</li>
+                        <li>获赞 6</li>
+                        <li>赞过 30</li>
                     </ul>
                 </div>
             </div>
@@ -58,26 +58,26 @@ import ScanHeader from '~/ScanHeader.vue';
             background-color #fff
             border-radius .266667rem /* 10/37.5 */
             padding-bottom .2rem
-            .profile-top
+            .profile_top
                 display flex
                 // background-color pink
                 margin .466667rem  .3rem .2rem .3rem
-                .profile-left
+                .profile_left
                     padding 0 .5rem
                     .icon-wode
                         font-size 1rem /* 30/37.5 */
-                .profile-center
+                .profile_center
                     // flex 1
                     // background-color yellow
                     padding 0 .2rem
                     .text
                         font-weight 700
-                        font-size .4rem /* 30/37.5 */
-                .profile-right
+                        font-size .5rem /* 30/37.5 */
+                .profile_right
                     fj()
                     padding 0.1rem
                     color #5BB7FE
-            .profile-bottom 
+            .profile_bottom 
                 fd()
                 margin 0 /* 10/37.5 */ .3rem 
                 ul
@@ -93,7 +93,7 @@ import ScanHeader from '~/ScanHeader.vue';
             fj(space-around)
             padding .2rem 0
             .page_body__item
-                font-size .393333rem /
+                font-size .493333rem /
             .router-link-active
                 font-weight 700
 </style>

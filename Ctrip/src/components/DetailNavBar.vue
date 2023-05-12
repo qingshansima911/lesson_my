@@ -38,10 +38,10 @@
         fj()
         flex-direction column
         align-items center
-        margin 0 .45rem
+        margin 0 .35rem
     .comment-input
         border 1px solid #DDD
-        padding .15rem 2rem .15rem .4rem
+        padding .15rem 1rem .15rem .4rem
         border-radius 50px
         background-color #F4F8FB
         color #999A99
