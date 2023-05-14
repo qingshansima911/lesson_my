@@ -38,4 +38,5 @@ app
     .use(Tabs)
     .use(ElAvatar)
     .use(ElBadge)
+
     .mount('#app')

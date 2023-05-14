@@ -114,6 +114,14 @@ const router = createRouter({
             },
             component: () =>import ('@/views/Login/Login.vue')
         },
+        {
+            path:'/hotel',
+            name: 'hotel',
+            meta: {
+                index: 1
+            },
+            component: () =>import ('@/views/Home/Hotel.vue')
+        },
     ]
 })
 export default router

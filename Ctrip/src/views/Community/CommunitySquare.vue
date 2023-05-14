@@ -2,7 +2,7 @@
     <div class="CommunitySquare">
         <van-tabs>
             <van-tab title="发现">
-                <CommunitySquareFound/>
+                <CommunitySquareFound :loginMsg="props.loginMsg"/>
             </van-tab>
             <van-tab title="城市">内容 2</van-tab>
             <van-tab title="福利">内容 3</van-tab>
@@ -13,11 +13,17 @@
             <van-tab title="玩乐">内容 8</van-tab>
         </van-tabs>
     </div>
-    <router-view></router-view>
 </template>
 
 <script setup>
 import CommunitySquareFound from './CommunitySquareFound.vue'
+
+const props = defineProps({
+    loginMsg: {
+        type: Object,
+        default: {}
+    }
+})
 </script>
 
 <style lang="stylus" scoped>

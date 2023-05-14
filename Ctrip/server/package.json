@@ -11,6 +11,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "js-base64": "^3.7.5",
+        "jsonwebtoken": "^9.0.0",
         "nodemon": "^2.0.22"
     }
 }

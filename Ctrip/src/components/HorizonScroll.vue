@@ -3,8 +3,8 @@
         <div class="category_content" ref="content">
             <div class="category_inline">
                 <div class="category_item">
-                    <div :key="index" v-for="(item, index) in categoryList">
-                        <img :src="item.imgUrl">
+                    <div :key="index" v-for="(item, index) in categoryList" @click="gotoHotel">
+                        <img :src="item.imgUrl" @click="gotoHotel">
                         <span>{{ item.name }}</span>
                     </div>
                 </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script setup>
+
 import { useHomeStore } from '@/store/home.js'
 import {  computed, onMounted, ref } from 'vue'
 import BScroll from '@better-scroll/core';
@@ -34,6 +35,11 @@ const categoryList = computed(() => homeStore.categoryList)
 const scroll = ref(null)
 const content = ref(null)
 const innerLeft = ref('0px')
+const gotoHotel = () => {
+    router.push({
+        path: '/hotel'
+    })
+}
 
 onMounted(async () => {
     let scrollWidth = scroll.value.offsetWidth

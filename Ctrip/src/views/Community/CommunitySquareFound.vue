@@ -2,7 +2,7 @@
     <div class="CommunitySquareFound">
         <div :key="index" v-for="item, index in communitypostText" class="CommunitySquareFoundPost">
             <div class="communityPostHeader">
-                <el-avatar :size="40" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg">
+                <el-avatar :size="40" :src="item.headImg">
                 </el-avatar>
                 <div class="communityPoster">
                     <div class="communityPosterName">{{ item.name }}</div>
@@ -21,8 +21,7 @@
             </div>
             <div class="communityComments">
                 <div class="commnunityPostInput">
-                    <el-avatar :size="30" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg">
-                    </el-avatar>
+                    <el-avatar :size="30" :src="props.loginMsg.data[0].headImg"></el-avatar>
                     <input type="text" placeholder="发表评论">
                 </div>
                 <el-badge :value="state.praise" :max="10000">
@@ -56,6 +55,13 @@ const addPraise = () => {
         state.praise = 201
     }
 }
+const props = defineProps({
+    loginMsg: {
+        type: Object,
+        value: {}
+    }
+})
+// console.log(props.loginMsg.data[0].headImg);
 onMounted(async () => {
     await communityStore.getCommunityPostText()
     await communityStore.getCommunityPostImg()
@@ -100,10 +106,6 @@ onMounted(async () => {
         .communityComments
             fac()
             margin .3rem 
-            .iconfont
-                font-size .7rem
-                &.active
-                    color red
             .commnunityPostInput
                 display flex
                 background-color #F2F2F2
@@ -117,7 +119,10 @@ onMounted(async () => {
                     border none
                     background-color #F2F2F2
             .el-badge
-                margin-right .9rem 
+                margin-right .9rem
+                .iconfont
+                    &.active
+                        color red 
             .el-badge >>> .el-badge__content--danger
                 background-color #fff
                 color black

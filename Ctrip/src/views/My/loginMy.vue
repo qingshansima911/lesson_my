@@ -1,13 +1,20 @@
 <template>
     <div class="page">
-        <ScanHeader/>
+        <ScanHeader />
         <div class="page_center">
             <div class="page_center__profile">
                 <div class="profile_top">
-                    <div class="profile_left">
-                        <i class="iconfont icon-wode"></i>
+                    <div class="profile_left" v-if="data">
+                        <el-avatar :size="40" :src="data[0].headImg" />
                     </div>
-                    <div class="profile_center">
+                    <div class="profile_left" v-else>
+                        <el-avatar :size="40" src="https://i.328888.xyz/2023/03/18/LsO28.jpeg" />
+                    </div>
+                    <div class="profile_center" v-if="data">
+                        <div class="text">{{ data[0].name }}</div>
+                        <div class="community">社区lv.1</div>
+                    </div>
+                    <div class="profile_center" v-else>
                         <div class="text">尊敬的携程用户</div>
                         <div class="community">社区lv.1</div>
                     </div>
@@ -17,9 +24,7 @@
                     </div>
                 </div>
                 <div class="profile_bottom">
-                    <input 
-                        class="input"
-                        type="text" placeholder="简单自我介绍,让你更受欢迎">
+                    <input class="input" type="text" placeholder="简单自我介绍,让你更受欢迎">
                     <ul>
                         <li>粉丝 20</li>
                         <li>关注 5</li>
@@ -43,7 +48,12 @@
 <script setup>
 import NavBar from '~/NavBar.vue';
 import ScanHeader from '~/ScanHeader.vue';
+import { computed } from 'vue'
+import { useMyStore } from '@/store/my.js'
 
+const myStore = useMyStore();
+const loginMsg = computed(() => myStore.loginMsg)
+const { data } = loginMsg.value
 </script>
 
 <style lang="stylus" scoped>

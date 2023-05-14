@@ -49,8 +49,9 @@ import { reactive, ref, computed } from 'vue'
 import vueImgVerify from '~/VueImageVerify.vue'
 import { useRouter } from 'vue-router'
 import { showFailToast } from 'vant'
-import md5 from 'js-md5'
 import { useMyStore } from '@/store/my.js'
+import { Base64 } from 'js-base64'
+// import md5 from 'js-md5'
 
 const myStore = useMyStore();
 const router = useRouter()
@@ -92,18 +93,30 @@ const loginMsg = computed(() => myStore.loginMsg)
 const registerMsg = computed(() => myStore.registerMsg)
 
 const login = async () => {
-    await myStore.Login(state.username, state.password)
+    await myStore.Login({
+        userName: state.username,
+        password: Base64.encode(state.password)
+    })
     // console.log(user.value);
     if (loginMsg.value.status === 200) {
         showFailToast('登录成功！')
-        router.push('/loginMy')
-        localStorage.setItem('token', 'ren')
+        router.push({
+            path: '/loginMy',
+            query: {
+                username: state.username,
+                password: state.password
+            }
+        })
+        localStorage.setItem('token', loginMsg.value.token)
     } else {
         showFailToast('账号或密码有误')
     }
 }
 const register = async () => {
-    await myStore.Register(state.username2, state.password2)
+    await myStore.Register({
+        userName: state.username,
+        password: state.password
+    })
     state.imgCode = verifyRef.value.state.imgCode || ''
     // console.log(verifyRef);
     // console.log(values)

@@ -13,13 +13,13 @@ export const useMyStore = defineStore('my', {
         }
     },
     actions: {
-        async Login(username, password) {
-            const res = await Login(username, password)
+        async Login(params) {
+            const res = await Login({ params })
             // console.log(res);
             this.loginMsg = res
         },
-        async Register(username, password) {
-            const res = await Register(username, password)
+        async Register(params) {
+            const res = await Register({ params })
             // console.log(res);
             this.registerMsg = res
         },

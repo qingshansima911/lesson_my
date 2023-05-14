@@ -11,14 +11,19 @@
         </div>
         <div class="communityHeader_right">
             <i class="iconfont icon-liwu"></i>
-            <el-avatar :size="30" src="https://i.328888.xyz/2023/03/18/LsjPF.jpeg"/>
+            <el-avatar :size="30" :src="data[0].headImg"/>
         </div>
     </div>
-    <router-view></router-view>
+    <router-view :loginMsg="loginMsg"></router-view>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useMyStore } from '@/store/my.js'
 
+const myStore = useMyStore();
+const loginMsg = computed(() => myStore.loginMsg)
+const { data } = loginMsg.value
 </script>
 
 <style lang="stylus" scoped>
