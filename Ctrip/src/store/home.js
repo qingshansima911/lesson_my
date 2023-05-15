@@ -3,12 +3,16 @@ import {
     getCategoryList,
     getArticleLeft,
     getArticleRight,
+    getHotelList,
 } from '@/service/home.js';
 import {
     getDetail,
     getComments,
     getDetailPicture,
 } from '../service/detail';
+import {
+    getHotelDetail
+} from '../service/hotelDetail';
 import { defineStore } from 'pinia';
 
 
@@ -21,7 +25,9 @@ export const useHomeStore = defineStore('home', {
             articleRight: [],
             detail: [],
             comments: [],
-            detailPicture: []
+            detailPicture: [],
+            hotelList: [], 
+            hotelDetail: [], 
         }
     },
     actions: {
@@ -59,6 +65,16 @@ export const useHomeStore = defineStore('home', {
             const res = await getComments(id)
             // console.log(res);
             this.comments = res
+        },
+        async getHotelList() {
+            const res = await getHotelList()
+            // console.log(res);
+            this.hotelList = res
+        },
+        async getHotelDetail(id) {
+            const res = await getHotelDetail(id)
+            // console.log(res);
+            this.hotelDetail = res
         },
     }
 })

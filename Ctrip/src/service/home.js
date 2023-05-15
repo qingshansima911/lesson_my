@@ -11,3 +11,6 @@ export function getArticleLeft(){
 export function getArticleRight(){
     return axios.get('/articleRight')
 }
+export function getHotelList(){
+    return axios.get('/hotelList')
+}

@@ -20,8 +20,8 @@
                 </div>
             </div>
             <div class="communityComments">
-                <div class="commnunityPostInput">
-                    <el-avatar :size="30" :src="props.loginMsg.data[0].headImg"></el-avatar>
+                <div class="commnunityPostInput" v-for="item in data">
+                    <el-avatar :size="30" :src="item.headImg"></el-avatar>
                     <input type="text" placeholder="发表评论">
                 </div>
                 <el-badge :value="state.praise" :max="10000">
@@ -61,6 +61,7 @@ const props = defineProps({
         value: {}
     }
 })
+const { data } = props.loginMsg
 // console.log(props.loginMsg.data[0].headImg);
 onMounted(async () => {
     await communityStore.getCommunityPostText()

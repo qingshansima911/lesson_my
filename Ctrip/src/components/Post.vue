@@ -1,10 +1,5 @@
 <template>
     <div class="post">
-        <!-- <van-swipe class="my_swipe" :autoplay="2000" indicator-color="pink">
-            <van-swipe-item v-for="(item,index) in post" :key="index">
-                <img :src="item.ar_img" alt="">
-            </van-swipe-item>
-        </van-swipe> -->
         <img :src="post.ar_img" alt="">
         <div class="introduce">{{ post.introduce }}</div>
         <div class="post-des">

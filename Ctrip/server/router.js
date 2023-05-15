@@ -10,6 +10,8 @@ let detailPicture = require('./API/detailPicture')
 let comments = require('./API/comments')
 let communityPostText = require('./API/communityPostText')
 let communityPostImg = require('./API/communityPostImg')
+let hotelList = require('./API/hotelList')
+let hotelDetail = require('./API/hotelDetail')
 
 router.get('/register', user.add)
 router.get('/login', user.get)
@@ -22,5 +24,7 @@ router.get('/detailPicture', detailPicture.get)
 router.get('/comments', comments.get)
 router.get('/communityPostText', communityPostText.get)
 router.get('/communityPostImg', communityPostImg.get)
+router.get('/hotelList', hotelList.get)
+router.get('/hotelDetail', hotelDetail.get)
 
 module.exports = router

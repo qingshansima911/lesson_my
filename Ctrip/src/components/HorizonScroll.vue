@@ -4,7 +4,7 @@
             <div class="category_inline">
                 <div class="category_item">
                     <div :key="index" v-for="(item, index) in categoryList" @click="gotoHotel">
-                        <img :src="item.imgUrl" @click="gotoHotel">
+                        <img :src="item.imgUrl">
                         <span>{{ item.name }}</span>
                     </div>
                 </div>

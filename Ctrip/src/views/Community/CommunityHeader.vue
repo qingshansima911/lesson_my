@@ -9,9 +9,9 @@
             <router-link 
                 class="communityTitle_text" to="/communityGroup">小组</router-link>
         </div>
-        <div class="communityHeader_right">
+        <div class="communityHeader_right" v-for="item in data">
             <i class="iconfont icon-liwu"></i>
-            <el-avatar :size="30" :src="data[0].headImg"/>
+            <el-avatar :size="30" :src="item.headImg"/>
         </div>
     </div>
     <router-view :loginMsg="loginMsg"></router-view>
