@@ -29,12 +29,14 @@
 import { useHomeStore } from '@/store/home.js'
 import {  computed, onMounted, ref } from 'vue'
 import BScroll from '@better-scroll/core';
+import { useRouter } from 'vue-router'
 
 const homeStore = useHomeStore();
 const categoryList = computed(() => homeStore.categoryList)
 const scroll = ref(null)
 const content = ref(null)
 const innerLeft = ref('0px')
+const router = useRouter()
 const gotoHotel = () => {
     router.push({
         path: '/hotel'
