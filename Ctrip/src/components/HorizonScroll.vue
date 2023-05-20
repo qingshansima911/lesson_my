@@ -1,9 +1,9 @@
 <template>
-    <div class="category" ref="scroll">
+    <div class="category" ref="scroll" @click="gotoHotel">
         <div class="category_content" ref="content">
             <div class="category_inline">
                 <div class="category_item">
-                    <div :key="index" v-for="(item, index) in categoryList" @click="gotoHotel">
+                    <div v-for="item in categoryList" :key="item.categoryId" @click="gotoHotel">
                         <img :src="item.imgUrl">
                         <span>{{ item.name }}</span>
                     </div>
@@ -11,7 +11,7 @@
             </div>
             <div class="category_inline">
                 <div class="category_item">
-                    <div :key="index" v-for="(item, index) in categoryList">
+                    <div v-for="item in categoryList" :key="item.categoryId">
                         <img :src="item.imgUrl">
                         <span>{{ item.name }}</span>
                     </div>
@@ -29,13 +29,20 @@
 import { useHomeStore } from '@/store/home.js'
 import {  computed, onMounted, ref } from 'vue'
 import BScroll from '@better-scroll/core';
+import ObserveDOM from '@better-scroll/observe-dom'
 import { useRouter } from 'vue-router'
+import _ from 'lodash'
+// 实现动态数据滚动
+BScroll.use(ObserveDOM)
 
 const homeStore = useHomeStore();
 const categoryList = computed(() => homeStore.categoryList)
 const scroll = ref(null)
 const content = ref(null)
 const innerLeft = ref('0px')
+let scrollWidth = 0
+let contentWidth = 0
+let bs = null
 const router = useRouter()
 const gotoHotel = () => {
     router.push({
@@ -44,8 +51,8 @@ const gotoHotel = () => {
 }
 
 onMounted(async () => {
-    let scrollWidth = scroll.value.offsetWidth
-    let contentWidth = content.value.offsetWidth
+    scrollWidth = scroll.value.offsetWidth
+    contentWidth = content.value.offsetWidth
     // console.log(scrollWidth,contentWidth);
     await homeStore.getCategoryList() 
     let bs = new BScroll(scroll.value, {
@@ -59,7 +66,7 @@ onMounted(async () => {
         let moveLeft = percent * 14
         innerLeft.value = `${moveLeft}px`
     }
-    bs.on('scroll',onScroll)
+    bs.on('scroll', _.throttle(onScroll,1000))
 })
 </script>
 

@@ -3,7 +3,7 @@ import router from './router/router';
 import { reactive } from 'vue'
 
 router.beforeEach((to, from) => {
-    // console.log(to,from);
+    // console.log(to, from);
     // JSON.stringify(localStorage) === '{}'
     if (localStorage.getItem('token')) {
         switch (to.meta.isLogin) {

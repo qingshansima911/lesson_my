@@ -20,9 +20,13 @@
                 </div>
             </div>
             <div class="communityComments">
-                <div class="commnunityPostInput" v-for="item in data">
+                <div class="commnunityPostInput" v-for="item in data" v-if="data">
                     <el-avatar :size="30" :src="item.headImg"></el-avatar>
                     <input type="text" placeholder="发表评论">
+                </div>
+                <div class="commnunityPostInput" v-else>
+                    <el-avatar :size="30" src="https://i.328888.xyz/2023/05/16/ViAu1C.jpeg"></el-avatar>
+                    <input type="text" placeholder="发表评论" @click="gotoLogin">
                 </div>
                 <el-badge :value="state.praise" :max="10000">
                     <i class="iconfont icon-praise" @click="addPraise" :class="{ active: state.type }"></i>
@@ -39,6 +43,7 @@
 import Subscrible from '~/Subscrible.vue'
 import { computed, onMounted, reactive } from 'vue'
 import { useCommunityStore } from '@/store/community.js'
+import router from '../../router/router';
 const communityStore = useCommunityStore()
 const communitypostText = computed(() => communityStore.communityPostText)
 const communityPostImg = computed(() => communityStore.communityPostImg)
@@ -61,6 +66,11 @@ const props = defineProps({
         value: {}
     }
 })
+const gotoLogin = () => {
+    router.push({
+        path: '/login'
+    })
+}
 const { data } = props.loginMsg
 // console.log(props.loginMsg.data[0].headImg);
 onMounted(async () => {

@@ -91,7 +91,6 @@ const Input = () => {
 
 const loginMsg = computed(() => myStore.loginMsg)
 const registerMsg = computed(() => myStore.registerMsg)
-
 const login = async () => {
     await myStore.Login({
         userName: state.username,
@@ -99,13 +98,9 @@ const login = async () => {
     })
     // console.log(user.value);
     if (loginMsg.value.status === 200) {
-        showFailToast('登录成功！')
+        showFailToast('登录成功')
         router.push({
-            path: '/loginMy',
-            query: {
-                username: state.username,
-                password: state.password
-            }
+            path: '/home',
         })
         localStorage.setItem('token', loginMsg.value.token)
     } else {
@@ -126,9 +121,9 @@ const register = async () => {
     } else {
         // console.log(registerMsg.value.status);
         if (registerMsg.value.status === 200) {
-            showFailToast('注册成功！去登录！')
+            showFailToast('注册成功！去登录')
         } else {
-            showFailToast('已有账号，注册失败！')
+            showFailToast('已有账号，注册失败')
         }
     }
 }

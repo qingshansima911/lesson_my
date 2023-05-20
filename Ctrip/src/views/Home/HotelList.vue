@@ -1,5 +1,5 @@
 <template>
-    <div class="hotel_list" v-for="item in hotelList" @click="gotoHotelDetail">
+    <div class="hotel_list" v-for="item in hotelList" @click="gotoHotelDetail(item.hotel_id)">
         <img :src="item.hotel_img">
         <div class="hotel-des">
             <div class="hotel_title">{{ item.hotel_title }}</div>
@@ -27,9 +27,9 @@ onMounted(async () => {
     await homeStore.getHotelList()
 })
 const router = useRouter()
-const gotoHotelDetail = () => {
+const gotoHotelDetail = (id) => {
     router.push({
-        path: '/hotelDetail'
+        path: `/hotelDetail/${id}`
     })
 }
 </script>

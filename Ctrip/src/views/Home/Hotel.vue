@@ -49,7 +49,7 @@ const goBack = () => {
             fj()
             align-items center
             .hotel_header__name
-                margin 3.5rem
+                margin-left 3.5rem
                 font-size .45rem
         span 
             margin 0 .266667rem /* 10/37.5 */

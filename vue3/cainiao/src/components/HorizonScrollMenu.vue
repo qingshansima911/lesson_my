@@ -32,7 +32,7 @@ BScroll.use(ObserveDOM)
 onMounted(() => {
     wrapperWidth = scroll.value.offsetWidth
     contentWidth = content.value.offsetWidth
-    console.log(wrapperWidth,contentWidth);
+    // console.log(wrapperWidth,contentWidth);
     let bs = new BScroll(scroll.value, {
         scrollX: true,
         observeDOM: true,
