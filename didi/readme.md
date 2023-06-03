@@ -57,3 +57,92 @@
             子类型  
         之外，假如我们还要添加新的数据结构判断能力  
         - isSet isMap
+
+- didi面试题 Promise
+    1. 异步 node 异步无阻塞
+        同步 瞬间执行完 + cpu轮询的概念  
+        异步 耗时的 eventloop js + 前端/后端  
+        单线程 保证了预言的简单易学，无阻塞  
+        callback带来执行的顺序得不到保障  
+        并行带来回调地狱  顺序 代码的可读性提升  
+    2. Promise thenable链 -> async await 多行  
+    3. 并行，提升性能和效率  
+        Promise.all([]) Promise  
+        async await 没有try catch    
+        Promise.allSetted 返回status + value/reason  
+
+- nginx
+    nginx是一款高性能的web服务器和反向代理服务器  
+    1. www.baidu.com:3000  
+        npm init vite vue 3000  
+        www.baidu.com -> 80 http  
+        https://      -> 443  
+        ```   
+        server {  
+            listen:80;   
+            location / {   
+                proxy_pass http://localhost:3000     
+            }   
+        }  
+        ```  
+    2. 负载均衡 nginx 不负责应用的 只负责调度  
+        upstream backend {
+            server backend1.example.com;
+            server backend2.example.com;
+            server backend3.example.com;
+            server backend4.example.com;
+        }
+    3. https的配置  
+        用户 -> nginx -> restful(资源)  
+        加载https SSL 证书和私匙 
+        搭建静态网站，首先需要部署环境。下面的步骤，将告诉大家如何在服务器上通过 Nginx 部署 HTTP 静态服务。   
+        yum install nginx -y  nginx  
+        mkdir -p /data/www  
+        nginx -s reload  
+
+- 输入URL到页面显示
+    提词器：网络 解析 渲染  
+    - 网络
+        1. DNS解析domains 
+            分布式数据库  key value 缓存  拿到IP地址  
+        2. TCP连接
+            三次握手 SYN SYN/ACK ACK  
+        3. HTTP
+            请求头 请求体   
+        4. 服务器资源处理，响应用户内容 
+    - 渲染
+        1. HTML解析
+            DOM树   
+            同时CSS JS 加载也发生  
+        2. CSS解析
+            CSS规则（CSS OM树）与DOM树绑定起来，生成渲染树（Rending Tree）  
+        3. 布局和绘制
+            每个元素在页面的确切位置和大小，将渲染树和布局信息进行合并，得到绘制树Painting Tree  
+    - 强调优化策略
+        1. 减少http请求数 图片的懒加载  
+        2. 压缩资源文件 webp nginx gzip 压缩  
+        3. 缓存 强 协商  
+        4. CDN
+        5. 骨架屏
+
+- get post区别
+    HTTP请求的两种方法，用于向服务器提交数据和获取数据  
+    需要 安全性  
+    1. get请求通过URL传递参数，post请求通过http请求体传递  
+        get长度限制 post文件都可以   
+    2. get请求在url中直接可见，不安全，中间人 https  
+        post请求是加密的更安全  
+    3. get请求可以被缓存的资源，post不可以被缓存
+
+- 浏览器缓存
+    - 主要针对前端静态资源，大大的减少了http请求数，提高了网站的性能（服务器CPU, 带宽， 内存）
+    - 强缓存
+        设置响应头 请求头  
+        HTTP1.0 Expires  
+        HTTP1.1 Cache-Control:max-age=xx  
+    - 协商缓存
+        1.0 Last-Modified(服) if-modified-since(客) 
+        1.1 Etag if-none-match   
+        - etag精确度更高，文件hash计算   
+        - 缺点是计算成本高  
+
