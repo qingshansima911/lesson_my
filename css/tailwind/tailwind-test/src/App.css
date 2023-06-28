@@ -1,0 +1,8 @@
+/* css全写在一个文件里面将不能复用 */
+/* tailwind css 模块化，框架级别原子拆分 */
+/* .box {
+  font-size: 16px;
+  border: 1px solid #000;
+  padding: 4px;
+  display: flex;
+} */
