@@ -1,9 +1,14 @@
 # tailwind 极受欢迎的css 原子开发框架
 
 - tailwind 是基于postcss 的css 工程化工具  
-    npx create-react-app tailwind-test    
+    npx create-react-app tailwind-test  
+    npm i -D tailwindcss     
     - 引入的步骤    
-      npx tailwindcss init 初始化  tailwind.config.js   
+      npx tailwindcss init 初始化  tailwind.config.js 
+      index.css   
+        @import 'tailwindcss/base';  
+        @import 'tailwindcss/components';  
+        @import 'tailwindcss/utilities';  
     - 修改原子类名  
       1. tailwind.config.js  
       2. text-[14px] p-[10px] border-[3px] border-[#df092d] border-dotted  
