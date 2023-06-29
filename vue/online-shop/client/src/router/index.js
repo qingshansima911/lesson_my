@@ -6,38 +6,38 @@ import Home from '@/components/Home'
 Vue.use(Router) //调用install方法 this.$router $route
 
 export default new Router({
-    routes: [
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: () => import('../pages/admin/Index.vue'),
+      children: [
         {
-            path: '/',
-            name: 'Home',
-            component: Home
+          path: 'new',
+          name: 'New',
+          component: () => import('../pages/admin/New.vue')
         },
         {
-            path: '/admin',
-            name: 'Admin',
-            component: () => import('../pages/admin/Index.vue'),
-            children: [
-                {
-                    path: 'new',
-                    name: 'New',
-                    component: () => import('../pages/admin/New.vue')
-                },
-                {
-                    path: '',
-                    name: 'Products',
-                    component: () => import('../pages/admin/Products.vue')
-                },
-                {
-                    path: 'edit/:id',
-                    name: 'Edit',
-                    component: () => import('../pages/admin/Edit.vue')
-                },
-            ]
+          path: '',
+          name: 'Products',
+          component: () => import('../pages/admin/Products.vue')
         },
         {
-            path: '/cart',
-            name: 'Cart',
-            component: () => import('../pages/Cart.vue')
+          path: 'edit/:id',
+          name: 'Edit',
+          component: () => import('../pages/admin/Edit.vue')
         },
-    ]
+      ]
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: () => import('../pages/Cart.vue')
+    },
+  ]
 })
