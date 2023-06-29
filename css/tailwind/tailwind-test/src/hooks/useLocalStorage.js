@@ -1,4 +1,4 @@
-// hooks 状态/生命周期等封装
+// hooks 是状态/生命周期的封装
 import { useState, useEffect } from 'react'
 
 const useLocalStorage = (key, initialValue) => {

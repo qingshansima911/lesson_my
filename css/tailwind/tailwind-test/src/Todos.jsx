@@ -28,14 +28,11 @@ const Todos = () => {
           placeholder='Enter a todo...'
           className="shadow appearance-none border w-full py-2 px-3 mr-2
                     text-gray-700 leading-tight focus:outline-none 
-                    focus:shadow-outline
-                    "
-          onChange={(e) => setNewTodo(e.target.value)}
-        />
+                    focus:shadow-outline"
+          onChange={(e) => setNewTodo(e.target.value)}/>
         <button
           type="submit"
-          className="btn-primary"
-        >Add</button>
+          className="btn-primary">Add</button>
       </form>
       <ul>
         {

@@ -64,3 +64,7 @@
   - vue好入门 react 学习曲线陡峭  
 
 - hooks react 才是发明者
+
+- server
+  创建一个后端项目 npm init -y 
+  npm i koa koa-router mongoose koa-bodyparser koa-static nodemon  
