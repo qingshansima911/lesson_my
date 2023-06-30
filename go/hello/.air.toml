@@ -1,0 +1,20 @@
+root = "./"
+tmp_dir = "/tmp"
+
+[build]
+  binary_name = "GinHello"
+  exclude_dir = ["tmp", "test"]
+
+[tasks]
+  # 可根据需要添加其他任务
+  run_dev = { command = "go run main.go", delay = 1000, include_dirs = ["."] }
+
+[prefix_paths]
+  # 如果你有自定义的静态资源目录，可以在这里添加映射关系
+  "/static" = ["./static"]
+
+[monitor]
+  delay = 1000
+  scan_interval = 1000
+  run_on_start = true
+  exclude_dir = ["tmp", "node_modules", ".git"]
