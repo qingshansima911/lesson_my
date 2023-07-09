@@ -1,0 +1,12 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+  .active {
+    @apply  text-black font-bold
+  }
+  /* .button {
+    @apply  bg-gray-700 text-black w-full rounded-md
+  } */
+}
