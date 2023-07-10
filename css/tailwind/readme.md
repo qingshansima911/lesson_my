@@ -4,7 +4,7 @@
     npx create-react-app tailwind-test  
     npm i -D tailwindcss     
     - 引入的步骤    
-      npx tailwindcss init 初始化  tailwind.config.js 
+      npx tailwindcss init 初始化生成配置文件tailwind.config.js 
       index.css   
         @import 'tailwindcss/base';  
         @import 'tailwindcss/components';  
