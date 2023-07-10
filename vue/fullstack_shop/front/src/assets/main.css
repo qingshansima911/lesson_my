@@ -1,0 +1,6 @@
+@import './base.css';/* reset */
+@import './theme.css';/* 主题风格定制 */
+
+#app {
+  font-weight: normal;
+}
