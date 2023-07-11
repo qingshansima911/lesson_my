@@ -130,10 +130,53 @@
       text-align: left;
       vertical-align: middle;
     }
+
 - 样式优先级
-- 重绘重排
+  !important 100万> 内联样式style 1000 > ID选择器#id 100> [ 类选择器.class、属性选择器[]、伪类: 10] > [ 标签选择器div、伪元素:: 1] > 全局选择器* 0
+  HTML中应用CSS的三种方式: 内联样式表 > 内部样式表 = 外部样式表  
+  组合选择器(空格>+~) 并集选择器, 
+  组合选择器的优先级由其各个组成部分的选择器决定，而并集选择器的优先级由具有最高优先级的选择器决定。
+
+- 重排重绘
+  JavaScript > Style > Layout > Paint > Composite  
+  重排：重新构建渲染树
+  重绘：将重新构建的渲染树渲染到屏幕上
+
+- 为什么JS文件建议放在body的最后，而CSS文件建议放在前面？
+  - DOM树 -> CSSOM树 -> Render Tree html必须放最前面，JS会阻塞DOM树的解析，所以要放在后面，因为JS也有操纵CSS的能力，所以要放在CSS文件的后面，即JS文件建议放在body的最后。
+  - 因为CSS文件不会阻塞DOM树的生成，越早开始下载，就能越早构建出CSSOM树，才能更快的渲染出内容来。
+
 - 盒模型
+  标准盒模型：width = content  
+  IE盒模型：width = content + border + padding
+
 - BFC
-- 两个盒子margin 100,怎么让他们之间的间距为200
+  块级格式化上下文(Block Formatting Context)
+  - BFC的规则:
+    块级元素会在垂直方向一个接一个的排列
+    垂直方向的距离由margin决定，属于同一个BFC的两个相邻的盒子margin会发生重叠
+  - 怎样触发BFC:
+    - 弹性布局(flex | inline-flex)
+    - 网格布局(grid | inline-grid)
+    - 表格布局(table | table-cell | table-caption | inline-table)
+    - 定位 (absolute | fixed)
+    - 浮动 (float:left|right)
+    - 溢出：overflow:auto|hidden|scroll|overlay
+    - 行内块：display:inline-block
+  - BFC解决了什么问题:
+    - 使用float脱离文档流，父容器高度塌陷
+    - margin边距重叠
+
 - vue2和vue3的区别
-- v-if v-show区别
+  - 挂载方式:
+    vue3.0可以通过解构的方式拿到createApp方法，通过该方法得到app调用mount进行挂载。这也是vue3函数式编程的设计理念，这种设计方式可以按需引入资源，更好的利用tree-shaking来减小打包体积。
+    vue2.0 是通过new Vue创建实例，通过参数el确定挂载的dom进行挂载，也可以不传el直接使用app.$mount('#app')。
+  - 生命周期函数
+    vue3中移除了beforeCreate 和 created，增加了setup函数。选项式Api与组合式Api，vue3.0采用函数式编程方式，打破了this的限制，能够更好的复用性。
+  - 数据响应方式
+    vue2.0是利用object.defineProperty，vue3.0是利用Proxy和Reflect。
+
+- v-if v-show的区别
+  v-show隐藏是display:none，dom元素还在；v-if隐藏是将dom元素删除。
+  v-if有更高的切换消耗；v-show有更高的初始渲染消耗。
+  如果需要频繁地切换，则使用v-show；如果不需要，则使用 v-if 较好
