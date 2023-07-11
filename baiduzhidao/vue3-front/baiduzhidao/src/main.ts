@@ -12,6 +12,10 @@ import {
   Form,
   Field,
   Button,
+  Tabs,
+  Tab,
+  Swipe,
+  SwipeItem
 } from 'vant';
 import 'vant/lib/index.css'//引入Vant
 
@@ -23,4 +27,8 @@ app.use(createPinia())
 app.use(Form)
 app.use(Field)
 app.use(Button)
+app.use(Tabs)
+app.use(Tab)
+app.use(Swipe)
+app.use(SwipeItem)
 app.mount('#app');

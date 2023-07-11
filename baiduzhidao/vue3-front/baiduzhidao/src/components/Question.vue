@@ -1,5 +1,5 @@
-<template>
-  <div class="container bg-gray-100">
+<template>ss
+  <div class="container bg-gray-100 py-14">
     <!-- 提问列表 -->
     <div class="grid gap-2">
       <div v-for="item in square" :key="item.id" class="p-4 mx-2 bg-white shadow-md rounded-lg">

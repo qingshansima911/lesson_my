@@ -33,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Login',
     component: () => import('@/views/login/Login.vue'),
   },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('@/views/home/Search.vue'),
+  },
 ];
 
 const router = createRouter({
