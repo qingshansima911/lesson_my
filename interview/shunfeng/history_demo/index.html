@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="nav">
+    <a href="/page1">page1</a>
+    <a href="/page2">page2</a>
+    <a href="/page3">page3</a>
+    <a href="/page4">page4</a>
+    <a href="/page5">page5</a>\
+    <button id="btn">page2</button>
+  </div>
+  <div id="container"></div>
+  <script>
+    class HistoryRouter {
+      constructor() {
+        // 订阅关系
+        this.routers = {}
+        this.listenLink();
+        this.listenPopState();
+      }
+      listenLink() {
+        // 利用了时间冒泡，委托机制，提高性能和简化代码。
+        window.addEventListener('click', e => {
+          let dom = e.target
+          if (dom.tagName.toUpperCase() == 'A' && dom.getAttribute('href')) {
+            e.preventDefault();//单页成立
+            this.assign(dom.getAttribute('href'));//发布
+          }
+        })
+      }
+      assign(path) {
+        // html5 兼容性不是什么问题
+        // data, title, url
+        history.pushState({ path }, null, path);//路由栈历史成立
+        this.dealPathHandler(path)
+      }
+      dealPathHandler(path) {
+        let handler;
+        if (!this.routers.hasOwnProperty(path)) {
+          // 404
+          handler = this.routers['404'] || function () { }
+        } else {
+          handler = this.routers[path]
+        }
+        try {
+          // router.routes -> useRouter useRoute this.$router 
+          handler.call(this)
+        } catch (e) {
+          console.error(e);
+          (this.routers['error'] || function () { }).call(this, e);
+        }
+      }
+      registerIndex(callback = function () { }) {
+        this.routers['/'] = callback
+      }
+      register(path, callback) {
+        this.routers[path] = callback
+      }
+      registerNotFound(callback) {
+        this.routers['404'] = callback
+      }
+      registerError(callback = function () { }) {
+        this.routers['error'] = callback
+      }
+      load() {
+        let path = window.location.pathname
+        // console.log(path);
+        this.dealPathHandler(path)
+      }
+      listenPopState() {
+        window.addEventListener('popstate', (e) => {
+          let state = e.state || {}
+          let path = state.path || ''
+          // console.log(state, path);
+          this.dealPathHandler(path)
+        }, false)
+      }
+    }
+    let router = new HistoryRouter();
+    let container = document.getElementById("container");
+    // 填充路由配置
+    router.registerIndex(() => container.innerHTML = '我是首页')
+    router.register('/page1', () => container.innerHTML = '我是page1')
+    router.register('/page2', () => container.innerHTML = '我是page2')
+    router.register('/page3', () => container.innerHTML = '我是page3')
+    router.register('/page4', () => container.innerHTML = '我是page4')
+    // router.register('/page5', () => container.innerHTML = '我是page5')
+    router.registerNotFound(() => container.innerHTML = '页面未找到')
+    router.registerError((e) => container.innerHTML = '页面异常,' + e.message)
+    router.load();
+  </script>
+</body>
+
+</html>
