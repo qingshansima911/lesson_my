@@ -4,8 +4,7 @@
     <div class="header-search">
       <i class="iconfont icon-sousuo"></i>
       <router-Link to="/goodsSearch" class="search-title">
-        <van-swipe class="swipe" autoplay="4000" :show-indicators="false" 
-        style="height: 200px;" vertical>
+        <van-swipe class="swipe" autoplay="4000" :show-indicators="false" style="height: 200px;" vertical>
           <van-swipe-item v-for="item in state.swipTitle">{{ item }}</van-swipe-item>
         </van-swipe>
       </router-Link>
@@ -26,10 +25,8 @@
 
 <script setup>
 import BetterScroll from 'better-scroll'
-import { reactive } from 'vue';
-import { nextTick } from 'vue';
-import { ref } from 'vue';
-// import useGoodsStore from '@/store/goods.js'
+import { reactive, nextTick, ref } from 'vue';
+import useGoodsStore from '@/store/goods.js'
 
 const state = reactive({
   swipTitle: ['夏季畅销', '精品首饰', '夏季上新', '防晒必备', '台式空调']
@@ -97,13 +94,13 @@ setTimeout(() => {
   scroll.navScroll.refresh()
 }, 500)
 
-// const store = useGoodsStore()
+const { changeId } = useGoodsStore()
 //点菜单的某一项
 let currentId = ref(0)
 const selectMenu = (id) => {
   // console.log(id);
   currentId.value = id
-  store.changeId(id)  //使点菜单的某一项的id传给pinia组件库
+  changeId(id)  //使点菜单的某一项的id传给pinia组件库
 }
 </script>
 
