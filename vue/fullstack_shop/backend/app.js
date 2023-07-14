@@ -8,7 +8,7 @@ const logger = require('koa-logger')
 const cors = require('koa2-cors')
 
 const index = require('./routes/index')
-// const users = require('./routes/users')
+const users = require('./routes/users')
 
 app.use(cors()) //告诉浏览器不要跨域
 // error handler
@@ -36,7 +36,7 @@ app.use(views(__dirname + '/views', {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-// app.use(users.routes(), users.allowedMethods())
+app.use(users.routes(), users.allowedMethods())
 
 // error-handling
 // app.on('error', (err, ctx) => {

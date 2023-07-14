@@ -20,6 +20,55 @@ router.get('/goodsList/', async (ctx, next) => {
   }
 })
 
+router.post('/productDetail/:typeId/:id', async (ctx, next) => {
+  console.log(ctx.params.id, ctx.params.typeId);
+  const idx = parseInt(ctx.params.id)  //获取前端传过来的id
+  const typeidx = parseInt(ctx.params.typeId)
+
+  //推荐商品
+  const product = goods.goodsList.find(item => item.id === idx) //查找id为前端传过来的id的那条数据
+  const product1 = goods.goodsList1.find(item => item.id === idx)
+
+  //不同种类的商品
+  const product2 = (allTypeGoods.find(item => item.id === typeidx)).goods.filter(items => items.id === idx)
+  const product3 = (allTypeGoods.find(item => item.id === typeidx)).goods1.filter(items => items.id === idx)
+
+  ctx.body = {
+    code: '80000',
+    message: '获取单条商品数据成功',
+    data: product || product1 || product2[0] || product3[0]
+  }
+  console.log(ctx.body.data);
+})
+
+router.post('/cartList', async (ctx, next) => {
+  const { username } = ctx.request.body
+  // console.log(username);
+  try {
+    const result = await userService.cartList(username)
+    console.log(result);
+    if (result.length) {
+      ctx.body = {
+        code: '80000',
+        data: result,
+        msg: '购物车数据获取成功'
+      }
+    } else {
+      ctx.body = {
+        code: '80004',
+        data: 'null',
+        msg: '购物车是空的，去逛逛吧'
+      }
+    }
+  } catch (error) {
+    ctx.body = {
+      code: '80002',
+      data: error,
+      msg: '服务器异常'
+    }
+  }
+})
+
 router.post('/goodsFind/:title', async (ctx, next) => {
   const searchTitle = ctx.params.title
   let result = []
@@ -44,53 +93,6 @@ router.post('/goodsFind/:title', async (ctx, next) => {
     code: '80000',
     message: '获取商品数据成功',
     data: [result, result1]
-  }
-})
-
-router.post('/productDetail/:typeId/:id', async (ctx, next) => {
-  console.log(ctx.params.id);
-  const idx = parseInt(ctx.params.id)  //获取前端传过来的id
-  const typeidx = parseInt(ctx.params.typeId)
-
-  //推荐商品
-  const product = goods.goodsList.find(item => item.id === idx) //查找id为前端传过来的id的那条数据
-  const product1 = goods.goodsList1.find(item => item.id === idx)
-
-  //不同种类的商品
-  const product2 = (allTypeGoods.find(item => item.id === typeidx)).goods.filter(items => items.id === idx)
-  const product3 = (allTypeGoods.find(item => item.id === typeidx)).goods1.filter(items => items.id === idx)
-
-  ctx.body = {
-    code: '80000',
-    message: '获取单条商品数据成功',
-    data: product || product1 || product2[0] || product3[0]
-  }
-})
-
-router.post('/cartList', async (ctx, next) => {
-  const { username } = ctx.request.body
-  try {
-    const result = await userService.cartList(username)
-    // console.log(result);
-    if (result.length) {
-      ctx.body = {
-        code: '80000',
-        data: result,
-        msg: '购物车数据获取成功'
-      }
-    } else {
-      ctx.body = {
-        code: '80004',
-        data: 'null',
-        msg: '购物车是空的，去逛逛吧'
-      }
-    }
-  } catch (error) {
-    ctx.body = {
-      code: '80002',
-      data: error,
-      msg: '服务器异常'
-    }
   }
 })
 

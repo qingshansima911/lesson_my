@@ -21,7 +21,7 @@ const allService = {
         }
         else {  //连接成功
           connection.query(sql, values, (err, rows) => { //执行sql语句
-            console.log('连接成功');
+            // console.log('连接成功');
             if (err) {//sql语句执行失败
               reject(err);
             }
@@ -133,7 +133,6 @@ const addressDelete = (id) => {
 }
 module.exports = {
   userLogin,
-
   userfind,
   userRegister,
 

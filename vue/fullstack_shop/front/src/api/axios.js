@@ -16,7 +16,7 @@ axios.interceptors.response.use(res => {
       showFailToast(res.data.msg);
       return
     }
-    return res.data.data
+    return res.data
   }
 })
 

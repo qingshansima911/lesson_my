@@ -57,9 +57,9 @@ const gotoDetail = (item) => {
 
 onMounted(async () => {
   showLoadingToast({ message: '加载中', forbidClick: true, duration: 0 })
-  const res = await axios.get('/goodsList')
-  state.goodsList = res.goodsList
-  state.goodsList1 = res.goodsList1
+  const { data } = await axios.get('/goodsList')
+  state.goodsList = data.goodsList
+  state.goodsList1 = data.goodsList1
   closeToast()
 
 })

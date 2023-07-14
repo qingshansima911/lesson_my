@@ -12,7 +12,7 @@
       <div class="custom-indicator">{{ active + 1 }}/{{ state.allImgUrl.length }}</div>
     </template>
   </van-swipe>
-  <!-- 
+
   <div class="product-wrap">
     <div class="name">{{ state.productDetail.name }}</div>
     <div class="price">￥{{ state.productDetail.price }}</div>
@@ -46,64 +46,64 @@
     </van-action-bar>
   </div>
 
-  <Model v-show="state.show" @hidden="handle" /> -->
+  <Model v-show="state.show" @hidden="handle" />
 </template>
 
 <script setup>
-// import axios from '@/api/axios.js';
-// import { onMounted } from 'vue';
-import { reactive } from 'vue';
-// import { useRoute, useRouter } from 'vue-router'
+import axios from '@/api/axios.js';
+import { reactive, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
 import Header from '@/components/Header.vue'
-// import GoodsList from '@/components/GoodsList.vue'
-// import { showToast } from 'vant';
-// import useCartStore from '@/store/cart.js'
-// import useGoodsStore from '@/store/goods.js'
-// import Model from '@/components/Model.vue'
+import GoodsList from '@/components/GoodsList.vue'
+import { showToast } from 'vant';
+import useCartStore from '@/store/cart.js'
+import useGoodsStore from '@/store/goods.js'
+import Model from '@/components/Model.vue'
 
 
-// const store = useGoodsStore()
-// const cart = useCartStore()
-// const route = useRoute()
-// const router = useRouter()
+const store = useGoodsStore()
+const cart = useCartStore()
+const route = useRoute()
+const router = useRouter()
 
 const state = reactive({
   allImgUrl: [],
-  // productDetail: [],
+  productDetail: [],
   // userData: {},
   show: false
 })
 
 const onClickLeft = () => {
   window.history.back();
+  store.changeId(0)
 }
 
-// const gotoCart = () => {
-//   //跳转到购物车页面
-//   router.push('/cart')
-// }
+const gotoCart = () => {
+  //跳转到购物车页面
+  router.push('/cart')
+}
 
-// const addCart = async () => {
-//   //往购物车数据中植入一条数据
-//   const res = await axios.post('/cartAdd', {  //拿到该商品的所有数据
-//     id: state.productDetail.id,
-//     username: state.userData.username,
-//     name: state.productDetail.name,
-//     price: state.productDetail.price,
-//     max: state.productDetail.max,
-//     min: state.productDetail.min,
-//     shop: state.productDetail.shop,
-//     address: state.productDetail.address,
-//     guarantee: state.productDetail.guarantee,
-//     imgUrl: state.productDetail.imgUrl,
-//     num: state.productDetail.num
-//   })
-//   if (res.code === '80000') {
-//     //更新购物车角标
-//     cart.changeBadge()  //购物车角标更新
-//     showToast(res.msg);
-//   }
-// }
+const addCart = async () => {
+  //往购物车数据中植入一条数据
+  const res = await axios.post('/cartAdd', {  //拿到该商品的所有数据
+    id: state.productDetail.id,
+    username: state.userData.username,
+    name: state.productDetail.name,
+    price: state.productDetail.price,
+    max: state.productDetail.max,
+    min: state.productDetail.min,
+    shop: state.productDetail.shop,
+    address: state.productDetail.address,
+    guarantee: state.productDetail.guarantee,
+    imgUrl: state.productDetail.imgUrl,
+    num: state.productDetail.num
+  })
+  if (res.code === '80000') {
+    //更新购物车角标
+    cart.changeBadge()  //购物车角标更新
+    showToast(res.msg);
+  }
+}
 
 // const goToAddCart = async () => {
 //   //先往购物车数据中植入一条数据
@@ -131,14 +131,16 @@ const onClickLeft = () => {
 //   }
 // }
 
-// onMounted(async () => {
-// cart.changeBadge()  //购物车角标更新
-// const { id } = route.params
-// const { data } = await axios.post(`/productDetail/${store.id}/${id}`)
-// state.allImgUrl = data.allImgUrl
-// state.productDetail = data
-// state.userData = JSON.parse(sessionStorage.getItem('userInfo')) //拿到登录者的用户名以便查询他的购物车数据
-// })
+onMounted(async () => {
+  // cart.changeBadge()  //购物车角标更新
+  const { id } = route.params
+  // console.log(id);
+  const { data } = await axios.post(`/productDetail/${store.state.id}/${id}`)
+  // console.log(data);
+  state.allImgUrl = data.allImgUrl
+  state.productDetail = data
+  // state.userData = JSON.parse(sessionStorage.getItem('userInfo')) //拿到登录者的用户名以便查询他的购物车数据
+})
 
 const handle = (e) => {
   state.show = e

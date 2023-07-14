@@ -48,20 +48,19 @@ const store = useGoodsStore()
 onMounted(async () => {
   showLoadingToast({ message: '加载中', forbidClick: true, duration: 0 })
   const allgoods = await axios.get('/type')
-  state.goodsData = allgoods.find(item => item.id === store.state.id).goods
-  state.goodsData1 = allgoods.find(item => item.id === store.state.id).goods1
+  state.goodsData = allgoods.data.find(item => item.id === store.state.id).goods
+  state.goodsData1 = allgoods.data.find(item => item.id === store.state.id).goods1
   watch(() => store.state.id, (newVal) => {
     // console.log(newVal);
     //拿到仓库的导航某一种类的id作为数组下标，刚好对应相应种类的数据
-    state.goodsData = allgoods.find(item => item.id === newVal).goods
-    state.goodsData1 = allgoods.find(item => item.id === newVal).goods1
+    state.goodsData = allgoods.data.find(item => item.id === newVal).goods
+    state.goodsData1 = allgoods.data.find(item => item.id === newVal).goods1
   })
   closeToast()
 })
 const router = useRouter()
 const gotoDetail = (item) => {
   router.push({ path: `/product/${item.id}` })
-  store.changeId(0)
 }
 </script>
 

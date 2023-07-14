@@ -67,6 +67,11 @@
     - 首页幻灯片使用van-swipe  
     - van-tabbar
     - van-pull-refresh
+    - van-action-bar
+    - van-submit-bar
+    - van-icon
+    - van-form
+    - van-button
 
 - 功能设计
   - 登录 注册
