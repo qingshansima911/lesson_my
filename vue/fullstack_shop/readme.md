@@ -67,20 +67,35 @@
     - 首页幻灯片使用van-swipe  
     - van-tabbar
     - van-pull-refresh
-    - van-action-bar
-    - van-submit-bar
+    - van-action-bar 商品详情页
+    - van-submit-bar 合计
+    - van-nav-bar header
     - van-icon
     - van-form
     - van-button
+    - van-divider 猜你喜欢
+    - van-checkbox 全选
+    - van-stepper 商品数量的加减
+  - axios
+    - api/axios 统一配置baseURL  
+      baseURL 开始可能是fastmock，上线后切换成线上真实地址
+    - 请求响应拦截
+      request authorization + token  
+      response 500 vant showFailToast  
 
 - 功能设计
   - 登录 注册
   - 搜索
     - 使用van-swipe 垂直滚动搜索热词
     - 使用lazyload 防抖搜索
+    - 搜索记录localStorage 存储和展示
+      - 分成搜索和搜索结果展示页面
     - mysql like 查询返回
     - 升级到openai 接口查询
   - 首页幻灯片使用van-swipe 
+  - 详情页
+    - useRoute 解构查询参数 :id
+    - axios 请求数据data，后端使用goods.js 模拟的
 
 - 考点
   - vuex 和pinia 的区别
@@ -103,4 +118,13 @@
           chunks: 'all'
         }
       }
+  - es6 与项目结合
+    - localStorage.setItem(), JSON.stringify()
+      .getItem() JSON.parse()
+    - 深拷贝
+      对象
+      JSON.parse(JSON.stringify())
+      - 无法序列化function，无法解决循环引用
+    - 搜索历史记录
+      json 数组，交给 new Set() 唯一  
 

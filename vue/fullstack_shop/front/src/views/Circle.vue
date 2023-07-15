@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <Header title="圈子" />
 
   <div class="nav">
@@ -113,4 +113,4 @@ canvas {
     color: #858585;
   }
 }
-</style> -->
+</style>

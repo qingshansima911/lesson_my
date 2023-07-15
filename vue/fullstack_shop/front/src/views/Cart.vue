@@ -18,13 +18,11 @@
       <van-checkbox-group v-model="state.result" ref="checkboxGroup">
         <van-swipe-cell>
           <van-checkbox :name="item.id" />
-
           <van-card :price="`${item.price}.00`" desc="描述信息" :title="item.name" :thumb="item.imgUrl">
             <template #footer>
               <van-stepper v-model="item.num" :min="item.min" :max="item.max" @change="onChange" :name="item.id" />
             </template>
           </van-card>
-
           <template #right>
             <van-button @click="cartDelete(item.id)" square text="删除" type="danger" class="delete-button" />
           </template>
@@ -51,15 +49,11 @@
 <script setup>
 import Footer from '@/components/Footer.vue'
 import GoodsList from '@/components/GoodsList.vue'
-import { reactive } from 'vue';
-import axios from '@/api/axios.js'
-import { onMounted } from 'vue';
-import { nextTick } from 'vue';
-import { showLoadingToast, closeToast } from 'vant';
-import { computed } from 'vue';
-import { watch } from 'vue';
-import { useRouter } from 'vue-router';
+import { reactive, nextTick, computed, watch } from 'vue';
+import axios from '@/api/axios'
 import { showToast } from 'vant';
+import { showLoadingToast, closeToast, } from 'vant';
+import { useRouter } from 'vue-router';
 
 const state = reactive({
   userData: {},
@@ -73,7 +67,7 @@ const router = useRouter()
 nextTick(async () => {
   showLoadingToast({ message: '加载中', forbidClick: true, duration: 0 })
   //拿到登录者的用户名以便查询他的购物车数据
-  state.userData = JSON.parse(sessionStorage.getItem('userInfo')) 
+  state.userData = JSON.parse(sessionStorage.getItem('userInfo'))
   //判断sessionStorage里是否存在用户数据，不存在跳去登录，存在则获取其购物车数据
   if (state.userData == null) {
     setTimeout(() => {
@@ -84,10 +78,10 @@ nextTick(async () => {
     const res = await axios.post('/cartList', {
       username: state.userData.username
     })
-    console.log(res);
-    // state.cartData = res.data;
+    // console.log(res);
+    // console.log(res.data);
+    state.cartData = res.data;
   }
-
   closeToast()
 })
 
@@ -127,15 +121,14 @@ const allCheck = () => {  //checked为true或false
     state.result = []
   } else {
     state.result = state.cartData.map(item => item.id)
+    // console.log(state.result);
   }
 }
 
 //全部勾选时全选按钮也要勾选
-watch(
-  () => state.result,
-  (newVal) => {
-    state.checkedAll = state.cartData.length === newVal.length ? true : false
-  }
+watch(() => state.result, (newVal) => {
+  state.checkedAll = state.cartData.length === newVal.length ? true : false
+}
 )
 
 //提交订单

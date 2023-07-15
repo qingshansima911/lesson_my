@@ -1,7 +1,9 @@
 <template>
+  <Header :title="searchTitle" left-arrow @click-left="onClickLeft" />
+
   <div class="goods-wrap">
     <div class="goods-list">
-      <div class="goods-item" @click="gotoDetail(item)" v-for="item in state.goodsData" :key="item.id">
+      <div class="goods-item" @click="gotoDetail(item)" v-for="item in state.goodsList" :key="item.id">
         <img :src="item.imgUrl" alt="">
         <div class="content">
           <div class="name">{{ item.name }}</div>
@@ -16,7 +18,7 @@
     </div>
 
     <div class="goods-list">
-      <div class="goods-item" @click="gotoDetail(item)" v-for="item in state.goodsData1" :key="item.id">
+      <div class="goods-item" @click="gotoDetail(item)" v-for="item in state.goodsList1" :key="item.id">
         <img :src="item.imgUrl" alt="">
         <div class="content">
           <div class="name">{{ item.name }}</div>
@@ -33,33 +35,35 @@
 </template>
 
 <script setup>
-import axios from '@/api/axios.js';
-import { onMounted, reactive, watch } from 'vue';
+import Header from '@/components/Header.vue'
+import axios from '@/api/axios';
+import { reactive, ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import useGoodsStore from '@/store/goods.js'
-import { useRouter } from 'vue-router';
-import { showLoadingToast, closeToast } from 'vant';
 
-let state = reactive({
-  goodsData: {},
-  goodsData1: {}
-})
 const store = useGoodsStore()
-
-onMounted(async () => {
-  showLoadingToast({ message: '加载中', forbidClick: true, duration: 0 })
-  const allgoods = await axios.get('/type')
-  state.goodsData = allgoods.data.find(item => item.id === store.state.id).goods
-  state.goodsData1 = allgoods.data.find(item => item.id === store.state.id).goods1
-  watch(() => store.state.id, (newVal) => {
-    // console.log(newVal);
-    //监听store.state.id，拿到仓库的导航某一种类的id作为数组下标，刚好对应相应种类的数据
-    state.goodsData = allgoods.data.find(item => item.id === newVal).goods
-    state.goodsData1 = allgoods.data.find(item => item.id === newVal).goods1
-  })
-  closeToast()
-})
+const searchTitle = ref('')
 const router = useRouter()
+const route = useRoute()
+searchTitle.value = route.query.name;
+
+const onClickLeft = () => {
+  window.history.back();
+}
+
+const state = reactive({
+  goodsList: [],
+  goodsList1: []
+})
+onMounted(async () => {
+  const { data } = await axios.post(`/goodsFind/${route.query.name}`)
+  state.goodsList = data[0]
+  state.goodsList1 = data[1]
+})
+
 const gotoDetail = (item) => {
+  // console.log(item.typeId);
+  store.state.id = item.typeId
   router.push({ path: `/product/${item.id}` })
 }
 </script>
@@ -69,7 +73,7 @@ const gotoDetail = (item) => {
   display: flex;
   background: #f1f1f1;
   border-radius: 5%;
-  margin-top: 95px;
+  margin-top: 5px;
 
   .goods-list {
     display: flex;
@@ -85,10 +89,6 @@ const gotoDetail = (item) => {
       margin-bottom: 5px;
       border-radius: 5%;
       overflow: hidden;
-
-      &:nth-last-child(1) {
-        margin-bottom: 105px;
-      }
 
       img {
         border-radius: 5%;
@@ -127,6 +127,7 @@ const gotoDetail = (item) => {
           overflow: hidden;
         }
       }
+
     }
   }
 }

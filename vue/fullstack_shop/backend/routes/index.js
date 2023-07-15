@@ -21,12 +21,13 @@ router.get('/goodsList/', async (ctx, next) => {
 })
 
 router.post('/productDetail/:typeId/:id', async (ctx, next) => {
-  console.log(ctx.params.id, ctx.params.typeId);
+  // console.log(ctx.params.id, ctx.params.typeId);
   const idx = parseInt(ctx.params.id)  //获取前端传过来的id
   const typeidx = parseInt(ctx.params.typeId)
 
   //推荐商品
-  const product = goods.goodsList.find(item => item.id === idx) //查找id为前端传过来的id的那条数据
+  //查找id为前端传过来的id的那条数据
+  const product = goods.goodsList.find(item => item.id === idx)
   const product1 = goods.goodsList1.find(item => item.id === idx)
 
   //不同种类的商品
@@ -38,7 +39,7 @@ router.post('/productDetail/:typeId/:id', async (ctx, next) => {
     message: '获取单条商品数据成功',
     data: product || product1 || product2[0] || product3[0]
   }
-  console.log(ctx.body.data);
+  // console.log(ctx.body.data);
 })
 
 router.post('/cartList', async (ctx, next) => {
@@ -46,7 +47,7 @@ router.post('/cartList', async (ctx, next) => {
   // console.log(username);
   try {
     const result = await userService.cartList(username)
-    console.log(result);
+    // console.log(result);
     if (result.length) {
       ctx.body = {
         code: '80000',
@@ -71,6 +72,7 @@ router.post('/cartList', async (ctx, next) => {
 
 router.post('/goodsFind/:title', async (ctx, next) => {
   const searchTitle = ctx.params.title
+  // console.log(searchTitle);
   let result = []
   let result1 = []
   allTypeGoods.forEach((type, index) => {

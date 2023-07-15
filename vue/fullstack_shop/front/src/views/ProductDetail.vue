@@ -7,7 +7,7 @@
     <van-swipe-item @click="state.show = true" v-for="item in state.allImgUrl">
       <img :src="item" alt="">
     </van-swipe-item>
-
+    <!-- 具名slot 自定义指示器 -->
     <template #indicator="{ active }">
       <div class="custom-indicator">{{ active + 1 }}/{{ state.allImgUrl.length }}</div>
     </template>
@@ -39,7 +39,7 @@
   <div class="footer">
     <van-action-bar>
       <van-action-bar-icon icon="chat-o" text="客服" color="#ee0a24" />
-      <van-action-bar-icon @click="gotoCart" icon="cart-o" :badge="cart.badge ? cart.badge : ''" text="购物车" />
+      <van-action-bar-icon @click="gotoCart" icon="cart-o" :badge="badge ? badge : ''" text="购物车" />
       <van-action-bar-icon icon="star" text="收藏" />
       <van-action-bar-button @click="addCart" type="warning" text="加入购物车" />
       <van-action-bar-button @click="goToAddCart" type="danger" text="立即购买" />
@@ -62,14 +62,14 @@ import Model from '@/components/Model.vue'
 
 
 const store = useGoodsStore()
-const cart = useCartStore()
+const { badge, changeBadge } = useCartStore()
 const route = useRoute()
 const router = useRouter()
 
 const state = reactive({
   allImgUrl: [],
   productDetail: [],
-  // userData: {},
+  userData: {},
   show: false
 })
 
@@ -100,7 +100,7 @@ const addCart = async () => {
   })
   if (res.code === '80000') {
     //更新购物车角标
-    cart.changeBadge()  //购物车角标更新
+    changeBadge()  //购物车角标更新
     showToast(res.msg);
   }
 }
@@ -132,14 +132,15 @@ const addCart = async () => {
 // }
 
 onMounted(async () => {
-  // cart.changeBadge()  //购物车角标更新
+  changeBadge()  //购物车角标更新
   const { id } = route.params
   // console.log(id);
   const { data } = await axios.post(`/productDetail/${store.state.id}/${id}`)
   // console.log(data);
   state.allImgUrl = data.allImgUrl
   state.productDetail = data
-  // state.userData = JSON.parse(sessionStorage.getItem('userInfo')) //拿到登录者的用户名以便查询他的购物车数据
+  //拿到登录者的用户名以便查询他的购物车数据
+  state.userData = JSON.parse(sessionStorage.getItem('userInfo'))
 })
 
 const handle = (e) => {
