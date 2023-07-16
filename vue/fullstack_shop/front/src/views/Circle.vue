@@ -26,7 +26,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import useBackgroundStore from '@/store/background.js'
 import { watch } from 'vue';
 
-const store = useBackgroundStore()
+const { state, changeLoadUrl } = useBackgroundStore()
 const canvasRef = ref(null)
 const navList =
   [
@@ -47,12 +47,11 @@ const navList =
 
 
 const goLook = (url) => {
-  store.changeLoadUrl(url)
+  changeLoadUrl(url)
 }
 
 onMounted(() => {
   const scene = new THREE.Scene()
-
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000)
   camera.position.set(0, 0, 30)
   const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.value, antialias: true })
@@ -68,14 +67,14 @@ onMounted(() => {
   //物体 房间
 
   let cubeTextureLoader = new THREE.TextureLoader()
-  watch(() => store.loadUrl, (newVal) => {
+  watch(() => state.loadUrl, (newVal) => {
     cubeTextureLoader.load(`${newVal}`, (texture) => {
       const crt = new THREE.WebGLCubeRenderTarget(texture.image.height)
       crt.fromEquirectangularTexture(renderer, texture)  //把全景图转换为纹理格式
       scene.background = crt.texture
     })
   })
-  cubeTextureLoader.load(store.loadUrl, (texture) => {
+  cubeTextureLoader.load(state.loadUrl, (texture) => {
     const crt = new THREE.WebGLCubeRenderTarget(texture.image.height)
     crt.fromEquirectangularTexture(renderer, texture)  //把全景图转换为纹理格式
     scene.background = crt.texture
