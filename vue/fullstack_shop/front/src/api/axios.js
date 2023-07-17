@@ -16,7 +16,7 @@ axios.interceptors.response.use(res => {
   } else {
     if (res.data.code !== '80000') {
       showFailToast(res.data.msg);
-      return
+      return 
     }
     return res.data
   }

@@ -72,6 +72,10 @@ onMounted(async () => {
 const gotoAddressList = () => {
   router.push('/address')
 }
+
+const onSubmit = () => {
+
+}
 </script>
 
 <style lang="less" scoped>

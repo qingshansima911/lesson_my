@@ -78,7 +78,7 @@ nextTick(async () => {
     const res = await axios.post('/cartList', {
       username: state.userData.username
     })
-    // console.log(res);
+    console.log(res, 'ddddddddddddddd');
     // console.log(res.data);
     state.cartData = res.data;
   }

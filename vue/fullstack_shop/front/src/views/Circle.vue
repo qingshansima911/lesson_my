@@ -1,17 +1,13 @@
 <template>
   <Header title="圈子" />
-
-  <div class="nav">
+  <nav class="nav">
     <ul class="nav-content">
       <li class="nav-item" @click="goLook(item.imgUrl)" v-for="item in navList" :key="item.categoryId">
         <span>{{ item.name }}</span>
       </li>
     </ul>
-  </div>
-
-
+  </nav>
   <canvas ref="canvasRef"></canvas>
-
   <Footer />
 </template>
 
@@ -20,8 +16,9 @@ import Footer from '@/components/Footer.vue'
 import Header from '@/components/Header.vue'
 
 //全景图
-import * as THREE from 'three'
+import * as THREE from 'three' //3D 框架
 import { onMounted, ref } from 'vue';
+// 相机控件轨道控制器 用于控制相机 上下左右查看 
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import useBackgroundStore from '@/store/background.js'
 import { watch } from 'vue';
@@ -45,15 +42,18 @@ const navList =
     }
   ]
 
-
 const goLook = (url) => {
   changeLoadUrl(url)
 }
 
 onMounted(() => {
+  state.loadUrl = navList[0].imgUrl
   const scene = new THREE.Scene()
+  // 透视相机 角度 横向 近远距离 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000)
+  // 设置相机位置
   camera.position.set(0, 0, 30)
+  // 渲染器 antialias 开启抗锯齿
   const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.value, antialias: true })
   //镜头控制器
   const control = new OrbitControls(camera, renderer.domElement)
@@ -61,28 +61,31 @@ onMounted(() => {
     renderer.render(scene, camera)
   })
 
-  //灯光
+  // 灯光
   const light = new THREE.AmbientLight(0xffffff, 0x333333, 1)
   scene.add(light)
-  //物体 房间
 
+  // cube 立方体 房间
+  // TextureLoader 纹理加载器
   let cubeTextureLoader = new THREE.TextureLoader()
-  watch(() => state.loadUrl, (newVal) => {
-    cubeTextureLoader.load(`${newVal}`, (texture) => {
-      const crt = new THREE.WebGLCubeRenderTarget(texture.image.height)
-      crt.fromEquirectangularTexture(renderer, texture)  //把全景图转换为纹理格式
-      scene.background = crt.texture
-    })
-  })
   cubeTextureLoader.load(state.loadUrl, (texture) => {
     const crt = new THREE.WebGLCubeRenderTarget(texture.image.height)
     crt.fromEquirectangularTexture(renderer, texture)  //把全景图转换为纹理格式
     scene.background = crt.texture
   })
+  watch(() => state.loadUrl, (newVal) => {
+    cubeTextureLoader.load(newVal, (texture) => {
+      const crt = new THREE.WebGLCubeRenderTarget(texture.image.height)
+      crt.fromEquirectangularTexture(renderer, texture)  //把全景图转换为纹理格式
+      scene.background = crt.texture
+    })
+  })
 
-  //渲染
+  // 设置背景颜色
   renderer.setClearColor(0xcccccc)
+  // 设置渲染器的大小
   renderer.setSize(renderer.domElement.clientWidth, renderer.domElement.clientHeight)
+  // 渲染
   renderer.render(scene, camera)
 })
 

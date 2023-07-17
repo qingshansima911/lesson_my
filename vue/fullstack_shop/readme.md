@@ -17,7 +17,7 @@
   - 使用axios 封装http 请求，拦截器，请求错误处理，请求loading  
   - 使用less css 预处理器，mixin，变量，嵌套等css 增强和模块化能力 
   - 使用vant ui 组件库，按需加载，减少打包体积
-  - 使用three.js 数据可视化，3D 看商品
+  - 使用three.js 数据可视化，3D看商品
 
 - 项目做了哪些优化
   - 按需加载vant 组件库，减少打包体积
@@ -26,6 +26,10 @@
     原理：将需要进行懒加载的子模块打包成独立的文件（children chunk）使用ES6提供的import()；借助函数来实现延迟执行子模块的加载代码
     webpack splitChunks
   - iconfont 使用CDN 加载，未来打包后的静态资源都会发布到cdn 服务器
+  - 图片懒加载
+    - 首页幻灯片
+  - html5 语义化标签
+    - nav 标签 有利于SEO  
 
 - 组件化介绍
   - 项目封装了HomeHeader、Footer、Header、AllTypes、GoodsList、Model 等组件，页面由组件构成，而不是标签，组件树用vue-devtools 查看
@@ -82,6 +86,13 @@
     - 请求响应拦截
       request authorization + token  
       response 500 vant showFailToast  
+  - three.js 3D
+    - 利用webGL 渲染3D图形  
+    - 利用canvas 元素
+    - scene camera renderer  
+    - 模型概念 由外部导入
+    - 灯光
+    - 形状 + 材质
 
 - 功能设计
   - 登录 注册
@@ -126,5 +137,15 @@
       JSON.parse(JSON.stringify())
       - 无法序列化function，无法解决循环引用
     - 搜索历史记录
-      json 数组，交给 new Set() 唯一  
+      json 数组，交给 new Set() 唯一 
+  - html5 功能介绍
+    - 语义化标签 SEO友好  
+    - canvas video audio form    
+    - localStorage sessionStorage IndexDB  本地存储  
+    - web worker 多线程  
+    - history API  pushState popState 单页应用 
+    - websocket 实时聊天 双向通信  
+    - drag and drop 拖拽 github 代码拖拽上传  
+    - geolocation 地理定位 美团
+    - getUserMedia 摄像头和麦克风  
 

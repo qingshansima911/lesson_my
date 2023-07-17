@@ -10,7 +10,7 @@ const useCartStore = defineStore('cart', () => {
     })
     // console.log(res);
     // console.log(res.data.length);
-    badge.value = res.data.length
+    // badge.value = res.data.length
   }
   return {
     badge,
