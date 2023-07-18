@@ -1,0 +1,26 @@
+- vue 和react的区别
+  - vue双向数据绑定，react单向数据绑定
+  - vue有composition api + setup语法糖，函数式编程
+- 虚拟dom和真实dom的区别
+- 事件循环
+  - js是单线程，异步处理会放进event loop执行栈，防止阻塞同步代码。执行栈会优先执行类似promise.then的微任务，再执行宏任务，直到异步任务完成。
+- 盒模型、选择器和优先级
+  - content + padding + border + margin  
+  - 标准盒模型和IE盒模型  
+- 性能优化
+  - 路由图片懒加载
+  - better-scroll水平滚动
+  - 路由守卫 + trasition实现页面的渐入渐出
+  - window.scrollTo实现平滑回到顶部
+  - vite treesharking 不必要的代码不打包  
+- promise了解哪些？
+  - promise是个构造函数 
+  - 三个状态 pedding fullfilled rejected  
+  - 实例可以.then() 链式调用 .catch() .finally() 
+  - .all() .race() .allSettled()  
+- this
+  - 普通函数this指向window
+  - 严格模式this指向undefined
+  - 对象this指向对象本身
+  - 构造函数this指向构造出来的实例
+  - call apply bind改变this指向  

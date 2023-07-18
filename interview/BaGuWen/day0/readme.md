@@ -148,7 +148,7 @@
 
 - 盒模型
   标准盒模型：width = content  
-  IE盒模型：width = content + border + padding
+  IE盒模型：width = content + padding + border  
 
 - BFC
   块级格式化上下文(Block Formatting Context)
@@ -178,5 +178,6 @@
 
 - v-if v-show的区别
   v-show隐藏是display:none，dom元素还在；v-if隐藏是将dom元素删除。
-  v-if有更高的切换消耗；v-show有更高的初始渲染消耗。
   如果需要频繁地切换，则使用v-show；如果不需要，则使用 v-if 较好
+  v-if PC登录模态框；v-show ajax搜索列表建议  
+
