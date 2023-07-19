@@ -2,12 +2,13 @@
   - vue双向数据绑定，react单向数据绑定
   - vue有composition api + setup语法糖，函数式编程
 - 虚拟dom和真实dom的区别
+  - 如果直接改变真实dom，会引起大量的重绘重排，非常耗时而且影响性能；而先操作虚拟dom，收集到足够的改变时，再把这些改变一次性应用到真实dom上。
 - 事件循环
   - js是单线程，异步处理会放进event loop执行栈，防止阻塞同步代码。执行栈会优先执行类似promise.then的微任务，再执行宏任务，直到异步任务完成。
 - 盒模型、选择器和优先级
   - content + padding + border + margin  
   - 标准盒模型和IE盒模型  
-- 性能优化
+- 前端性能优化
   - 路由图片懒加载
   - better-scroll水平滚动
   - 路由守卫 + trasition实现页面的渐入渐出
