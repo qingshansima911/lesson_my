@@ -59,13 +59,15 @@ onMounted(async () => {
   // console.log(state.defaultAddress);
 
   //获取订单数据
-  for (let item in route.query) {
-    // console.log(route.query[item]);
-    let res = await axios.post('/cartFind', {
-      id: route.query[item]
-    })
-    state.totalPrice += (res.data[0].price * res.data[0].num)
-    state.orderData.push(res.data);
+  for (let key in route.query[0]) {
+  // console.log(route.query[0], route.query[1]);
+  let res = await axios.post('/cartFind', {
+    id: route.query[0][key],
+    username: route.query[1]
+  })
+  // console.log(route.query[0][key]);
+  state.totalPrice += (res.data[0].price * res.data[0].num)
+  state.orderData.push(res.data);
   }
 })
 

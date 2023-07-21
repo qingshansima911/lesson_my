@@ -8,13 +8,16 @@
 </template>
  
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import useCartStore from '@/store/cart.js'
 
 const active = ref(0);
-const { badge, changeBadge } = useCartStore()
-changeBadge()
+const store = useCartStore()
+const badge = computed(() => store.badge)
 // console.log(cart.changeBadge());
+onMounted(() => {
+  store.changeBadge();
+})
 </script>
  
 <style lang="less" scoped></style>

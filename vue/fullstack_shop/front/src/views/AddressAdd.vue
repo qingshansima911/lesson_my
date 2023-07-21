@@ -60,7 +60,7 @@ const addressAdd = async () => {
   if (state.isDefault === 1) {
     const result = await axios.get('/defaultFind')
     // console.log(result.data[0].id);
-    await axios.post('/defaultModify', {
+    await axios.put('/defaultModify', {
       isDefault: 0,
       id: result.data[0].id
     })

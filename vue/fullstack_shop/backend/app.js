@@ -9,6 +9,8 @@ const cors = require('koa2-cors')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const carts = require('./routes/carts')
+const addresses = require('./routes/addresses')
 
 app.use(cors()) //告诉浏览器不要跨域
 // error handler
@@ -38,6 +40,8 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(carts.routes(), carts.allowedMethods())
+app.use(addresses.routes(), addresses.allowedMethods())
 
 // error-handling
 // app.on('error', (err, ctx) => {

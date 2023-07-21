@@ -84,50 +84,58 @@ const gotoCart = () => {
 }
 
 const addCart = async () => {
-  //往购物车数据中植入一条数据
-  const res = await axios.post('/cartAdd', {  //拿到该商品的所有数据
-    id: state.productDetail.id,
-    username: state.userData.username,
-    name: state.productDetail.name,
-    price: state.productDetail.price,
-    max: state.productDetail.max,
-    min: state.productDetail.min,
-    shop: state.productDetail.shop,
-    address: state.productDetail.address,
-    guarantee: state.productDetail.guarantee,
-    imgUrl: state.productDetail.imgUrl,
-    num: state.productDetail.num
-  })
-  if (res.code === '80000') {
-    //更新购物车角标
-    changeBadge()  //购物车角标更新
-    showToast(res.msg);
+  if (!state.userData) {
+    showToast('您还未登录，请先去登录');
+  } else {
+    //往购物车数据中植入一条数据
+    const res = await axios.post('/cartAdd', {  //拿到该商品的所有数据
+      id: state.productDetail.id,
+      username: state.userData.username,
+      name: state.productDetail.name,
+      price: state.productDetail.price,
+      max: state.productDetail.max,
+      min: state.productDetail.min,
+      shop: state.productDetail.shop,
+      address: state.productDetail.address,
+      guarantee: state.productDetail.guarantee,
+      imgUrl: state.productDetail.imgUrl,
+      num: state.productDetail.num
+    })
+    if (res.code === '80000') {
+      //更新购物车角标
+      changeBadge()  //购物车角标更新
+      showToast(res.msg);
+    }
   }
 }
 
 const goToAddCart = async () => {
-  //先往购物车数据中植入一条数据
-  //再跳转到购物车页面
-  const res = await axios.post('/cartAdd', {  //拿到该商品的所有数据
-    id: state.productDetail.id,
-    username: state.userData.username,
-    name: state.productDetail.name,
-    price: state.productDetail.price,
-    max: state.productDetail.max,
-    min: state.productDetail.min,
-    shop: state.productDetail.shop,
-    address: state.productDetail.address,
-    guarantee: state.productDetail.guarantee,
-    imgUrl: state.productDetail.imgUrl,
-    num: state.productDetail.num
-  })
-  if (res.code === '80000') {
-    //更新购物车角标
-    changeBadge()  //购物车角标更新
-    showToast(res.msg);
-    setTimeout(() => {
-      router.push({ path: '/cart' })
-    }, 1000)
+  if (!state.userData) {
+    showToast('您还未登录，请先去登录');
+  } else {
+    //先往购物车数据中植入一条数据
+    //再跳转到购物车页面
+    const res = await axios.post('/cartAdd', {  //拿到该商品的所有数据
+      id: state.productDetail.id,
+      username: state.userData.username,
+      name: state.productDetail.name,
+      price: state.productDetail.price,
+      max: state.productDetail.max,
+      min: state.productDetail.min,
+      shop: state.productDetail.shop,
+      address: state.productDetail.address,
+      guarantee: state.productDetail.guarantee,
+      imgUrl: state.productDetail.imgUrl,
+      num: state.productDetail.num
+    })
+    if (res.code === '80000') {
+      //更新购物车角标
+      changeBadge()  //购物车角标更新
+      showToast(res.msg);
+      setTimeout(() => {
+        router.push({ path: '/cart' })
+      }, 1000)
+    }
   }
 }
 

@@ -38,11 +38,9 @@ const route = useRoute()
 onMounted(async () => {
   // console.log(route.query.id);
   //根据id查找地址
-  const res = await axios.post('/addressFind', {
-    id: route.query.id
-  })
+  const res = await axios.get(`/addressFind/${route.query.id}`)
   state.addressData = res.data[0]
-  // console.log(state.addressData);
+  // console.log(res);
 })
 
 const showArea = ref(false);
@@ -56,7 +54,7 @@ const onClickLeft = () => {
 }
 
 const addressEdit = async () => {
-  const res = await axios.post('/addressModify', {
+  const res = await axios.put('/addressModify', {
     name: state.addressData.name,
     tel: state.addressData.tel,
     address: state.addressData.address,
@@ -69,9 +67,7 @@ const addressEdit = async () => {
 }
 
 const addressDelete = async () => {
-  const res = await axios.post('/addressDelete', {
-    id: route.query.id
-  })
+  const res = await axios.delete(`/addressDelete/${route.query.id}`)
   if (res.code === '80000') {
     showSuccessToast('删除成功');
     window.history.back();

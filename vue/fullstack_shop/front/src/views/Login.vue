@@ -1,5 +1,5 @@
 <template>
-  <Header>
+  <header>
     <div class="head">
       <div @click="gohome" class="cross">
         <van-icon name="cross" color="#fff" size="18px" />
@@ -8,9 +8,8 @@
         注册
       </div>
     </div>
-
     <div class="login">用户登录</div>
-  </Header>
+  </header>
 
   <div class="login-wrap">
     <div class="title">
@@ -92,7 +91,7 @@ const gohome = () => {
 </script>
 
 <style lang="less" scoped>
-Header {
+header {
   height: 200px;
   width: 100%;
   background-image: url('../assets/images/1.jpg');

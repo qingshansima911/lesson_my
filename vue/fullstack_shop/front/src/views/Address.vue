@@ -19,14 +19,12 @@ import { ref } from 'vue';
 const state = reactive({
   addressData: [],
   userData: {},
-  chosenAddressId: 0
+  chosenAddressId: 1
 })
 
 onMounted(async () => {
   state.userData = JSON.parse(sessionStorage.getItem('userInfo'))
-  const res = await axios.post('/addressList', {
-    username: state.userData.username
-  })
+  const res = await axios.get(`/addressList/${state.userData.username}`)
   state.addressData = res.data
   // console.log(state.addressData);
 })
@@ -35,11 +33,11 @@ const change = async () => {
   //修改数据库中的新选中的isDefault字段为true 旧的修改为false
   const result = await axios.get('/defaultFind')
   // console.log(result.data[0].id);
-  await axios.post('/defaultModify', {
+  await axios.put('/defaultModify', {
     isDefault: 0,
     id: result.data[0].id
   })
-  await axios.post('/defaultModify', {
+  await axios.put('/defaultModify', {
     isDefault: 1,
     id: state.chosenAddressId
   })

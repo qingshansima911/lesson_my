@@ -9,7 +9,7 @@
   - 使用vite + vue 全家桶开发单页应用  
     - vite 比webpack 快，不需要全部打包，vite可以按需加载，转移，执行 
       vite默认启用esm  
-    - composition api + setup 语法 将雷士组件函数化，hooks编程
+    - composition api + setup 语法 将类式组件函数化，hooks编程
       更好理解，更好复用，更好tree-shaking  
   - 移动商城使用lib-flexible rem适配，assets/main.css 组织了css的模块化
     (reset 样式组件 (1px)css 变量)
@@ -78,14 +78,17 @@
     - van-form
     - van-button
     - van-divider 猜你喜欢
-    - van-checkbox 全选
-    - van-stepper 商品数量的加减
+    - van-checkbox 复选框 全选和单选
+    - van-stepper 步进器 商品数量的加减
+    - van-card 卡片 商品卡片
+    - van-address-list 地址列表
   - axios
     - api/axios 统一配置baseURL  
       baseURL 开始可能是fastmock，上线后切换成线上真实地址
     - 请求响应拦截
       request authorization + token  
-      response 500 vant showFailToast  
+      错误 response 500 vant showFailToast   
+      成功 返回res.data  
   - three.js 3D
     - 利用webGL 渲染3D图形  
     - 利用canvas 元素
@@ -94,7 +97,7 @@
     - 灯光
     - 形状 + 材质
 
-- 功能设计
+- 功能模块设计
   - 登录 注册
   - 搜索
     - 使用van-swipe 垂直滚动搜索热词
@@ -107,6 +110,32 @@
   - 详情页
     - useRoute 解构查询参数 :id
     - axios 请求数据data，后端使用goods.js 模拟的
+    - 数据库功能 .env
+      - 封装query方法，
+        每条sql都去拼接sql语句，处理crud，不如封装  
+        - mysql 数据库驱动
+        - createPool 创建线程池
+        - pool.getConnection 连接数据库
+        - query
+          - 处理所有的sql
+          - sql传参 ${} ?占位符 数组传参
+      - ORM schema 封装 不用写sql  
+  - 购物车
+    结合pinia, 将购物车数据存储到数据库，实现购物数量徽章，详情页添加到购物车，购物车列表，购物数量调整，以及清空购物车完成功能   
+    - 购物车状态管理比较复杂
+      - cartData 购物车列表 
+      - result 选中的id 数组 
+      - totalPrice 由 cartData + result 决定 computed  
+      - 全选按钮 watch result  
+      - 全选 -> 将cartData 全部加入到result 数组中
+      - 购物车数据在后端的crud
+  - 地址模块
+    - 创建地址表
+    - 基于restful 添加address 相应路由
+    - 完成crud 接口开发，默认地址切换
+    - 前端路由和组件开发
+    - pinia useAddress 管理address 状态
+    - 前后端联调，完成功能模块
 
 - 考点
   - vuex 和pinia 的区别
@@ -148,4 +177,34 @@
     - drag and drop 拖拽 github 代码拖拽上传  
     - geolocation 地理定位 美团
     - getUserMedia 摄像头和麦克风  
+
+- node 实战与考点
+  - MVC 路由对象
+    - MVC
+      - view model 不能直接通信
+      - controller 作为中间层，进行通信
+      - controller 接收用户的需求，调用model层的数据，返回给view层显示(API)
+    - 路由的设计
+      - restful 一切皆是资源
+      - 路由的功能
+        - 中间件
+        - require('koa-router')
+        - prefix
+          /api/v1 全局  
+          /users 模块前缀  
+    - node js 模块化是commonjs
+      - module.exports = {}
+      - exports.xxx
+      - require('')
+      es6 模块化
+        - export default xxx
+        - import xxx from  ''
+        - export xxx
+        - import { xxx } from  ''
+  - 错误处理
+    - 错误处理中间件 最后面
+      500 403 404 401
+    - try catch 
+      js 是单线程 文件处理 数据库操作等 要catch  
+    - 自动重启
 

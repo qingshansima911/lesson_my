@@ -14,7 +14,6 @@
         <i class="iconfont icon-shangpu"></i>
         <span>{{ item.shop }}</span>
       </div>
-
       <van-checkbox-group v-model="state.result" ref="checkboxGroup">
         <van-swipe-cell>
           <van-checkbox :name="item.id" />
@@ -33,11 +32,9 @@
   </div>
 
   <div class="no-cart" v-else>购物车是空的，去逛逛吧</div>
-
   <van-submit-bar class="sub-all" :price="totalPrice * 100" button-text="结算" @submit="onSubmit">
     <van-checkbox v-model="state.checkedAll" @click="allCheck">全选</van-checkbox>
   </van-submit-bar>
-
   <van-divider class="like" :style="{ color: '#f86c35', borderColor: '#f86c35', padding: '0 16px' }">
     猜你喜欢
   </van-divider>
@@ -72,15 +69,16 @@ nextTick(async () => {
   if (state.userData == null) {
     setTimeout(() => {
       showToast('您还未登录哦！');
-      router.push('/login')
+      // router.push('/login')
     }, 1000)
   } else {
     const res = await axios.post('/cartList', {
       username: state.userData.username
     })
-    console.log(res, 'ddddddddddddddd');
+    // console.log(res);
     // console.log(res.data);
     state.cartData = res.data;
+    state.result = state.cartData.map(item => item.id)
   }
   closeToast()
 })
@@ -91,7 +89,8 @@ const onChange = async (value, detail) => {
   showLoadingToast({ message: '加载中', forbidClick: true, duration: 0 })
   await axios.post('/cartModify', {
     id: detail.name,
-    num: value
+    num: value,
+    username: state.userData.username,
   })
   closeToast()
 }
@@ -125,7 +124,7 @@ const allCheck = () => {  //checked为true或false
   }
 }
 
-//全部勾选时全选按钮也要勾选
+//全部勾选时，全选按钮也要勾选 反选
 watch(() => state.result, (newVal) => {
   state.checkedAll = state.cartData.length === newVal.length ? true : false
 }
@@ -133,12 +132,18 @@ watch(() => state.result, (newVal) => {
 
 //提交订单
 const onSubmit = () => {
-  router.push({ path: '/orderSubmit', query: state.result })
+  router.push({
+    path: '/orderSubmit',
+    query: [
+      state.result,
+      state.userData.username
+    ]
+  })
 }
 
 //删除购物车数据
 const cartDelete = async (id) => {
-  await axios.post('/cartDelete', { 'id': id })
+  await axios.post('/cartDelete', { id: id, username: state.userData.username })
   window.location.reload();
 }
 </script>

@@ -10,7 +10,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { ref, onMounted } from 'vue';
+// GLTF 模型文件的格式
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+// 解码器
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { useRoute } from 'vue-router';
 
@@ -22,7 +24,8 @@ const canvasDom = ref(null)
 //场景
 const scene = new THREE.Scene()
 //渲染器
-const renderer = new THREE.WebGLRenderer({ antialias: true, setAlpha: true })  //setAlpha让其可设置透明度
+//setAlpha让其可设置透明度
+const renderer = new THREE.WebGLRenderer({ antialias: true, setAlpha: true })  
 renderer.setSize(window.innerWidth, window.innerHeight)
 //镜头
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
@@ -40,7 +43,6 @@ const render = () => {
 onMounted(() => {
   //渲染
   canvasDom.value.appendChild(renderer.domElement)
-
   // 设置背景颜色并启用透明度
   renderer.setClearColor(0x000000, 0.2);
   render()
@@ -56,9 +58,10 @@ onMounted(() => {
   const dracoLoader = new DRACOLoader()
   dracoLoader.setDecoderPath('../../public/draco/gltf/')
   loader.setDRACOLoader(dracoLoader)
-  //判断../../public/model/${id}.glb是否存在，不存在则不加载
 
-  loader.load(`../../public/model/${id}.glb`, (gltf) => {  //传id让其点击不同商品展示不同模型 id对应商品的id
+  //判断../../public/model/${id}.glb是否存在，不存在则不加载
+  loader.load(`../../public/model/${id}.glb`, (gltf) => {  
+    //传id让其点击不同商品展示不同模型 id对应商品的id
     // console.log(gltf.scene);
     const bmw = gltf.scene
     bmw.scale.set(0.2, 0.2, 0.2); //模型缩放
