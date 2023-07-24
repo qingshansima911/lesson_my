@@ -25,7 +25,3 @@
     - mitt
   - Vuex Pinia
 
-- CSS如何画一个三角形？原理是什么
-- 谈谈你对BFC的理解？
-- bind、call、apply 区别？如何实现一个bind?
-- 深拷贝浅拷贝的区别？如何实现一个深拷贝？
