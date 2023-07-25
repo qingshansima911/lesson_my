@@ -2,7 +2,7 @@ const cartService = require('../services/cart');
 
 exports.handleCartList = async (ctx) => {
   const { username } = ctx.request.body
-  console.log(username);
+  // console.log(username);
   try {
     const result = await cartService.cartList(username)
     // console.log(result);

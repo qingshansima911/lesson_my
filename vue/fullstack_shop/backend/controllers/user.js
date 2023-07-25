@@ -1,4 +1,6 @@
 const userService = require('../services/user');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 exports.handleRegister = async (ctx) => {
   const { username, password } = ctx.request.body;
@@ -19,7 +21,12 @@ exports.handleRegister = async (ctx) => {
         msg: '用户已存在'
       }
     } else {
-      const res = await userService.userRegister([username, password]);
+      const saltRounds = 10;
+      // 对密码进行加密
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      // console.log(hashedPassword);
+      const res = await userService.userRegister([username, hashedPassword]);
+      // 创建新用户
       if (res.affectedRows !== 0) {
         ctx.body = {
           code: '80000',
@@ -48,12 +55,20 @@ exports.handleLogin = async (ctx) => {
   const { username, password } = ctx.request.body
   //去读取数据库中的users表，判断读取到的值和前端传过来的值是否匹配
   try {
-    const result = await userService.userLogin(username, password)
+    // 验证密码
+    const result = await userService.userLogin(username)
     // console.log(result);
-    if (result.length) {
+    // console.log(result[0].password);
+    const passwordMatch = await bcrypt.compare(password, result[0].password);
+    console.log(passwordMatch);
+    if (passwordMatch) {
+      const token = jwt.sign({ id: result[0].id, username: result[0].username }, 'your-secret-key', {
+        expiresIn: '1d',
+      });
       let data = {
         id: result[0].id,
-        username: result[0].username
+        username: result[0].username,
+        token: token
       }
       // let data = {...result}
       ctx.body = {

@@ -11,6 +11,7 @@ const index = require('./routes/index')
 const users = require('./routes/users')
 const carts = require('./routes/carts')
 const addresses = require('./routes/addresses')
+const auth = require('./middleware/auth')
 
 app.use(cors()) //告诉浏览器不要跨域
 // error handler
@@ -21,6 +22,7 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
+app.use(auth)
 // public 文件夹是静态资源
 app.use(require('koa-static')(__dirname + '/public'))
 

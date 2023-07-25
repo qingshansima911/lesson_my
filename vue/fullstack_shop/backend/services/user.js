@@ -42,8 +42,8 @@ const userRegister = (values) => {
 }
 
 //登录
-const userLogin = (username, password) => {
-  let _sql = `select * from users where username="${username}" and password="${password}";`
+const userLogin = (username) => {
+  let _sql = `select * from users where username="${username}";`
   return allServices.query(_sql)
 }
 module.exports = {

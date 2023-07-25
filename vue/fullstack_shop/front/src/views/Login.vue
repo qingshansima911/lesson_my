@@ -73,6 +73,7 @@ const onSubmit = async () => {
   sessionStorage.setItem('userInfo', JSON.stringify(res.data))
   if (res.code === '80000') {
     showToast(`你好，${state.username}`);
+    localStorage.setItem('token', res.data.token)
     setTimeout(() => {
       router.push({ path: '/home' })
     }, 1000)
