@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>欢迎来到红浪漫~~</h1>
+  <h2>现在由<%= id %>号技师，为你服务!</h2>
+  <h3>你好，我是<%= name %>
+      <%= age %>岁</h3>
+  <br />
+  我的技能如下：
+  <ul>
+    <% for(var i=0;i<skills.length;i++){ %>
+      <li>
+        <%= skills[i] %>
+      </li>
+      <%}%>
+  </ul>
+</body>
+
+</html>

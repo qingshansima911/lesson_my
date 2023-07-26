@@ -1,0 +1,8 @@
+POST http://127.0.0.1:7001/add 
+# Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
+
+# name=qingshansima
+{
+  "name":"小红"
+}
