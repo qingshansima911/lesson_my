@@ -18,4 +18,15 @@ module.exports = app => {
   router.post('/del', controller.qingshansima.del);
   router.post('/editor', controller.qingshansima.editor);
   router.post('/show', controller.qingshansima.show);
+  const counter = app.middleware.counter()
+  router.get('/my', counter, controller.qingshansima.index);
+  // router.get('/newContext', controller.qingshansima.newContext);
+  router.post('/newContext', controller.qingshansima.newContext);
+  router.post("/newRequest", controller.qingshansima.newRequest);
+  router.get('/newResponse', controller.qingshansima.newResponse);
+
+  router.get("/addGirl", controller.girlsManage.addGirl);
+  router.get("/delGirl", controller.girlsManage.delGirl);
+  router.get("/updateGirl", controller.girlsManage.updateGirl);
+  router.get("/getGirls2", controller.girlsManage.getGirls);
 };

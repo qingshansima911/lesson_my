@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "egg": "^3",
+    "egg-mysql": "^4.0.0",
     "egg-scripts": "^2",
     "egg-view-ejs": "^3.0.0",
     "egg-view-nunjucks": "^2.3.0"

@@ -15,13 +15,14 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1690287795409_5075';
 
-  // add your middleware config here
-  config.middleware = [];
+  // add your middleware config here 全局挂载
+  // config.middleware = ['counter'];
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
   };
+
   // CSRF(Cross-Site Request Forgery)跨站请求伪造攻击
   config.security = {
     csrf: {
@@ -48,7 +49,6 @@ module.exports = appInfo => {
     maxAge: 1000 * 60,   // 设置最大有效时间
     renew: true,        // 页面有访问动作自动刷新session 
   }
-  // config.middleware = ['counter'];
 
   // exports.view = {
   //   defaultViewEngine: 'nunjucks',
@@ -56,6 +56,18 @@ module.exports = appInfo => {
   //     '.html': 'nunjucks' //左边写成.html后缀，会自动渲染.html文件
   //   },
   // };
+
+  config.mysql = {
+    app: true,     //是否挂载到app下面
+    agent: false,  //是否挂载到代理下面
+    client: {
+      host: '127.0.0.1',      // 数据库地址
+      prot: '3306',           // 端口
+      user: 'root',           // 用户名
+      password: 'mysql',    // 密码
+      database: 'test-egg'    // 连接的数据库名称
+    }
+  }
   return {
     ...config,
     ...userConfig,

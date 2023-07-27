@@ -4,7 +4,7 @@ const Controller = require('egg').Controller;
 
 class QingshansimaController extends Controller {
   async index() {
-    const { ctx } = this;
+    const { ctx, app } = this;
     // ctx.body = '<h1>I am  qingshansima</h1>';
     // await ctx.render('qingshansima.html')
     // await ctx.render('qingshansima.html', {
@@ -31,9 +31,22 @@ class QingshansimaController extends Controller {
     //   skill: '泰式按摩'
     // })
     //获取Session
+    // const username = ctx.session.username
+    // await ctx.render(
+    //   'qingshansima3.html', {
+    //   id: 2021,
+    //   name: '小红',
+    //   age: 18,
+    //   //赋值给模板
+    //   username: username,
+    //   skill: '泰式按摩'
+    // })
+    // console.log(ctx.session.counter)
+
     const username = ctx.session.username
-    await ctx.render(
-      'qingshansima3.html', {
+    await ctx.render('qingshansima3.html', {
+      // nowTime: app.currentTime(),
+      nowTime: app.timeProp(),
       id: 2021,
       name: '小红',
       age: 18,
@@ -41,7 +54,6 @@ class QingshansimaController extends Controller {
       username: username,
       skill: '泰式按摩'
     })
-    // console.log(ctx.session.counter)
   }
   async getGirls() {
     const { ctx } = this;
@@ -122,6 +134,30 @@ class QingshansimaController extends Controller {
       status: 200,
       data: 'Cookie显示成功'
     }
+  }
+  async newContext() {
+    const { ctx } = this;
+    const params = ctx.params();
+    // console.log(params)
+    ctx.body = 'newContext';
+  }
+  async newRequest() {
+    const { ctx } = this;
+    const token = ctx.request.token
+    ctx.body = {
+      status: 200,
+      body: token
+    }
+  }
+  async newResponse() {
+    const { ctx } = this;
+    ctx.response.token = 'qingshansima.com'
+    ctx.body = 'newRespose'
+  }
+  async newResponse() {
+    const { ctx } = this;
+    const testBase64 = ctx.helper.base64Encode('qingshansima.com')
+    ctx.body = testBase64
   }
 }
 
