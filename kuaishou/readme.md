@@ -17,3 +17,19 @@
 
 - canvas
     小游戏/three.js  WebAR/VR  
+
+- finally有什么用 npm i log4js  
+    大型语言 try{} catch{} finally  
+    不需要  
+    1. 当promise失败后
+    - 应用场景
+    all race any allSettled finally Promise.resolve/reject   
+    2. 有些应用不只是耗时
+        i/o 操作要关闭文件句柄...  
+
+- Promise then 第二个参数和catch的区别是？
+    - catch  
+        .then(()=>{},(reason)=>{  
+  
+        })  
+        更简介，推荐  
