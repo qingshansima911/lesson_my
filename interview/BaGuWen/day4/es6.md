@@ -8,6 +8,6 @@
   - promise
   - proxy
   - class
-  - 新增的数据结构Set Map  
+  - 新增的数据结构 Set Map  
   - Module
   
