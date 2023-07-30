@@ -18,7 +18,7 @@ value: 17        25         35
 - 技术方案的选择 
     - canvas 2D 画图方案  
     - SVG 矢量图 
-    - webgl 3D
+    - webgl 3D  
 
 - 数据整理
 - 绘制API canvas 
