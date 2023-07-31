@@ -15,7 +15,8 @@ import {
   Tabs,
   Tab,
   Swipe,
-  SwipeItem
+  SwipeItem,
+  showFailToast
 } from 'vant';
 import 'vant/lib/index.css'//引入Vant
 
@@ -31,4 +32,5 @@ app.use(Tabs)
 app.use(Tab)
 app.use(Swipe)
 app.use(SwipeItem)
+app.use(showFailToast)
 app.mount('#app');

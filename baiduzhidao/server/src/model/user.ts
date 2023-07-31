@@ -1,16 +1,14 @@
 import { Schema, Document, model } from 'mongoose';
 
 export interface IUser extends Document {
-  name: string;
+  userName: string;
   password: string;
-  avatar: string;
 }
 
 // 模式定义了文档中的字段、类型、默认值、验证规则等。
 const userSchema: Schema<IUser> = new Schema({
-  name: { type: String, unique: true, required: true },
+  userName: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  avatar: { type: String, default: '' },
 });
 
 // 模型是 Mongoose 对数据模型的进一步封装，提供了许多内置方法来进行数据库操作，如查询、插入、更新等。

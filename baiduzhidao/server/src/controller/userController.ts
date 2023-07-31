@@ -15,15 +15,17 @@ export const getUsers = async (ctx: Context) => {
 
 export const getUser = async (ctx: Context) => {
   try {
-    const userId = ctx.params.id; // 获取要查找的用户 ID
-    // 查找用户
-    const user: IUser | null = await User.findById(userId);
-    if (!user) {
-      ctx.status = 404;
-      ctx.body = { error: 'User not found' };
-      return;
-    }
-    ctx.body = { user }; // 返回查找到的用户数据
+    const { userName, password } = ctx.request.body as IUser
+    // console.log(userName, password);
+    // console.log(ctx.request.body);
+    const user = await User.findOne({ userName: userName, password: password });
+    // if (!user) {
+    //   ctx.status = 404;
+    //   ctx.body = { error: 'User not found' };
+    //   return;
+    // }
+    // console.log(user);
+    ctx.body = user || null;
   } catch (error) {
     ctx.status = 500;
     ctx.body = { error: 'Internal Server Error' };
@@ -38,8 +40,9 @@ export const createUser = async (ctx: Context) => {
     ctx.status = 201;
     ctx.body = user;
   } catch (error) {
-    ctx.status = 400;
-    ctx.body = { error: error.message };
+    // ctx.status = 400;
+    // ctx.body = { error: error.message };
+    ctx.body = 'null';
   }
 };
 
@@ -57,7 +60,7 @@ export const updateUser = async (ctx: Context) => {
       return;
     }
     // 更新用户数据
-    user.name = updatedUserData.name;
+    user.userName = updatedUserData.userName;
     user.password = updatedUserData.password;
     // console.log(user);
     // 保存修改后的用户数据

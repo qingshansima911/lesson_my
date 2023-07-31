@@ -4,6 +4,10 @@ import Home from '@/views/home/Home.vue'; // 导入你的视图组件
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    redirect: '/home',
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home,
   },
