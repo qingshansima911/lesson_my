@@ -1,26 +1,23 @@
 <template>
-    <div class="comments">
-        <div class="comments_text">共88条评论</div>
-        <div class="comments_profile">
-            <div v-for="item in articleLeft">
-                <el-avatar :size="40" :src="item.author_img" v-if="item.ar_id == id"/>
-            </div>
-            <div v-for="item in articleRight">
-                <el-avatar :size="40" :src="item.author_img" v-if="item.ar_id == id"/>
-            </div>
-            <div class="comments_profile__input">喜欢就给个评论支持一下</div>
-        </div>
-        <div 
-            :key="index"
-            v-for="item,index in props.comments"
-            class="comment">
-                <el-avatar :size="40" :src="item.headImg"></el-avatar>
-                <div class="comment_text">
-                    <div class="comment_text__name">{{ item.name }}</div>
-                    <div class="comment_text__comment">{{ item.comment }}</div>
-                </div>
-        </div>
+  <div class="comments">
+    <div class="comments_text">共88条评论</div>
+    <div class="comments_profile">
+      <div v-for="item in articleLeft">
+        <el-avatar :size="40" :src="item.author_img" v-if="item.ar_id == id" />
+      </div>
+      <div v-for="item in articleRight">
+        <el-avatar :size="40" :src="item.author_img" v-if="item.ar_id == id" />
+      </div>
+      <div class="comments_profile__input">喜欢就给个评论支持一下</div>
     </div>
+    <div :key="index" v-for="item, index in props.comments" class="comment">
+      <el-avatar :size="40" :src="item.headImg"></el-avatar>
+      <div class="comment_text">
+        <div class="comment_text__name">{{ item.name }}</div>
+        <div class="comment_text__comment">{{ item.comment }}</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -28,18 +25,18 @@
 import { useRoute } from 'vue-router'
 
 const props = defineProps({
-    articleLeft: {
-        type: Object,
-        value: {}
-    },
-    articleRight: {
-        type: Object,
-        value: {}
-    },
-    comments: {
-        type: Object,
-        value: {}
-    },
+  articleLeft: {
+    type: Object,
+    value: {}
+  },
+  articleRight: {
+    type: Object,
+    value: {}
+  },
+  comments: {
+    type: Object,
+    value: {}
+  },
 })
 const route = useRoute(); // 当前的路由
 const { id } = route.params

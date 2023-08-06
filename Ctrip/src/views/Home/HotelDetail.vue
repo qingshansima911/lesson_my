@@ -1,53 +1,53 @@
 <template>
-    <div class="hotel_detail">
-        <div class="hotel_detail__header" v-for="item in hotelDetail">
-            <header class="detail_header">
-                <div class="left">
-                    <span class="iconfont icon-fanhui" @click="goBack"></span>
-                    <span class="hotel_header__name">{{ item.hotel_title }}</span>
-                </div>
-                <div class="right">
-                    <div class="right_item">
-                        <i class="iconfont icon-shoucang"></i>
-                        收藏
-                    </div>
-                    <div class="right_item">
-                        <i class="iconfont icon-fenxiang"></i>
-                        分享
-                    </div>
-                    <div class="right_item">
-                        <i class="iconfont icon-more"></i>
-                        更多
-                    </div>
-                </div>
-            </header>
-            <div class="block"></div>
+  <div class="hotel_detail">
+    <div class="hotel_detail__header" v-for="item in hotelDetail">
+      <header class="detail_header">
+        <div class="left">
+          <span class="iconfont icon-fanhui" @click="goBack"></span>
+          <span class="hotel_header__name">{{ item.hotel_title }}</span>
         </div>
-        <div class="hotel_picture">
-            <swiper :swiperList="hotelDetailPic"/>
+        <div class="right">
+          <div class="right_item">
+            <i class="iconfont icon-shoucang"></i>
+            收藏
+          </div>
+          <div class="right_item">
+            <i class="iconfont icon-fenxiang"></i>
+            分享
+          </div>
+          <div class="right_item">
+            <i class="iconfont icon-more"></i>
+            更多
+          </div>
         </div>
-        <div class="hotel_reserve" v-for="item in hotelDetail">
-            <div class="hotel_name">{{ item.hotel_title }}</div>
-            <div class="hotel_description">
-                <div class="hotel_description__item">5月16日</div>
-                <div class="hotel_description__item">一间 · 一人</div>
-            </div>
-            <div class="hotel_room">
-                <div class="room_list" v-for="item in roomList" :key="item.room_id">
-                    <img :src="item.room_img">
-                    <div class="room_des">
-                        <div class="room_title">{{ item.room_title }}</div>
-                        <div class="room_reserve_time">{{ item.reserve_time }}</div>
-                        <div class="room_description">{{ item.room_description }}</div>
-                        <div class="room_price">￥
-                            <span class="room_num">{{ item.room_num }}</span>
-                            <img src="https://i.328888.xyz/2023/05/16/ViA39J.jpeg" @click="addCart(item.room_id)">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </header>
+      <div class="block"></div>
     </div>
+    <div class="hotel_picture">
+      <swiper :swiperList="hotelDetailPic" />
+    </div>
+    <div class="hotel_reserve" v-for="item in hotelDetail">
+      <div class="hotel_name">{{ item.hotel_title }}</div>
+      <div class="hotel_description">
+        <div class="hotel_description__item">5月16日</div>
+        <div class="hotel_description__item">一间 · 一人</div>
+      </div>
+      <div class="hotel_room">
+        <div class="room_list" v-for="item in roomList" :key="item.room_id">
+          <img :src="item.room_img">
+          <div class="room_des">
+            <div class="room_title">{{ item.room_title }}</div>
+            <div class="room_reserve_time">{{ item.reserve_time }}</div>
+            <div class="room_description">{{ item.room_description }}</div>
+            <div class="room_price">￥
+              <span class="room_num">{{ item.room_num }}</span>
+              <img src="https://i.328888.xyz/2023/05/16/ViA39J.jpeg" @click="addCart(item.room_id)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -67,23 +67,23 @@ const hotelDetailPic = computed(() => homeStore.hotelDetailPic)
 const roomList = computed(() => homeStore.roomList)
 
 const goBack = () => {
-    router.go(-1)
+  router.go(-1)
 }
 onMounted(async () => {
-    const { id } = route.params
-    // console.log(id);
-    await homeStore.getHotelDetail(id)
-    await homeStore.getHotelDetailPic(id)
-    await homeStore.getRoomList(id)
+  const { id } = route.params
+  // console.log(id);
+  await homeStore.getHotelDetail(id)
+  await homeStore.getHotelDetailPic(id)
+  await homeStore.getRoomList(id)
 })
 const addCart = async (id) => {
-    await journeyStore.getRoom(id)
-    showFailToast('预订成功')
-    setTimeout(() => {
-        router.push({
-            path: '/journey',
-        })
-    }, 2000);
+  await journeyStore.getRoom(id)
+  showFailToast('预订成功')
+  setTimeout(() => {
+    router.push({
+      path: '/journey',
+    })
+  }, 2000);
 }
 </script>
 

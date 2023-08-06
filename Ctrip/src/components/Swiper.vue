@@ -1,9 +1,9 @@
 <template>
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="#1baeae">
-        <van-swipe-item v-for="(item, index) in props.swiperList" :key="index">
-            <img :src="item.img" alt=""/>
-        </van-swipe-item>
-    </van-swipe>
+  <van-swipe class="my-swipe" :autoplay="3000" indicator-color="#1baeae">
+    <van-swipe-item v-for="(item, index) in props.swiperList" :key="index">
+      <img :src="item.img" alt="" />
+    </van-swipe-item>
+  </van-swipe>
 </template>
 
 <script setup>
