@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = new Proxy([], {
+      get(target, prop) {
+        console.log(`访问了索引 ${prop}`);
+        return target[prop];
+      },
+      set(target, prop, value) {
+        console.log(`修改了索引 ${prop} 的值为`, value);
+        target[prop] = value;
+        return true;
+      }
+    });
+
+    arr[0] = 1; // 修改索引 0 的值为 1
+    console.log(arr[0]); // 输出：1
+    console.log(arr.length); // 输出：1
+  </script>
+</body>
+
+</html>

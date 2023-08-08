@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = [];
+    // 使用 Object.defineProperty 进行拦截
+    Object.defineProperty(arr, "0", {
+      get() {
+        console.log("访问了索引 0");
+        return arr[0];
+      },
+      set(value) {
+        console.log("修改了索引 0 的值为", value);
+        arr[0] = value;
+      }
+    });
+
+    arr[0] = 1; // 修改索引 0 的值为 1 死循环
+    console.log(arr[0]); // 输出：1
+    console.log(arr.length); // 输出：0
+  </script>
+</body>
+
+</html>
